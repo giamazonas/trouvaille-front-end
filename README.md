@@ -1,68 +1,90 @@
-# Decoupled MERN Stack with JWT Auth Template - Front End
+# Trouvaille 🗺
 
-This is the front end of a decoupled MERN Stack app that includes JWT Authentication.
+> “A chance encouter with something wonderful." - origin: French  
 
-When combined with the back end found [here](https://github.com/SEI-Remote/decoupled-mern-jwt-auth-template-back-end), you'll have all you need to build a full stack MERN app!
+<br>
+An application to help people get up and go outside and explore, no matter what location they're in. It can also be used to help people plan their adventures.
+<br>
+I 
+<br>
+<br>
+We
+<br>
+<br>
 
-Use this to go build things! 🚀
+## EXPLORE HERE  🥾
+___________________
 
-## To Use This Template
+Click here, to peruse our web app, [Trouvaille](<insert link>)
 
-**Replace `<name-of-your-app-here>` in the commands below with the name of your app!**
+<br>
+<br>
 
-```bash
-git clone https://github.com/SEI-Remote/decoupled-mern-jwt-auth-template-front-end <name-of-your-app-here>-front-end
-cd <name-of-your-app-here>-front-end
-```
+### SCREENSHOTS 📸 
+___________
 
-Once you are in the project directory:
+Main page
+<br>
+![Main]()
+<br>
+<br>
+pic of what....
 
-```bash
-rm -rf .git
-```
+![add new]()
+<br>
+<br>
+Wireframe
 
-Here's what your command line output should like after this step (note that the indicator that we are in a git repository is gone!)
+![wireframe](public/wireframe.png)
+<br>
+<br>
 
-<img src="https://i.imgur.com/L47kNOZ.png" alt="The command line before and after running the rm -rf .git command. Before git:(main) is visible indiating that the directory contains a git repository, after the command it is not.">
 
-Re-initialize a git repository:
+### TECH USED 🚴🏽‍♀️
+________________
 
-```bash
-git init
-```
+ <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+ <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+ <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+ <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white">
+ <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
+ <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
 
-Use the GitHub CLI to create a new project repository on GitHub:
+ <img src="https://img.shields.io/badge/Apple-MacBook_Pro_2012-999999?style=for-the-badge&logo=apple&logoColor=white"> 
+   <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white">
+ <img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge">
+ <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white">
+ 
+ <img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white">
+ <img src="https://img.shields.io/badge/Microsoft_Azure-0089D6?style=for-the-badge&logo=microsoft-azure&logoColor=white">
+ <br>
+ Visual Studio Code<br>
+ Google OAuth
+ EJS
 
-```bash
-gh repo create <name-of-your-app-here>-front-end
-```
+<br>
+<br>
 
-Run `npm i` to fetch the template's dependencies:
+### ICEBOX 🧳
+___________________
 
-```bash
-npm i
-```
+- MAILCHECK API (only real emails can log in)
+- add co-owner option to itinerary
+- add weather api to city model
+- add transportation api
+- add events
+- add flights model with api
+- add local theaters/movies (api?)
+<br>
+<br>
 
-touch a `.env` file:
+### CREDITS 🌅
+______________________________
 
-```bash
-touch .env
-```
 
-Fill it with the following:
+<br>
+<br>
 
-```
-REACT_APP_BACKEND_SERVER_URL=http://localhost:3001
-```
+[Favicon]()
 
-> 🚨 DO NOT place secrets in this `.env` file. The contents of this file WILL be exposed to site visitors.
-
-Delete this README.md, then make an initial commit:
-
-```bash
-git add .
-git commit -m "initial commit"
-git push -u origin main
-```
-
-You're done!
+![my favicon](/trouvaille-front-end/public/favicon.ico)

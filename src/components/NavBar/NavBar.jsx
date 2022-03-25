@@ -13,6 +13,7 @@ const NavBar = ({ user, handleLogout }) => {
             <li><Link to="/changePassword">Change Password</Link></li>
             <li><Link to="/places">Places</Link></li>
             <li><Link to="/places/add">Add a Place</Link></li>
+            <li><Link to="/itineraries">Itineraries</Link></li>
           </ul>
         </nav>
       :

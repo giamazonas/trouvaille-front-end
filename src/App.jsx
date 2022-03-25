@@ -14,6 +14,7 @@ import AddCity from './pages/AddCity/AddCity'
 import CityList from './pages/CityList/CityList'
 import EditCity from './pages/EditCity/EditCity'
 import CityId from './pages/CityId/CityId'
+import Itineraries from './pages/Itineraries/Itineraries'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
@@ -124,6 +125,10 @@ const App = () => {
         <Route
           path="/places/add"
           element={user ? <AddPlace /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/itineraries"
+          element={user ? <Itineraries /> : <Navigate to="/login" />}
         />
       </Routes>
       </main>

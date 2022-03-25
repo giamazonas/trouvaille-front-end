@@ -9,10 +9,10 @@ function AddCity(props) {
     desc: '',
     city: '',
     state: '',
-    zip: '',
+    zip: [],
     population: '', 
-    walkable: '', 
-    photo: '',
+    walkable: true, 
+    photo: [],
   })
 
   useEffect(() => {
@@ -20,40 +20,40 @@ function AddCity(props) {
   }, [formData])
 
   const handleSubmit = evt => {
-    //
+    evt.preventDefault()
+    props.handleAddCity(formData)
   }
 
   const handleChange = evt => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value })
   }
 
-
   return(
     <div>
       <h1> Add City </h1>
       <form autoComplete = 'off' ref={formElement} onSubmit={handleSubmit} >
         <div>
-          <label htmlFor='name-input' className='form-control' id='address-input'
+          <label htmlFor='address-input' className='form-control' id='address-input'
           name='address'
           value={formData.address}
           onChange={handleChange} required />
         </div>
         <div>
-          <label htmlFor="name-input">
+          <label htmlFor="city-input">
             City Name
           </label>
           <input
 						type="text"
 						className="form-control"
-						id="name-input"
-						name="name"
-						value={formData.name}
+						id="city-input"
+						name="city"
+						value={formData.city}
 						onChange={handleChange}
 						required
 					/>
         </div>
         <div>
-          <label htmlFor="type-input">
+          <label htmlFor="state-input">
             State
           </label>
           <input
@@ -67,7 +67,7 @@ function AddCity(props) {
 					/>
         </div>
         <div>
-          <label htmlFor="type-input">
+          <label htmlFor="zip-input">
             Zip
           </label>
           <input
@@ -81,21 +81,21 @@ function AddCity(props) {
 					/>
         </div>
         <div>
-          <label htmlFor="type-input">
+          <label htmlFor="desc-input">
             Description
           </label>
           <input
 						type="text"
 						className="form-control"
-						id="description-input"
-						name="description"
-						value={formData.description}
+						id="desc-input"
+						name="desc"
+						value={formData.desc}
 						onChange={handleChange}
 						required
 					/>
         </div>
         <div>
-          <label htmlFor="type-input">
+          <label htmlFor="population-input">
             Population
           </label>
           <input
@@ -109,7 +109,7 @@ function AddCity(props) {
 					/>
         </div>
         <div>
-          <label htmlFor="type-input">
+          <label htmlFor="walkable-input">
             Walkable?  
           </label> 
           <input
@@ -119,7 +119,6 @@ function AddCity(props) {
 						name="walkable"
 						value={formData.walkable}
 						onChange={handleChange}
-						required
 					/>
         </div>
         <div className="d-grid">

@@ -58,6 +58,7 @@ function AddPlace(props) {
 					/>
         </div>
         <div>
+          {/* CHANGE THIS IN NOT TO DISTANT FUTURE */}
           <label htmlFor="name-input">
             Name (required)
           </label>
@@ -92,12 +93,12 @@ function AddPlace(props) {
 						className="btn btn-primary btn-fluid"
 						disabled={!validForm}
 					>
-						Add Puppy
+						Add Place
 					</button>
 				</div>
       </form>
     </div>
   )
-}
+} 
 
 export default AddPlace

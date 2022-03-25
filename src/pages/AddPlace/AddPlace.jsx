@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import styles from './AddPlace.module.css'
 
 function AddPlace(props) {
   const formElement = useRef()
@@ -25,13 +26,14 @@ function AddPlace(props) {
 	}
 
   return(
-    <div>
+    <div className={styles.container}>
       <h1>Add Place</h1>
       <form autoComplete='off' ref={formElement} onSubmit={handleSubmit} >
         <div>
           <label htmlFor="address-input">
             Address (required)
           </label>
+          <br />
           <input
 						type="text"
 						className="form-control"
@@ -47,6 +49,7 @@ function AddPlace(props) {
           <label htmlFor="city-input">
             City (required)
           </label>
+          <br />
           <input
 						type="text"
 						className="form-control"
@@ -57,11 +60,15 @@ function AddPlace(props) {
 						required
 					/>
         </div>
+
+        <br />
+
         <div>
           {/* CHANGE THIS IN NOT TO DISTANT FUTURE */}
           <label htmlFor="name-input">
-            Name (required)
+            Name of place (required)
           </label>
+          <br />
           <input
 						type="text"
 						className="form-control"
@@ -73,20 +80,38 @@ function AddPlace(props) {
 					/>
         </div>
         <div>
-        {/* CHANGE THIS IN NOT TO DISTANT FUTURE */}
           <label htmlFor="type-input">
-            Type (required)
+            Type 
+            <select 
+              name="type" 
+              id="type-input"
+              value={formData.type}
+              className='form-control'
+              onChange={handleChange}
+              required
+            >
+              <option value="restaurant">Restaurant</option>
+              <option value="choffee">Coffee Shop</option>
+              <option value="bar">Bar</option>
+              <option value="park">Park</option>
+              <option value="movie-theatre">Movie Theatre</option>
+              <option value="museum">Museum</option>
+              <option value="bowling">Bowling</option>
+              <option value="arcade">Arcade</option>
+              <option value="shop">Shop</option>
+            </select>
+
+
+            {/* TEST ZONE */}
+            <p>
+              {console.log(props)}
+            </p>
+            {/* TEST ZONE */}
+
+
           </label>
-          <input
-						type="text"
-						className="form-control"
-						id="type-input"
-						name="type"
-						value={formData.type}
-						onChange={handleChange}
-						required
-					/>
         </div>
+        <br />
         <div className="d-grid">
 					<button
 						type="submit"

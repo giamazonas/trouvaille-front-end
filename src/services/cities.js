@@ -1,4 +1,4 @@
-const BASE_URL = "/api/cities";
+const BASE_URL = "/cities";
 
 function create(city) {
   return fetch(BASE_URL, {

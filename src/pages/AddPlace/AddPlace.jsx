@@ -6,16 +6,16 @@ function AddPlace(props) {
   const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState({
     address: '',
-    city: '',
+    city: '', //object.Id ref city
     name: '',
     type: '',
     url: '',
-    photo: '',
+    photo: [],
   })
 
 	useEffect(() => {
 		formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
-	}, [formData])
+	}, [])
 
   const handleSubmit = evt => {
     // console.log('evt: ', evt)
@@ -58,7 +58,22 @@ function AddPlace(props) {
             City (required)
           </label>
           <br />
-          <input
+          <select 
+              name="type" 
+              id="city-input"
+              value={formData.city}
+              className='form-control'
+              onChange={handleChange}
+              required
+            >
+              {/* {props.cities.map(city =>{
+                <option value={city._id}>{city.city}</option>
+              })} */}
+              {props.cities.forEach(city => {
+                <option value={city.city}>{city.city}</option>
+              })}
+            </select>
+          {/* <input
 						type="text"
 						className="form-control"
 						id="city-input"
@@ -66,7 +81,7 @@ function AddPlace(props) {
 						value={formData.city}
 						onChange={handleChange}
 						required
-					/>
+					/> */}
         </div>
 
         <br />

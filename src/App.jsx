@@ -31,9 +31,9 @@ const App = () => {
     setUser(authService.getUser())
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     cityService.getAll()
-    .then(allCities => setCities(allCities))
+      .then(allCities => setCities(allCities))
   }, [])
 
   const handleAddCity = async newCityData => {
@@ -44,40 +44,31 @@ const App = () => {
 
   const handleDeleteCity = id => {
     cityService.deleteOne(id)
-    .then(deletedCity => setCities(cities.filter(city => city._id !== deletedCity._id)))
+      .then(deletedCity => setCities(cities.filter(city => city._id !== deletedCity._id)))
   }
 
   const handleUpdateCity = updatedCityData => {
     cityService.update(updatedCityData)
-    .then(updatedCity => {
-      const newCitiesArray = cities.map(city => city._id === updatedCity._id ? updatedCity : city)
-      setCities(newCitiesArray)
-      navigate('/')
-    })
+      .then(updatedCity => {
+        const newCitiesArray = cities.map(city => city._id === updatedCity._id ? updatedCity : city)
+        setCities(newCitiesArray)
+        navigate('/')
+      })
   }
 
   return (
     <div className="App">
-      <header className="App-header">
-        Cities 
-        <NavBar user={user} handleLogout={handleLogout} />
-        <nav>
-          <NavLink to='/'>City List</NavLink>
-          <NavLink className='m-left' to='/add'>Add City</NavLink>
-          <NavLink to='/:id/edit'>Edit City</NavLink>
-          <NavLink to='/:id'>Each City</NavLink>
-        </nav>
-      </header>
+      <NavBar user={user} handleLogout={handleLogout} />
       <main>
         <Routes>
-          <Route 
-            path='/add' 
+          <Route
+            path='/add'
             element={
-              <AddCity 
-                handleAddCity={handleAddCity} 
+              <AddCity
+                handleAddCity={handleAddCity}
               />
             } />
-            {/* <Route 
+          {/* <Route 
             path='/:id' 
             element={
               <CityId 
@@ -85,52 +76,52 @@ const App = () => {
               />
             } 
           /> */}
-          <Route 
-            path='/:id/edit' 
+          <Route
+            path='/:id/edit'
             element={
-              <CityId 
-                handleUpdateCity={handleUpdateCity} 
+              <CityId
+                handleUpdateCity={handleUpdateCity}
               />
-            } 
+            }
           />
-          <Route 
-            path='/:id/edit' 
+          <Route
+            path='/:id/edit'
             element={
-              <CityId 
-                handleDeleteCity={handleDeleteCity} 
+              <CityId
+                handleDeleteCity={handleDeleteCity}
               />
-            } 
+            }
           />
-        <Route path="/" element={<Landing user={user} />} />
-        <Route
-          path="/signup"
-          element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
-        />
-        <Route
-          path="/login"
-          element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
-        />
-        <Route
-          path="/profiles"
-          element={user ? <Profiles /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/changePassword"
-          element={user ? <ChangePassword handleSignupOrLogin={handleSignupOrLogin}/> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/places"
-          element={user ? <Places /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/places/add"
-          element={user ? <AddPlace /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/itineraries"
-          element={user ? <Itineraries /> : <Navigate to="/login" />}
-        />
-      </Routes>
+          <Route path="/" element={<Landing user={user} />} />
+          <Route
+            path="/signup"
+            element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
+          />
+          <Route
+            path="/login"
+            element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
+          />
+          <Route
+            path="/profiles"
+            element={user ? <Profiles /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/changePassword"
+            element={user ? <ChangePassword handleSignupOrLogin={handleSignupOrLogin} /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/places"
+            element={user ? <Places /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/places/add"
+            element={user ? <AddPlace /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/itineraries"
+            element={user ? <Itineraries /> : <Navigate to="/login" />}
+          />
+        </Routes>
       </main>
     </div>
   )

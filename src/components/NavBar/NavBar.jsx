@@ -1,28 +1,39 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const NavBar = ({ user, handleLogout }) => {
   return (
     <>
       {user ?
-        <nav>
-          <h1>/tro͞o`vī/</h1>
-          <ul>
-            <li>Welcome, {user.name}</li>
-            <li><Link to="/profiles">Profiles</Link></li>
-            <li><Link to="" onClick={handleLogout}>LOG OUT</Link></li>
-            <li><Link to="/changePassword">Change Password</Link></li>
-            <li><Link to="/places">Places</Link></li>
-            <li><Link to="/places/add">Add a Place</Link></li>
-            <li><Link to="/itineraries">Itineraries</Link></li>
-          </ul>
-        </nav>
-      :
-        <nav>
-          <ul>
-            <li><Link to="/login">Log In</Link></li>
-            <li><Link to="/signup">Sign Up</Link></li>
-          </ul>
-        </nav>
+        <header className="App-header">
+          <nav>
+            <NavLink to='/'>Trouvaille</NavLink>
+            <ul>Cities
+              <li><NavLink to='/cities'>Cities</NavLink></li>
+              <li><NavLink to='/cities/add'>Add City</NavLink></li>
+              <li><NavLink to='/:id/edit'>Edit City</NavLink></li>
+              <li><NavLink to='/:id'>Each City</NavLink></li>
+            </ul>
+            <ul>Places
+              <li><NavLink to="/places">Places</NavLink></li>
+              <li><NavLink to="/places/add">Add a Place</NavLink></li>
+            </ul>
+            <ul><NavLink to="/itineraries">My Itineraries</NavLink></ul>
+
+            {/* <NavLink to="/profiles">Profiles</NavLink> */}
+            <ul>
+              <li>Welcome, {user.name}</li>
+              <li><NavLink to="/changePassword">Change Password</NavLink></li>
+              <li><NavLink to="" onClick={handleLogout}>LOG OUT</NavLink></li>
+            </ul>
+          </nav>
+        </header>
+        :
+        <header className="App-header">
+          <nav>
+            <NavLink to="/login">Log In</NavLink>
+            <NavLink to="/signup">Sign Up</NavLink>
+          </nav>
+        </header>
       }
     </>
   )

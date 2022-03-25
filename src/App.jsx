@@ -21,6 +21,7 @@ const App = () => {
   const navigate = useNavigate()
   const [cities, setCities] = useState([])
 
+
   const handleLogout = () => {
     authService.logout()
     setUser(null)
@@ -39,7 +40,7 @@ const App = () => {
   const handleAddCity = async newCityData => {
     const newCity = await cityService.create(newCityData)
     setCities([...cities, newCity])
-    navigate('/')
+    navigate('/cities')
   }
 
   const handleDeleteCity = id => {
@@ -52,7 +53,7 @@ const App = () => {
       .then(updatedCity => {
         const newCitiesArray = cities.map(city => city._id === updatedCity._id ? updatedCity : city)
         setCities(newCitiesArray)
-        navigate('/')
+        navigate('/cities')
       })
   }
 
@@ -61,10 +62,12 @@ const App = () => {
       <NavBar user={user} handleLogout={handleLogout} />
       <main>
         <Routes>
+          <Route path='/cities' element={<CityList /> }
+          />
           <Route
-            path='/add'
+            path='/cities/add'
             element={
-              <AddCity
+              <AddCity 
                 handleAddCity={handleAddCity}
               />
             } />

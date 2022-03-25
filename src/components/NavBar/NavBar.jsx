@@ -10,7 +10,6 @@ const NavBar = ({ user, handleLogout }) => {
             <ul>Cities
               <li><NavLink to='/cities'>Cities</NavLink></li>
               <li><NavLink to='/cities/add'>Add City</NavLink></li>
-              <li><NavLink to='/:id/edit'>Edit City</NavLink></li>
               <li><NavLink to='/:id'>Each City</NavLink></li>
             </ul>
             <ul>Places

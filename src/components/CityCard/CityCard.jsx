@@ -9,14 +9,16 @@ function CityCard({city, handleDeleteCity}) {
     className="card-img-top" 
     />
     <div className="card-body">
-      <h2 className="card-text">{city.name},</h2>
+      <h2 className="card-text">{city.city}</h2>
       <p className="card-text">{city.state}</p>
     </div>
     <div className="card-footer">
       <Link
+
         className='btn btn-sm btn-warning'
-        to='/edit'
+        to={`/${city._id}/edit`}
         state={{city}}
+        
       >
         Edit
       </Link>

@@ -91,7 +91,7 @@ function AddPlace(props) {
               required
             >
               <option value="restaurant">Restaurant</option>
-              <option value="choffee-shop">Coffee Shop</option>
+              <option value="choffee">Coffee Shop</option>
               <option value="bar">Bar</option>
               <option value="park">Park</option>
               <option value="movie-theatre">Movie Theatre</option>
@@ -99,10 +99,19 @@ function AddPlace(props) {
               <option value="bowling">Bowling</option>
               <option value="arcade">Arcade</option>
               <option value="shop">Shop</option>
-
             </select>
+
+
+            {/* TEST ZONE */}
+            <p>
+              {console.log(props)}
+            </p>
+            {/* TEST ZONE */}
+
+
           </label>
         </div>
+        <br />
         <div className="d-grid">
 					<button
 						type="submit"

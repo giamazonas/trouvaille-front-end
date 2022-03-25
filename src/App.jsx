@@ -10,6 +10,7 @@ import AddPlace from './pages/AddPlace/AddPlace'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import * as authService from './services/authService'
 import * as cityService from './services/cities'
+import * as placeService from './services/placeService'
 import AddCity from './pages/AddCity/AddCity'
 import CityList from './pages/CityList/CityList'
 import EditCity from './pages/EditCity/EditCity'
@@ -18,8 +19,9 @@ import Itineraries from './pages/ItineraryList/ItineraryList'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
-  const navigate = useNavigate()
   const [cities, setCities] = useState([])
+  const [places, setPlaces] = useState([])
+  const navigate = useNavigate()
 
 
   const handleLogout = () => {
@@ -36,6 +38,36 @@ const App = () => {
     cityService.getAll()
       .then(allCities => setCities(allCities))
   }, [])
+
+  
+  /* ----------------------------- PLACE ----------------------------- */
+  
+  useEffect(() => {
+    placeService.getAllPlaces()
+      .then(allPlaces => setPlaces(allPlaces))
+  }, [])
+
+  const handleAddPlace = async newPlaceData => {
+    const newPlace = await placeService.create(newPlaceData)
+    setPlaces([...places, newPlace])
+    navigate('/places')
+  }
+
+  const handleDeletePlace = id => {
+    placeService.deleteOne(id)
+      .then(deletedPlace => setPlaces(places.filter(place => place._id !== deletedPlace._id)))
+  }
+
+  const handleUpdatePlace = updatedPlaceData => {
+    placeService.update(updatedPlaceData)
+      .then(updatedPlace => {
+        const newPlacesArray = places.map(place => place._id === updatedPlace._id ? updatedPlace : place)
+        setPlaces(newPlacesArray)
+        navigate('/')
+      })
+  }
+
+  /* ----------------------------- CITY ----------------------------- */
 
   const handleAddCity = async newCityData => {
     const newCity = await cityService.create(newCityData)
@@ -118,7 +150,16 @@ const App = () => {
           />
           <Route
             path="/places/add"
-            element={user ? <AddPlace /> : <Navigate to="/login" />}
+            element={
+              user ? 
+                <AddPlace 
+                  handleAddPlace={handleAddPlace} 
+                  places={places} 
+                  cities={cities}
+                /> 
+              : 
+                <Navigate to="/login" />
+              }
           />
           <Route
             path="/itineraries"

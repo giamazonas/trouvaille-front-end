@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import * as placeService from '../../services/placeService.js'
 import { Link } from 'react-router-dom'
 
-const Places = () => {
+const Places = (props) => {
   const [places, setPlaces] = useState([])
 
   useEffect(()=> {

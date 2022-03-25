@@ -94,7 +94,7 @@ const App = () => {
       <NavBar user={user} handleLogout={handleLogout} />
       <main>
         <Routes>
-          <Route path='/cities' element={<CityList /> }
+          <Route path='/cities' element={<CityList cities={cities} /> }
           />
           <Route
             path='/cities/add'

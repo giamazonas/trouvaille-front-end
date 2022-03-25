@@ -12,7 +12,7 @@ function AddCity(props) {
     zip: [],
     population: '', 
     walkable: true, 
-    photo: [],
+    photo: [],  
   })
 
   useEffect(() => {
@@ -21,7 +21,15 @@ function AddCity(props) {
 
   const handleSubmit = evt => {
     evt.preventDefault()
-    props.handleAddCity(formData)
+    const placeFormData = new FormData()
+    placeFormData.append('desc', formData.desc)
+    placeFormData.append('city', formData.city)
+    placeFormData.append('state', formData.state)
+    placeFormData.append('zip', formData.zip)
+    placeFormData.append('population', formData.population)
+    placeFormData.append('walkable', formData.walkable)
+    placeFormData.append('photo', formData.photo)
+    props.handleAddCity(placeFormData)
   }
 
   const handleChange = evt => {
@@ -32,12 +40,6 @@ function AddCity(props) {
     <div>
       <h1> Add City </h1>
       <form autoComplete = 'off' ref={formElement} onSubmit={handleSubmit} >
-        <div>
-          <label htmlFor='address-input' className='form-control' id='address-input'
-          name='address'
-          value={formData.address}
-          onChange={handleChange} required />
-        </div>
         <div>
           <label htmlFor="city-input">
             City Name

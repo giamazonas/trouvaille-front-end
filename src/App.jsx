@@ -5,6 +5,8 @@ import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
+import Places from './pages/Places/places'
+import AddPlace from './pages/AddPlace/AddPlace'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import * as authService from './services/authService'
 
@@ -42,6 +44,14 @@ const App = () => {
         <Route
           path="/changePassword"
           element={user ? <ChangePassword handleSignupOrLogin={handleSignupOrLogin}/> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/places"
+          element={user ? <Places /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/places/add"
+          element={user ? <AddPlace /> : <Navigate to="/login" />}
         />
       </Routes>
     </>

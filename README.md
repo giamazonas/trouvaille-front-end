@@ -69,11 +69,10 @@ ________________
 ___________________
 
 - MAILCHECK API (only real emails can log in)
+- add co-owner option to itinerary
 - add weather api to city model
 - add transportation api
 - add events
-- add co-owner option to itinerary
-- add review model/schema 
 - add flights model with api
 - add local theaters/movies (api?)
 <br>
@@ -88,4 +87,4 @@ ______________________________
 
 [Favicon]()
 
-![my favicon]()
+![my favicon](/trouvaille-front-end/public/favicon.ico)

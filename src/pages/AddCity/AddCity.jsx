@@ -10,8 +10,8 @@ function AddCity(props) {
     city: '',
     state: '',
     zip: '',
-    population: '', // set up correctly?
-    walkable: '',  // set up correctly?
+    population: '', 
+    walkable: '', 
     photo: '',
   })
 
@@ -59,9 +59,9 @@ function AddCity(props) {
           <input
 						type="text"
 						className="form-control"
-						id="type-input"
-						name="type"
-						value={formData.type}
+						id="state-input"
+						name='state'
+						value={formData.state}
 						onChange={handleChange}
 						required
 					/>
@@ -73,9 +73,9 @@ function AddCity(props) {
           <input
 						type="text"
 						className="form-control"
-						id="type-input"
-						name="type"
-						value={formData.type}
+						id="zip-input"
+						name="zip"
+						value={formData.zip}
 						onChange={handleChange}
 						required
 					/>
@@ -87,9 +87,23 @@ function AddCity(props) {
           <input
 						type="text"
 						className="form-control"
-						id="type-input"
-						name="type"
-						value={formData.type}
+						id="description-input"
+						name="description"
+						value={formData.description}
+						onChange={handleChange}
+						required
+					/>
+        </div>
+        <div>
+          <label htmlFor="type-input">
+            Population
+          </label>
+          <input
+						type="text"
+						className="form-control"
+						id="population-input"
+						name="population"
+						value={formData.population}
 						onChange={handleChange}
 						required
 					/>
@@ -99,15 +113,24 @@ function AddCity(props) {
             Walkable?  
           </label> 
           <input
-						type="text"
+						type="checkbox"
 						className="form-control"
-						id="type-input"
-						name="type"
-						value={formData.type}
+						id="walkable-input"
+						name="walkable"
+						value={formData.walkable}
 						onChange={handleChange}
 						required
 					/>
         </div>
+        <div className="d-grid">
+					<button
+						type="submit"
+						className="btn btn-primary btn-fluid"
+						disabled={!validForm}
+					>
+						Add City
+					</button>
+				</div>
       </form>
     </div>
   )

@@ -1,5 +1,5 @@
 // import { useState, useRef, useEffect } from 'react'
-import ItineraryForm from '../../components/ItineraryForm/ItineraryForm'
+import AddItinerary from '../../components/AddItinerary/AddItinerary'
 
 const CityId = (props) => {
   return (

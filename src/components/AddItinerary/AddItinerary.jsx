@@ -19,20 +19,20 @@ const AddItinerary = () => {
   const handleSubmit = evt => {
     evt.preventDefault()
 		const itineraryFormData = new FormData()
-		itineraryFormData.append('photo', formData.photo)
-    itineraryFormData.append('name', formData.name)
-    itineraryFormData.append('age', formData.age)
-    itineraryFormData.append('breed', formData.breed)
-    props.handleAddPuppy(itineraryFormData)
+		itineraryFormData.append('name', formData.name)
+    itineraryFormData.append('time', formData.time)
+    itineraryFormData.append('place', formData.place)
+    props.handleAddItinerary(itineraryFormData)
   }
 
-  const handleChange = evt => {
-    setFormData({...formData, [evt.target.name]: evt.target.value})
-  }
+  // const handleChange = evt => {
+  //   setFormData({...formData, [evt.target.name]: evt.target.value})
+  // }
 
   return (
-    <div>
-
+    <div className={}>
+       <h1>Add to your Itinerary</h1>
+       <form onSubmit={handleSubmit}></form>
     </div>
   );
 }

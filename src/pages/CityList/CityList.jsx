@@ -10,7 +10,7 @@ const CityList = props => {
       <div className={styles.container}>
         {props.cities.map(city => ( 
           <CityCard 
-            key={city.name}
+            key={city._id}
             city={city}
             // insert photo link
             handleDeleteCity={props.handleDeleteCity}

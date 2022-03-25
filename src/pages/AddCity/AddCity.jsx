@@ -28,7 +28,7 @@ function AddCity(props) {
     placeFormData.append('zip', formData.zip)
     placeFormData.append('population', formData.population)
     placeFormData.append('walkable', formData.walkable)
-    placeFormData.append('photo', formData.photo)
+    // placeFormData.append('photo', formData.photo)
     props.handleAddCity(placeFormData)
   }
 

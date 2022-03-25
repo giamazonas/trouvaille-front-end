@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import styles from './AddItinerary.module.css'
 import * as itineraries from '../../services/itineraries'
 
-const AddItinerary = () => {
+const AddItinerary = (props) => {
   const formElement = useRef()
   const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState({
@@ -30,7 +30,7 @@ const AddItinerary = () => {
   // }
 
   return (
-    <div className={}>
+    <div className={styles.container}>
        <h1>Add to your Itinerary</h1>
        <form onSubmit={handleSubmit}></form>
     </div>

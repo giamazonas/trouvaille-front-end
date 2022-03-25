@@ -48,6 +48,7 @@ const App = () => {
   }, [])
 
   const handleAddPlace = async newPlaceData => {
+    console.log('ADDING PLACE : ', places)
     const newPlace = await placeService.create(newPlaceData)
     setPlaces([...places, newPlace])
     navigate('/places')

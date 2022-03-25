@@ -17,11 +17,10 @@ const NavBar = ({ user, handleLogout }) => {
               <li><NavLink to="/places">Places</NavLink></li>
               <li><NavLink to="/places/add">Add a Place</NavLink></li>
             </ul>
-            <ul><NavLink to="/itineraries">My Itineraries</NavLink></ul>
 
-            {/* <NavLink to="/profiles">Profiles</NavLink> */}
-            <ul>
-              <li>Welcome, {user.name}</li>
+            <ul>{user.name} {/*  add icon */}
+              <li><NavLink to="/itineraries">My Itineraries</NavLink></li>
+              <li><NavLink to="/itineraries">Starred Places</NavLink></li>
               <li><NavLink to="/changePassword">Change Password</NavLink></li>
               <li><NavLink to="" onClick={handleLogout}>LOG OUT</NavLink></li>
             </ul>

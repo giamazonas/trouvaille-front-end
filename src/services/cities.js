@@ -1,10 +1,14 @@
+import * as tokenService from '../services/tokenService'
 const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/cities`
 
 function create(city) {
+  console.log(city)
   return fetch(BASE_URL, {
     method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify(city),
+    headers: {  
+      'Authorization': `Bearer ${tokenService.getToken()}`
+  },
+    body: city,
   }).then((res) => res.json());
 }
 

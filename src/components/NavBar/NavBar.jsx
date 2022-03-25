@@ -5,11 +5,14 @@ const NavBar = ({ user, handleLogout }) => {
     <>
       {user ?
         <nav>
+          <h1>/tro͞o`vī/</h1>
           <ul>
             <li>Welcome, {user.name}</li>
             <li><Link to="/profiles">Profiles</Link></li>
             <li><Link to="" onClick={handleLogout}>LOG OUT</Link></li>
             <li><Link to="/changePassword">Change Password</Link></li>
+            <li><Link to="/places">Places</Link></li>
+            <li><Link to="/places/add">Add a Place</Link></li>
           </ul>
         </nav>
       :

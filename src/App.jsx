@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Routes, Route, useNavigate, Navigate, NavLink } from 'react-router-dom'
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar'
 import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
@@ -34,41 +34,41 @@ const App = () => {
     setUser(authService.getUser())
   }
 
+  /* ----------------------------- PLACE ----------------------------- */
+  
+  useEffect(() => {
+    placeService.getAllPlaces()
+    .then(allPlaces => setPlaces(allPlaces))
+  }, [])
+  
+  const handleAddPlace = async newPlaceData => {
+    const newPlace = await placeService.create(newPlaceData)
+    setPlaces([...places, newPlace])
+    navigate('/places')
+  }
+  
+  const handleDeletePlace = id => {
+    placeService.deleteOne(id)
+    .then(deletedPlace => setPlaces(places.filter(place => place._id !== deletedPlace._id)))
+  }
+
+  const handleUpdatePlace = updatedPlaceData => {
+    placeService.update(updatedPlaceData)
+    .then(updatedPlace => {
+      const newPlacesArray = places.map(place => place._id === updatedPlace._id ? updatedPlace : place)
+      setPlaces(newPlacesArray)
+      navigate('/')
+    })
+  }
+  
+  /* ----------------------------- CITY ----------------------------- */
+  
   useEffect(() => {
     cityService.getAll()
       .then(allCities => setCities(allCities))
   }, [])
 
   
-  /* ----------------------------- PLACE ----------------------------- */
-  
-  useEffect(() => {
-    placeService.getAllPlaces()
-      .then(allPlaces => setPlaces(allPlaces))
-  }, [])
-
-  const handleAddPlace = async newPlaceData => {
-    const newPlace = await placeService.create(newPlaceData)
-    setPlaces([...places, newPlace])
-    navigate('/places')
-  }
-
-  const handleDeletePlace = id => {
-    placeService.deleteOne(id)
-      .then(deletedPlace => setPlaces(places.filter(place => place._id !== deletedPlace._id)))
-  }
-
-  const handleUpdatePlace = updatedPlaceData => {
-    placeService.update(updatedPlaceData)
-      .then(updatedPlace => {
-        const newPlacesArray = places.map(place => place._id === updatedPlace._id ? updatedPlace : place)
-        setPlaces(newPlacesArray)
-        navigate('/')
-      })
-  }
-
-  /* ----------------------------- CITY ----------------------------- */
-
   const handleAddCity = async newCityData => {
     const newCity = await cityService.create(newCityData)
     setCities([...cities, newCity])
@@ -94,7 +94,7 @@ const App = () => {
       <NavBar user={user} handleLogout={handleLogout} />
       <main>
         <Routes>
-          <Route path='/cities' element={<CityList /> }
+          <Route path='/cities' element={<CityList cities={cities} /> }
           />
           <Route
             path='/cities/add'

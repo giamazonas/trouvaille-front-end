@@ -18,7 +18,15 @@ function AddPlace(props) {
 	}, [formData])
 
   const handleSubmit = evt => {
-    // TBD
+    // console.log('evt: ', evt)
+    // console.log('formData: ', formData)
+    evt.preventDefault()
+    const placeFormData =new FormData()
+    placeFormData.append('address', formData.address)
+    placeFormData.append('city', formData.city)
+    placeFormData.append('name', formData.name)
+    placeFormData.append('type', formData.type)
+    props.handleAddPlace(placeFormData)
   }
 
   const handleChange = evt => {
@@ -104,7 +112,8 @@ function AddPlace(props) {
 
             {/* TEST ZONE */}
             <p>
-              {console.log(props)}
+              {console.log('props: ', props)}  
+              {/* {console.log('props.places: ', props.places)} */}
             </p>
             {/* TEST ZONE */}
 

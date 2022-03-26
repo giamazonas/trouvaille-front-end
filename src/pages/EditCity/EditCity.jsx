@@ -1,15 +1,25 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import * as cityService from '../../services/cities'
 
-function EditCity(props) {
+function EditCity(city) {
   const location = useLocation()
-  const [formData, setFormData] = useState(location.state.city)
+  const [cityDetails, setCityDetails] = useState({})
+  const [formData, setFormData] = useState(location.state.city._id)
   const [validForm, setValidForm] = useState(true)
   const formElement = useRef()
+
+
+  console.log('location.state: ', location.state.city._id)
 
   const handleChange = evt => {
     setFormData({...formData, [evt.target.name]: evt.target.value })
   }
+
+  useEffect(() => {
+    cityService.getOne(location.state.city._id)
+      .then(city => setCityDetails(city))
+  }, [])
 
   useEffect(() => {
 		formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
@@ -25,7 +35,12 @@ function EditCity(props) {
     placeFormData.append('population', formData.population)
     placeFormData.append('walkable', formData.walkable)
     // placeFormData.append('photo', formData.photo)
-    props.handleUpdateCity(formData)
+    city.handleUpdateCity(formData)
+  }
+
+  const handleDeleteCity = id => {
+    cityService.deleteOne(id)
+      .then(deletedCity => setCityDetails(city.filter(city => city._id !== deletedCity._id)))
   }
 
   return (
@@ -125,6 +140,14 @@ function EditCity(props) {
 					</button>
 				</div>
       </form> 
+
+      <button
+        className="btn btn-sm btn-danger m-left"
+        onClick={()=> handleDeleteCity(city.city._id)}
+      >
+        Delete
+      </button>
+
     </>
   )
 }

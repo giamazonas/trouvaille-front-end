@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import * as itineraryService from '../../services/itineraries.js'
 import { Link } from 'react-router-dom'
 
 const Itineraries = (props) => {

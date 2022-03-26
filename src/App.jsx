@@ -107,7 +107,10 @@ const App = () => {
             path='cities/:id'
             element={
               <CityId 
-                // handleCityId={handleCityId} 
+                // handleCityId={handleCityId}
+                 city={cities}
+                 places={places}
+                //  itineraries={itineraries}
               />
             } 
           />
@@ -146,7 +149,6 @@ const App = () => {
               user ? 
                 <AddPlace 
                   handleAddPlace={handleAddPlace} 
-                  // places={places} 
                   cities={cities}
                 /> 
               : 

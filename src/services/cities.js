@@ -22,6 +22,14 @@ function deleteOne(id) {
   }).then((res) => res.json());
 }
 
+function getOne(id) {
+  console.log('citiesServices_getOne: ',id)
+  return fetch(`${BASE_URL}/${id}`, {
+    method: 'GET',
+  })
+  .then((res) => res.json());
+}
+
 function update(city) {
   return fetch(`${BASE_URL}/${city._id}`, {
     method: "PUT",
@@ -30,4 +38,4 @@ function update(city) {
   }).then((res) => res.json());
 }
 
-export { create, getAll, deleteOne, update };
+export { create, getAll, deleteOne, update, getOne };

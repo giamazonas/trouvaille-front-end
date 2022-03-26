@@ -8,38 +8,35 @@ const CityId = (props) => {
   const [cityDetails, setCityDetails] = useState({})
   let location = useLocation()
 
+  // console.log('PROPS: ',props)
+  console.log('lcation.state: ', location.state.city._id)
+
   // const {} = useParams()
 
-  // useEffect(() => {
-  //   getCitydetails(location.state.city._id)
-  //   .then(cityData => setCityDetails(cityData))
-  // })
-
   useEffect(() => {
-    cityService.getAll()
-    .then(allCities => setCityDetails(allCities))
+    cityService.getOne(location.state.city._id)
+      .then(city => setCityDetails(city))
   }, [])
 
   return (
     <>
       <div className='mapbox-container'>
-
       </div>
       <div className='places-container'>
-
       </div>
       <div className='city-container'>
-        {cityDetails.city._id ?
-        <>
-          <h4 className='city-details'>{cityDetails.city}</h4>
-          {cityDetails.desc}
-          {cityDetails.population}
-          {cityDetails.walkable}
-        </>
-        :
-        <>
-          <h2>Loading City Details...</h2>
-        </>
+        {location.state.city._id ?
+          <>
+
+            <h2 className='city-details'>{location.state.city.city}</h2>
+            <h3>{location.state.city.desc}</h3>
+            <h4>{location.state.city.population}</h4>
+            <h4>Walkable? {location.state.city.walkable ? 'you can walk!' : 'get a bike'}</h4>
+          </>
+          :
+          <>
+            <h2>Loading City Details...</h2>
+          </>
         }
       </div>
       <div className='itinerary-container'>

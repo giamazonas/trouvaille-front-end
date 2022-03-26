@@ -9,7 +9,7 @@ const AddItinerary = (props) => {
   const [formData, setFormData] = useState({
     name: '',
     time: '',
-    place: ''
+    place: '',
   })
 
   useEffect(()=> {
@@ -31,8 +31,13 @@ const AddItinerary = (props) => {
 
   return (
     <div className={styles.container}>
+<<<<<<< HEAD
        <h1>Add to your Itinerary</h1>
        <form onSubmit={handleSubmit}></form>
+=======
+      <h1>Add to your Itinerary</h1>
+      <form onSubmit={handleSubmit}></form>
+>>>>>>> 49178784942cee19d8c385fceb87e880cc4a2097
     </div>
   );
 }

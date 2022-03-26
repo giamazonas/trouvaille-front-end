@@ -19,32 +19,38 @@ function MapBox(props) {
     .then(data => data.features)
     .then(data => data[0].center)
     .then(data=> setCityDetails(data))
-  },[])
+    .catch(err => console.log('::: ERROR :::', err))
+  },[cityDetails[0]])
 
   console.log('cityDetails: ',cityDetails)
-  console.log(props.city)
-  console.log(props.state)
-
+  // return <Map mapboxAccessToken={MAPBOX_TOKEN} />
+  
   return (
-    <Map
-      initialViewState={{
-        latitude: cityDetails[1],
-        longitude: cityDetails[0],
-        // city: props.city,
-        // state: props.state,
-        zoom: 14
-
-      }}
-      style={{width: 800, height: 600}}
-      mapStyle="mapbox://styles/mapbox/streets-v9"
-      mapboxAccessToken={MAPBOX_TOKEN}
-    >
-       <Marker longitude={cityDetails[0]} latitude={cityDetails[1]} color="red" />
-    </Map>
-  );
+    <>
+      {cityDetails.length?
+      <Map
+        {...cityDetails}
+        initialViewState={{
+          latitude: cityDetails[1],
+          longitude: cityDetails[0],
+          zoom: 14
+        }}
+        style={{width: 800, height: 600}}
+        mapStyle="mapbox://styles/mapbox/streets-v9"
+        mapboxAccessToken={MAPBOX_TOKEN}
+      >
+        <Marker longitude={cityDetails[0]} latitude={cityDetails[1]} color="green" />
+      </Map>
+      :
+      <>
+        <h3>loading map</h3>
+      </>
+      }
+    </>
+  )
 }
 
-render(<MapBox />, document.body.appendChild(document.createElement('div')));
+// render(<MapBox />, document.body.appendChild(document.createElement('div')));
 
 export {
   MapBox

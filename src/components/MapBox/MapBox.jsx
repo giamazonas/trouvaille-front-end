@@ -39,7 +39,7 @@ function MapBox(props) {
       mapStyle="mapbox://styles/mapbox/streets-v9"
       mapboxAccessToken={MAPBOX_TOKEN}
     >
-       <Marker longitude={cityDetails[0]} latitude={cityDetails[1]} color="red" />
+      <Marker longitude={cityDetails[0]} latitude={cityDetails[1]} color="red" />
     </Map>
   );
 }

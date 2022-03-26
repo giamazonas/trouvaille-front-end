@@ -23,6 +23,17 @@ const NavBar = ({ user, handleLogout }) => {
               <li><NavLink to="/changePassword">Change Password</NavLink></li>
               <li><NavLink to="" onClick={handleLogout}>LOG OUT</NavLink></li>
             </ul>
+
+            <ul>
+              <li className="search-container">
+                <form id="form" action="/pets" method="GET" >
+                  <input type="text" placeholder="Search here.." name="id" />
+                  <button type="submit"><i className="fa fa-search">Search</i></button>
+                  {/* if (error) <h3 className="warning"> Check spelling or try new search </h3>  */}
+                </form>
+              </li>
+            </ul>
+
           </nav>
         </header>
         :

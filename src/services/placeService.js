@@ -3,15 +3,18 @@ const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/places`
 // const BASE_URL = "/places";
 
 async function getAllPlaces() {
-  const res = await fetch(BASE_URL, {
-    headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
-  })
-  return await res.json()
+  // const res = await fetch(BASE_URL, {
+  //   headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
+  // })
+  // return await res.json()
+
+  return fetch(BASE_URL).then((res) => res.json());
 }
 
 function create(place) {
+  console.log('create in placeService: ', place)
   return fetch(BASE_URL, {
-    method: 'POST',
+    method: "POST",
     headers: {
       'Authorization': `Bearer ${tokenService.getToken()}`
     },
@@ -27,22 +30,21 @@ function deleteOne(id) {
       'Authorization': `Bearer ${tokenService.getToken()}`
     },
   })
-  .then(res => res.json())
+    .then(res => res.json())
 }
 
 function update(place) {
   return fetch(`${BASE_URL}/${place.get('._id')}`, {
     method: 'PUT',
     headers: {
-      
       'Authorization': `Bearer ${tokenService.getToken()}`
     },
     body: place
   })
-  .then(res => res.json())
+    .then(res => res.json())
 }
 
-export { 
+export {
   getAllPlaces,
   create,
   deleteOne,

@@ -15,13 +15,13 @@ function AddPlace(props) {
 
 	useEffect(() => {
 		formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
-	}, [])
+	}, [formData])
 
   const handleSubmit = evt => {
     // console.log('evt: ', evt)
     // console.log('formData: ', formData)
     evt.preventDefault()
-    const placeFormData =new FormData()
+    const placeFormData = new FormData()
     placeFormData.append('address', formData.address)
     placeFormData.append('city', formData.city)
     placeFormData.append('name', formData.name)
@@ -49,7 +49,7 @@ function AddPlace(props) {
 						name="address"
 						value={formData.address}
 						onChange={handleChange}
-						required
+						// required
 					/>
         </div>
         <div>
@@ -59,19 +59,15 @@ function AddPlace(props) {
           </label>
           <br />
           <select 
-              name="type" 
+              name="city" 
               id="city-input"
               value={formData.city}
               className='form-control'
               onChange={handleChange}
-              required
+              // required
             >
-              {/* {props.cities.map(city =>{
-                <option value={city._id}>{city.city}</option>
-              })} */}
-              {props.cities.forEach(city => {
-                <option value={city.city}>{city.city}</option>
-              })}
+              {props.cities.map((city) => 
+                <option value={city._id}>{city.city}</option>)}
             </select>
           {/* <input
 						type="text"
@@ -99,7 +95,7 @@ function AddPlace(props) {
 						name="name"
 						value={formData.name}
 						onChange={handleChange}
-						required
+						// required
 					/>
         </div>
         <div>
@@ -111,10 +107,10 @@ function AddPlace(props) {
               value={formData.type}
               className='form-control'
               onChange={handleChange}
-              required
+              // required
             >
               <option value="restaurant">Restaurant</option>
-              <option value="choffee">Coffee Shop</option>
+              <option value="coffee">Coffee Shop</option>
               <option value="bar">Bar</option>
               <option value="park">Park</option>
               <option value="movie-theatre">Movie Theatre</option>
@@ -123,16 +119,6 @@ function AddPlace(props) {
               <option value="arcade">Arcade</option>
               <option value="shop">Shop</option>
             </select>
-
-
-            {/* TEST ZONE */}
-            <p>
-              {console.log('props: ', props)}  
-              {/* {console.log('props.places: ', props.places)} */}
-            </p>
-            {/* TEST ZONE */}
-
-
           </label>
         </div>
         <br />

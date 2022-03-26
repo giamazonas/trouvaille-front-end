@@ -23,7 +23,7 @@ function CityCard({city, handleDeleteCity}) {
       <Link
 
         className='btn btn-sm btn-warning'
-        to={`/${city._id}/edit`}
+        to={`/cities/${city._id}/edit`}
         state={{city}}
         
       >

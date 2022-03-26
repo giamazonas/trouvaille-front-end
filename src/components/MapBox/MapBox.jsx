@@ -47,7 +47,7 @@ function MapBox(props) {
       </>
       }
     </>
-  )
+)
 }
 
 // render(<MapBox />, document.body.appendChild(document.createElement('div')));

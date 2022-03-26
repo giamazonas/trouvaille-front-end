@@ -145,7 +145,7 @@ function EditCity(city) {
         className="btn btn-sm btn-danger m-left"
         onClick={()=> handleDeleteCity(city.city._id)}
       >
-        Delete
+        Delete City
       </button>
 
     </>

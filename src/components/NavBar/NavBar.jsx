@@ -26,7 +26,7 @@ const NavBar = ({ user, handleLogout }) => {
 
             <ul>
               <li className="search-container">
-                <form id="form" action="/pets" method="GET" >
+                <form id="form" action="/cities" method="GET" >
                   <input type="text" placeholder="Search here.." name="id" />
                   <button type="submit"><i className="fa fa-search">Search</i></button>
                   {/* if (error) <h3 className="warning"> Check spelling or try new search </h3>  */}

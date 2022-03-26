@@ -1,51 +1,72 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom";
+import SearchForm from "../SearchForm/SearchForm";
+import Search from "../Search/Search";
 
 const NavBar = ({ user, handleLogout }) => {
   return (
     <>
-      {user ?
+      {user ? (
         <header className="App-header">
           <nav>
-            <NavLink to='/'>Trouvaille</NavLink>
-            <ul>Cities
-              <li><NavLink to='/cities'>Cities</NavLink></li>
-              <li><NavLink to='/cities/add'>Add City</NavLink></li>
-              <li><NavLink to='/:id'>Each City</NavLink></li>
+            <NavLink to="/">Trouvaille</NavLink>
+            <ul>
+              Cities
+              <li>
+                <NavLink to="/cities">Cities</NavLink>
+              </li>
+              <li>
+                <NavLink to="/cities/add">Add City</NavLink>
+              </li>
+              <li>
+                <NavLink to="/:id">Each City</NavLink>
+              </li>
             </ul>
-            <ul>Places
-              <li><NavLink to="/places">Places</NavLink></li>
-              <li><NavLink to="/places/add">Add a Place</NavLink></li>
+            <ul>
+              Places
+              <li>
+                <NavLink to="/places">Places</NavLink>
+              </li>
+              <li>
+                <NavLink to="/places/add">Add a Place</NavLink>
+              </li>
             </ul>
 
-            <ul>{user.name} {/*  add icon */}
-              <li><NavLink to="/itineraries">My Itineraries</NavLink></li>
-              <li><NavLink to="/itineraries">Starred Places</NavLink></li>
-              <li><NavLink to="/changePassword">Change Password</NavLink></li>
-              <li><NavLink to="" onClick={handleLogout}>LOG OUT</NavLink></li>
+            <ul>
+              {user.name} {/*  add icon */}
+              <li>
+                <NavLink to="/itineraries">My Itineraries</NavLink>
+              </li>
+              <li>
+                <NavLink to="/itineraries">Starred Places</NavLink>
+              </li>
+              <li>
+                <NavLink to="/changePassword">Change Password</NavLink>
+              </li>
+              <li>
+                <NavLink to="" onClick={handleLogout}>
+                  LOG OUT
+                </NavLink>
+              </li>
             </ul>
 
             <ul>
               <li className="search-container">
-                <form id="form" action="/cities" method="GET" >
-                  <input type="text" placeholder="Search here.." name="id" />
-                  <button type="submit"><i className="fa fa-search">Search</i></button>
-                  {/* if (error) <h3 className="warning"> Check spelling or try new search </h3>  */}
-                </form>
+                <SearchForm />
               </li>
             </ul>
-
           </nav>
+
         </header>
-        :
+      ) : (
         <header className="App-header">
           <nav>
             <NavLink to="/login">Log In</NavLink>
             <NavLink to="/signup">Sign Up</NavLink>
           </nav>
         </header>
-      }
+      )}
     </>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

@@ -36,4 +36,9 @@ function update(city) {
   }).then((res) => res.json());
 }
 
-export { create, getAll, deleteOne, update, getOne };
+function search(formData) {
+  return fetch(`${BASE_URL}/api/cities/?city=${formData.query}`)
+  .then(res => res.json())
+}
+
+export { create, getAll, deleteOne, update, getOne, search };

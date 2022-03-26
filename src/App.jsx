@@ -103,14 +103,14 @@ const App = () => {
                 handleAddCity={handleAddCity}
               />
             } />
-          {/* <Route 
-            path='/:id' 
+          <Route 
+            path='cities/:id'
             element={
               <CityId 
-                handleCityId={handleCityId} 
+                // handleCityId={handleCityId} 
               />
             } 
-          /> */}
+          />
           <Route
             path='cities/:id/edit'
             element={

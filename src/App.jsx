@@ -89,6 +89,8 @@ const App = () => {
       })
   }
 
+  /* ----------------------------- ITINERARY ----------------------------- */
+
   return (
     <div className="App">
       <NavBar user={user} handleLogout={handleLogout} />

@@ -108,8 +108,8 @@ const App = () => {
             element={
               <CityId 
                 // handleCityId={handleCityId}
-                 city={cities}
-                 places={places}
+                city={cities}
+                places={places}
                 //  itineraries={itineraries}
               />
             } 
@@ -119,6 +119,8 @@ const App = () => {
             element={
               <EditCity
                 handleUpdateCity={handleUpdateCity}
+                handleDeleteCity={handleDeleteCity}
+                city={cities}
               />
             }
           />

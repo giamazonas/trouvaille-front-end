@@ -29,12 +29,7 @@ function CityCard({city, handleDeleteCity}) {
       >
         Edit
       </Link>
-      <button
-        className="btn btn-sm btn-danger m-left"
-        onClick={()=> handleDeleteCity(city._id)}
-      >
-        Delete
-      </button>
+      
     </div>
     </div>  
   )

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import styles from './AddPlace.module.css'
 
+
 function AddPlace(props) {
   const formElement = useRef()
   const [validForm, setValidForm] = useState(false)
@@ -33,6 +34,10 @@ function AddPlace(props) {
 		setFormData({ ...formData, [evt.target.name]: evt.target.value })
 	}
 
+  const handleSelect = evt => {
+    
+  }
+
   return(
     <div className={styles.container}>
       <h1>Add Place</h1>
@@ -49,11 +54,10 @@ function AddPlace(props) {
 						name="address"
 						value={formData.address}
 						onChange={handleChange}
-						// required
+						required
 					/>
         </div>
         <div>
-          {/* CHANGE THIS IN NOT TO DISTANT FUTURE */}
           <label htmlFor="city-input">
             City (required)
           </label>
@@ -64,20 +68,13 @@ function AddPlace(props) {
               value={formData.city}
               className='form-control'
               onChange={handleChange}
-              // required
+              required
             >
-              {props.cities.map((city) => 
-                <option value={city._id}>{city.city}</option>)}
+            {props.cities.map((city) => 
+              <option key={city.city_id} value={city._id}>
+                {city.city}, {city.state.toUpperCase()}
+              </option>)}
             </select>
-          {/* <input
-						type="text"
-						className="form-control"
-						id="city-input"
-						name="city"
-						value={formData.city}
-						onChange={handleChange}
-						required
-					/> */}
         </div>
 
         <br />
@@ -95,7 +92,7 @@ function AddPlace(props) {
 						name="name"
 						value={formData.name}
 						onChange={handleChange}
-						// required
+						required
 					/>
         </div>
         <div>
@@ -107,7 +104,7 @@ function AddPlace(props) {
               value={formData.type}
               className='form-control'
               onChange={handleChange}
-              // required
+              required
             >
               <option value="restaurant">Restaurant</option>
               <option value="coffee">Coffee Shop</option>

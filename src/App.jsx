@@ -11,6 +11,7 @@ import ChangePassword from './pages/ChangePassword/ChangePassword'
 import * as authService from './services/authService'
 import * as cityService from './services/cities'
 import * as placeService from './services/placeService'
+import * as itineraryService from './services/itineraries'
 import AddCity from './pages/AddCity/AddCity'
 import CityList from './pages/CityList/CityList'
 import EditCity from './pages/EditCity/EditCity'
@@ -33,6 +34,34 @@ const App = () => {
   const handleSignupOrLogin = () => {
     setUser(authService.getUser())
   }
+
+    /* ----------------------------- CITY ----------------------------- */
+  
+    useEffect(() => {
+      cityService.getAll()
+        .then(allCities => setCities(allCities))
+    }, [])
+  
+    
+    const handleAddCity = async newCityData => {
+      const newCity = await cityService.create(newCityData)
+      setCities([...cities, newCity])
+      navigate('/cities')
+    }
+  
+    const handleDeleteCity = id => {
+      cityService.deleteOne(id)
+        .then(deletedCity => setCities(cities.filter(city => city._id !== deletedCity._id)))
+    }
+  
+    const handleUpdateCity = updatedCityData => {
+      cityService.update(updatedCityData)
+        .then(updatedCity => {
+          const newCitiesArray = cities.map(city => city._id === updatedCity._id ? updatedCity : city)
+          setCities(newCitiesArray)
+          navigate('/cities')
+        })
+    }
 
   /* ----------------------------- PLACE ----------------------------- */
   
@@ -60,34 +89,14 @@ const App = () => {
       navigate('/')
     })
   }
-  
-  /* ----------------------------- CITY ----------------------------- */
-  
+
+  /* ----------------------------- ITINERARY ----------------------------- */
+
   useEffect(() => {
     cityService.getAll()
       .then(allCities => setCities(allCities))
   }, [])
 
-  
-  const handleAddCity = async newCityData => {
-    const newCity = await cityService.create(newCityData)
-    setCities([...cities, newCity])
-    navigate('/cities')
-  }
-
-  const handleDeleteCity = id => {
-    cityService.deleteOne(id)
-      .then(deletedCity => setCities(cities.filter(city => city._id !== deletedCity._id)))
-  }
-
-  const handleUpdateCity = updatedCityData => {
-    cityService.update(updatedCityData)
-      .then(updatedCity => {
-        const newCitiesArray = cities.map(city => city._id === updatedCity._id ? updatedCity : city)
-        setCities(newCitiesArray)
-        navigate('/cities')
-      })
-  }
 
   return (
     <div className="App">

@@ -19,8 +19,10 @@ const CityId = (props) => {
   return (
     <>
       <div className='mapbox-container'>
+
       </div>
       <div className='places-container'>
+        
       </div>
       <div className='city-container'>
         {location.state.city._id ?

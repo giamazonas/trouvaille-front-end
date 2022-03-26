@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import styles from './AddPlace.module.css'
 
+
 function AddPlace(props) {
   const formElement = useRef()
   const [validForm, setValidForm] = useState(false)
@@ -49,12 +50,11 @@ function AddPlace(props) {
 						name="address"
 						value={formData.address}
 						onChange={handleChange}
-						// required
+						required
 					/>
         </div>
         <div>
-          {/* CHANGE THIS IN NOT TO DISTANT FUTURE */}
-          <label htmlFor="city-input">
+          <label htmlFor="city-input" >
             City (required)
           </label>
           <br />
@@ -64,20 +64,14 @@ function AddPlace(props) {
               value={formData.city}
               className='form-control'
               onChange={handleChange}
-              // required
+              required
             >
-              {props.cities.map((city) => 
-                <option value={city._id}>{city.city}</option>)}
+            <option value="" disabled defaultValue={true}>Select A City</option>
+            {props.cities.map((city, i) => 
+              <option key={i + city._id} value={city._id}>
+                {city.city}, {city.state.toUpperCase()}
+              </option>)}
             </select>
-          {/* <input
-						type="text"
-						className="form-control"
-						id="city-input"
-						name="city"
-						value={formData.city}
-						onChange={handleChange}
-						required
-					/> */}
         </div>
 
         <br />
@@ -95,11 +89,11 @@ function AddPlace(props) {
 						name="name"
 						value={formData.name}
 						onChange={handleChange}
-						// required
+						required
 					/>
         </div>
         <div>
-          <label htmlFor="type-input">
+          <label htmlFor="type-input" >
             Type 
             <select 
               name="type" 
@@ -107,17 +101,18 @@ function AddPlace(props) {
               value={formData.type}
               className='form-control'
               onChange={handleChange}
-              // required
+              required
             >
-              <option value="restaurant">Restaurant</option>
-              <option value="coffee">Coffee Shop</option>
-              <option value="bar">Bar</option>
-              <option value="park">Park</option>
-              <option value="movie-theatre">Movie Theatre</option>
-              <option value="museum">Museum</option>
-              <option value="bowling">Bowling</option>
-              <option value="arcade">Arcade</option>
-              <option value="shop">Shop</option>
+              <option key='0' value="" disabled defaultValue={true}>Select A Type</option>
+              <option key='1' value="restaurant">Restaurant</option>
+              <option key='2' value="coffee">Coffee Shop</option>
+              <option key='3' value="bar">Bar</option>
+              <option key='4' value="park">Park</option>
+              <option key='5' value="movie-theatre">Movie Theatre</option>
+              <option key='6' value="museum">Museum</option>
+              <option key='7' value="bowling">Bowling</option>
+              <option key='8' value="arcade">Arcade</option>
+              <option key='9' value="shop">Shop</option>
             </select>
           </label>
         </div>

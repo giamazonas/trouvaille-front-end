@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
-import * as itinerariesService from '../../services/itineraries.js'
+import * as itineraryService from '../../services/itineraries.js'
 import { Link } from 'react-router-dom'
 
 const Itineraries = (props) => {
   const [itineraries, setItineraries] = useState([])
 
   useEffect(()=> {
-    itinerariesService.getAllItineraries()
+    itineraryService.getAllItineraries()
     .then(itineraries => setItineraries(itineraries))
   }, [])
 

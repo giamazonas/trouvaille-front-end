@@ -3,13 +3,11 @@ import AddItinerary from '../../components/AddItinerary/AddItinerary'
 import * as cityService from '../../services/cities'
 import { useState, useEffect } from 'react'
 import { useParams, useLocation, Link } from 'react-router-dom'
+import { MapBox } from '../../components/MapBox/MapBox'
 
 const CityId = (props) => {
   const [cityDetails, setCityDetails] = useState({})
   let location = useLocation()
-
-  // console.log('PROPS: ',props)
-  console.log('lcation.state: ', location.state.city._id)
 
   // const {} = useParams()
 
@@ -42,6 +40,7 @@ const CityId = (props) => {
       <div className='itinerary-container'>
 
       </div>
+      <MapBox city={location.state.city.city} state={location.state.city.state} />
     </>
   );
 }

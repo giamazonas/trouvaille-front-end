@@ -31,8 +31,8 @@ const AddItinerary = (props) => {
 
   return (
     <div className={styles.container}>
-      <h1>Add to your Itinerary</h1>
-      <form onSubmit={handleSubmit}></form>
+       <h1>Add to your Itinerary</h1>
+       <form onSubmit={handleSubmit}></form>
     </div>
   );
 }

@@ -146,7 +146,7 @@ const App = () => {
               user ? 
                 <AddPlace 
                   handleAddPlace={handleAddPlace} 
-                  places={places} 
+                  // places={places} 
                   cities={cities}
                 /> 
               : 

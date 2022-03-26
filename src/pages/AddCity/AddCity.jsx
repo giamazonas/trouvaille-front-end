@@ -2,10 +2,8 @@ import { useState, useRef, useEffect } from 'react'
 
 function AddCity(props) {
   const formElement = useRef()
-  const [validForm, setValidForm] =
-  useState(false)
-  const [formData, setFormData] =
-  useState({
+  const [validForm, setValidForm] = useState(false)
+  const [formData, setFormData] = useState({
     desc: '',
     city: '',
     state: '',

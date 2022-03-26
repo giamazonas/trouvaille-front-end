@@ -34,10 +34,6 @@ function AddPlace(props) {
 		setFormData({ ...formData, [evt.target.name]: evt.target.value })
 	}
 
-  const handleSelect = evt => {
-    
-  }
-
   return(
     <div className={styles.container}>
       <h1>Add Place</h1>
@@ -58,7 +54,7 @@ function AddPlace(props) {
 					/>
         </div>
         <div>
-          <label htmlFor="city-input">
+          <label htmlFor="city-input" >
             City (required)
           </label>
           <br />
@@ -70,8 +66,9 @@ function AddPlace(props) {
               onChange={handleChange}
               required
             >
-            {props.cities.map((city) => 
-              <option key={city.city_id} value={city._id}>
+            <option value="" disabled defaultValue={true}>Select A City</option>
+            {props.cities.map((city, i) => 
+              <option key={i + city._id} value={city._id}>
                 {city.city}, {city.state.toUpperCase()}
               </option>)}
             </select>
@@ -96,7 +93,7 @@ function AddPlace(props) {
 					/>
         </div>
         <div>
-          <label htmlFor="type-input">
+          <label htmlFor="type-input" >
             Type 
             <select 
               name="type" 
@@ -106,15 +103,16 @@ function AddPlace(props) {
               onChange={handleChange}
               required
             >
-              <option value="restaurant">Restaurant</option>
-              <option value="coffee">Coffee Shop</option>
-              <option value="bar">Bar</option>
-              <option value="park">Park</option>
-              <option value="movie-theatre">Movie Theatre</option>
-              <option value="museum">Museum</option>
-              <option value="bowling">Bowling</option>
-              <option value="arcade">Arcade</option>
-              <option value="shop">Shop</option>
+              <option key='0' value="" disabled defaultValue={true}>Select A Type</option>
+              <option key='1' value="restaurant">Restaurant</option>
+              <option key='2' value="coffee">Coffee Shop</option>
+              <option key='3' value="bar">Bar</option>
+              <option key='4' value="park">Park</option>
+              <option key='5' value="movie-theatre">Movie Theatre</option>
+              <option key='6' value="museum">Museum</option>
+              <option key='7' value="bowling">Bowling</option>
+              <option key='8' value="arcade">Arcade</option>
+              <option key='9' value="shop">Shop</option>
             </select>
           </label>
         </div>

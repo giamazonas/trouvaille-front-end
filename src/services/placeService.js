@@ -7,8 +7,9 @@ async function getAllPlaces() {
   //   headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
   // })
   // return await res.json()
-
+  
   return fetch(BASE_URL).then((res) => res.json());
+  
 }
 
 function create(place) {

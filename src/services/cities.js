@@ -31,7 +31,7 @@ function getOne(id) {
 function update(city) {
   return fetch(`${BASE_URL}/${city._id}`, {
     method: "PUT",
-    headers: { "content-type": "application/json" },
+    headers: {  'Authorization': `Bearer ${tokenService.getToken()}` },
     body: JSON.stringify(city),
   }).then((res) => res.json());
 }

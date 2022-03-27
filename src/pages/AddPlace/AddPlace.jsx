@@ -23,6 +23,7 @@ function AddPlace(props) {
     // console.log('formData: ', formData)
     evt.preventDefault()
     const placeFormData = new FormData()
+    placeFormData.append('photo', formData.photo)
     placeFormData.append('address', formData.address)
     placeFormData.append('city', formData.city)
     placeFormData.append('name', formData.name)
@@ -33,6 +34,10 @@ function AddPlace(props) {
   const handleChange = evt => {
 		setFormData({ ...formData, [evt.target.name]: evt.target.value })
 	}
+
+  const handleChangePhoto = (evt) => {
+    setFormData({...formData, photo: evt.target.files[0]})
+  }
 
   return(
     <div className={styles.container}>
@@ -115,6 +120,19 @@ function AddPlace(props) {
               <option key='9' value="shop">Shop</option>
             </select>
           </label>
+        </div>
+        <br />
+        <div className="form-group mb-4">
+          <label htmlFor="photo-upload" className="form-label">
+            Upload Photo
+          </label>
+          <input
+            type="file"
+            className="form-control"
+            id="photo-upload"
+            name="photo"
+            onChange={handleChangePhoto}
+          />
         </div>
         <br />
         <div className="d-grid">

@@ -3,6 +3,7 @@ import {render} from 'react-dom'
 import Map, {Marker} from 'react-map-gl'
 import { useEffect, useState } from 'react'
 import { getCityInfo } from '../../services/forwardGeocodeApi'
+import styles from './mapbox.module.css'
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -24,6 +25,7 @@ function MapBox(props) {
   
   return (
     <>
+      <div className='mapbox-container'>
       {cityDetails.length?
       <Map
         initialViewState={{
@@ -42,6 +44,7 @@ function MapBox(props) {
         <h3>loading map</h3>
       </>
       }
+      </div>
     </>
   )
 }

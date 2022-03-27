@@ -19,19 +19,23 @@ function AddCity(props) {
 
   const handleSubmit = evt => {
     evt.preventDefault()
-    const placeFormData = new FormData()
-    placeFormData.append('desc', formData.desc)
-    placeFormData.append('city', formData.city)
-    placeFormData.append('state', formData.state)
-    placeFormData.append('zip', formData.zip)
-    placeFormData.append('population', formData.population)
-    placeFormData.append('walkable', formData.walkable)
-    // placeFormData.append('photo', formData.photo)
-    props.handleAddCity(placeFormData)
+    const cityFormData = new FormData()
+    cityFormData.append('photo', formData.photo)
+    cityFormData.append('desc', formData.desc)
+    cityFormData.append('city', formData.city)
+    cityFormData.append('state', formData.state)
+    cityFormData.append('zip', formData.zip)
+    cityFormData.append('population', formData.population)
+    cityFormData.append('walkable', formData.walkable)
+    props.handleAddCity(cityFormData)
   }
 
   const handleChange = evt => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value })
+  }
+
+  const handleChangePhoto = (evt) => {
+    setFormData({...formData, photo: evt.target.files[0]})
   }
 
   return(
@@ -121,6 +125,20 @@ function AddCity(props) {
 						onChange={handleChange}
 					/>
         </div>
+        <br />
+        <div className="form-group mb-4">
+          <label htmlFor="photo-upload" className="form-label">
+            Upload Photo
+          </label>
+          <input
+            type="file"
+            className="form-control"
+            id="photo-upload"
+            name="photo"
+            onChange={handleChangePhoto}
+          />
+        </div>
+        <br />
         <div className="d-grid">
 					<button
 						type="submit"

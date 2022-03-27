@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import * as placeService from '../../services/placeService.js'
 import { Link } from 'react-router-dom'
+import PlaceCard from '../../components/PlaceCard/PlaceCard'
 
 const Places = (props) => {
   const [places, setPlaces] = useState([])
@@ -15,8 +16,12 @@ const Places = (props) => {
       <h1>Hello. This is a list of all the places.</h1>
       {places.length ? 
         <>
-          {places.map(place=>
-            <p key={place._id}>{place.name}</p>
+          {places.map((place, i)=>
+            <PlaceCard 
+              key={place._id + i}
+              place={place}
+            />
+            // <p key={place._id}>{place.name}</p>
           )}
         </>
       :

@@ -26,6 +26,11 @@ const App = () => {
   const [places, setPlaces] = useState([])
   const [itineraries, setItineraries] = useState([])
   const navigate = useNavigate()
+  const [navItems, setNavItems] = useState([
+    {url: '/cities', name: 'Cities'},
+    {url: '/places', name: 'Places'},
+    {url: '/itineraries', name: 'My Itineraries'},
+  ])
 
 
   const handleLogout = () => {
@@ -105,6 +110,7 @@ const App = () => {
     <div className="App">
       <NavBar user={user} handleLogout={handleLogout} 
         cities={cities}
+        navItems={navItems}
         // places={places}
       />
       <main>
@@ -133,9 +139,9 @@ const App = () => {
             path='cities/:id/edit'
             element={
               <EditCity
+                cities={cities}
                 handleUpdateCity={handleUpdateCity}
                 handleDeleteCity={handleDeleteCity}
-                city={cities}
               />
             }
           />

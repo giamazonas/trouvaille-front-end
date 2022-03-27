@@ -13,7 +13,8 @@ const CityList = props => {
             key={city._id}
             city={city}
             // insert photo link
-            // handleDeleteCity={props.handleDeleteCity}
+            handleUpdateCity={props.handleUpdateCity}
+            handleDeleteCity={props.handleDeleteCity}
             /> 
         ))}
       </div>

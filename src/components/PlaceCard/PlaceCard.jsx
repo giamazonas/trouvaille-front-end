@@ -5,7 +5,7 @@ function PlaceCard({ place }) {
   return (
     <div className={styles.container}>
       <img
-        src={'https://picsum.photos/200/300?random=4'}
+        src={place.photo ? place.photo : 'https://picsum.photos/200/300?random=4'}
         alt={`${place.name}`}
         className="card-img-top"
       />

@@ -20,20 +20,16 @@ function MapBox(props) {
     .then(data => data[0].center)
     .then(data=> setCityDetails(data))
     .catch(err => console.log('::: ERROR :::', err))
-  },[cityDetails[0]])
-
-  console.log('cityDetails: ',cityDetails)
-  // return <Map mapboxAccessToken={MAPBOX_TOKEN} />
+  },[])
   
   return (
     <>
       {cityDetails.length?
       <Map
-        {...cityDetails}
         initialViewState={{
           latitude: cityDetails[1],
           longitude: cityDetails[0],
-          zoom: 14
+          zoom: 12,
         }}
         style={{width: 800, height: 600}}
         mapStyle="mapbox://styles/mapbox/streets-v9"
@@ -47,10 +43,8 @@ function MapBox(props) {
       </>
       }
     </>
-)
+  )
 }
-
-// render(<MapBox />, document.body.appendChild(document.createElement('div')));
 
 export {
   MapBox

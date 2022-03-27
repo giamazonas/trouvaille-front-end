@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
-import SearchForm from "../SearchForm/SearchForm";
-import Search from "../Search/Search";
+// import SearchForm from "../SearchForm/SearchForm";
+import SearchBar from "../SearchBar/SearchBar";
+import { getAllPlaces } from "../../services/placeService"
 
 const NavBar = ({ user, handleLogout }) => {
   return (
@@ -48,12 +49,12 @@ const NavBar = ({ user, handleLogout }) => {
                 </NavLink>
               </li>
             </ul>
-
-            <ul>
+            {/* <ul>
               <li className="search-container">
                 <SearchForm />
               </li>
-            </ul>
+            </ul> */}
+            <SearchBar placeholder="Search here" data={getAllPlaces}/>
           </nav>
 
         </header>

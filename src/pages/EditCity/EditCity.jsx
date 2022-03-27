@@ -45,7 +45,7 @@ function EditCity(city) {
 
   return (
     <>
-      <h1>Edit City </h1>
+      <h1>Edit {location.state.city.city} </h1>
       <form autoComplete = 'off' ref={formElement} onSubmit={handleSubmit} >
         <div>
           <label htmlFor="city-input">
@@ -140,12 +140,26 @@ function EditCity(city) {
 					</button>
 				</div>
       </form> 
+      <div className='city-container'>
+        {location.state.city._id ?
+          <>
 
+            <h2 className='city-details'>{location.state.city.city}</h2>
+            <h3>{location.state.city.desc}</h3>
+            <h4>{location.state.city.population}</h4>
+            <h4>Walkable? {location.state.city.walkable ? 'you can walk!' : 'get a bike'}</h4>
+          </>
+          :
+          <>
+            <h2>Loading City Details...</h2>
+          </>
+        }
+      </div>
       <button
         className="btn btn-sm btn-danger m-left"
-        onClick={()=> handleDeleteCity(city.city._id)}
+        onClick={()=> handleDeleteCity(location.state.city._id)}
       >
-        Delete
+        Delete City
       </button>
 
     </>

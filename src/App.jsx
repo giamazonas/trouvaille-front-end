@@ -17,6 +17,8 @@ import CityList from './pages/CityList/CityList'
 import EditCity from './pages/EditCity/EditCity'
 import CityId from './pages/CityId/CityId'
 import Itineraries from './pages/ItineraryList/ItineraryList'
+import Search from './components/Search/Search'
+
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
@@ -101,7 +103,10 @@ const App = () => {
 
   return (
     <div className="App">
-      <NavBar user={user} handleLogout={handleLogout} />
+      <NavBar user={user} handleLogout={handleLogout} 
+        cities={cities}
+        // places={places}
+      />
       <main>
         <Routes>
           <Route path='/cities' element={<CityList cities={cities} /> }
@@ -171,7 +176,15 @@ const App = () => {
             path="/itineraries"
             element={user ? <Itineraries /> : <Navigate to="/login" />}
           />
+          <Route 
+            path="/search"
+            element={
+              <Search
+                cities={cities} />
+              }
+          />
         </Routes>
+
       </main>
     </div>
   )

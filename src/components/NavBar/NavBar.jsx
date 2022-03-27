@@ -1,9 +1,17 @@
 import { NavLink } from "react-router-dom";
+import { useState, useEffect } from 'react'
 // import SearchForm from "../SearchForm/SearchForm";
 import SearchBar from "../SearchBar/SearchBar";
-import { getAllPlaces } from "../../services/placeService"
+import * as placeService from "../../services/placeService"
 
 const NavBar = ({ user, handleLogout }) => {
+  const [places, setPlaces] = useState([])
+
+  useEffect(()=> {
+    placeService.getAllPlaces()
+    .then(places => setPlaces(places))
+  }, [])
+
   return (
     <>
       {user ? (
@@ -54,7 +62,7 @@ const NavBar = ({ user, handleLogout }) => {
                 <SearchForm />
               </li>
             </ul> */}
-            <SearchBar placeholder="Search here" data={getAllPlaces}/>
+            <SearchBar placeholder="Search here" data={places}/>
           </nav>
 
         </header>

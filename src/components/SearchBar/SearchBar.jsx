@@ -12,9 +12,9 @@ const SearchBar = ({ placeholder, data }) => {
         <button className={styles.searchIcon}><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
       </div>
       <div className="searchResult">
-        {/* {data.map((place, k) => {
+        {data.map((place, k) => {
           return <div>{place.name}</div>
-        })} */}
+        })}
       </div>
     </div>
   );

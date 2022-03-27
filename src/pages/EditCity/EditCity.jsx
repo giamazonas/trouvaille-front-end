@@ -27,20 +27,24 @@ function EditCity(city) {
 
   const handleSubmit = evt => {
     evt.preventDefault()
-    const placeFormData = new FormData()
-    placeFormData.append('desc', formData.desc)
-    placeFormData.append('city', formData.city)
-    placeFormData.append('state', formData.state)
-    placeFormData.append('zip', formData.zip)
-    placeFormData.append('population', formData.population)
-    placeFormData.append('walkable', formData.walkable)
-    // placeFormData.append('photo', formData.photo)
+    const cityFormData = new FormData()
+    cityFormData.append('photo', formData.photo)
+    cityFormData.append('desc', formData.desc)
+    cityFormData.append('city', formData.city)
+    cityFormData.append('state', formData.state)
+    cityFormData.append('zip', formData.zip)
+    cityFormData.append('population', formData.population)
+    cityFormData.append('walkable', formData.walkable)
     city.handleUpdateCity(formData)
   }
 
   const handleDeleteCity = id => {
     cityService.deleteOne(id)
       .then(deletedCity => setCityDetails(city.filter(city => city._id !== deletedCity._id)))
+  }
+
+  const handleChangePhoto = (evt) => {
+    setFormData({...formData, photo: evt.target.files[0]})
   }
 
   return (
@@ -130,11 +134,23 @@ function EditCity(city) {
 						onChange={handleChange}
 					/>
         </div>
+        <div className="form-group mb-4">
+          <label htmlFor="photo-upload" className="form-label">
+            Upload Photo
+          </label>
+          <input
+            type="file"
+            className="form-control"
+            id="photo-upload"
+            name="photo"
+            onChange={handleChangePhoto}
+          />
+        </div>
         <div className="d-grid">
 					<button
 						type="submit"
 						className="btn btn-primary btn-fluid"
-						disabled={!validForm}
+						// disabled={!validForm}
 					>
 						Edit City
 					</button>
@@ -147,7 +163,7 @@ function EditCity(city) {
             <h2 className='city-details'>{location.state.city.city}</h2>
             <h3>{location.state.city.desc}</h3>
             <h4>{location.state.city.population}</h4>
-            <h4>Walkable? {location.state.city.walkable ? 'you can walk!' : 'get a bike'}</h4>
+            <h4>Walkable?  {location.state.city.walkable ? 'you can walk!' : 'get a bike'}</h4>
           </>
           :
           <>

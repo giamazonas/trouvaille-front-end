@@ -13,7 +13,9 @@ async function getAllPlaces() {
 }
 
 function create(place) {
-  console.log("create in placeService: ", place);
+  
+  console.log("create in placeService ___ place: ", place);
+
   return fetch(BASE_URL, {
     method: "POST",
     headers: {

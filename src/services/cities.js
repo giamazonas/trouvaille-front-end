@@ -36,9 +36,27 @@ function update(city) {
   }).then((res) => res.json());
 }
 
+function addPlace(cityId, placeId) {
+  console.log('::: cityId :::', cityId)
+  console.log('::: placeId :::', placeId)
+  return fetch(`${BASE_URL}/${cityId}/${placeId}`, {
+    method: "PATCH",
+    headers: {  'Authorization': `Bearer ${tokenService.getToken()}` },
+    // body: placeId,
+  }).then((res) => res.json());
+}
+
 function search(formData) {
   return fetch(`${BASE_URL}/api/cities/?city=${formData.query}`)
   .then(res => res.json())
 }
 
-export { create, getAll, deleteOne, update, getOne, search };
+export { 
+  create, 
+  getAll, 
+  deleteOne, 
+  update, 
+  getOne, 
+  search,
+  addPlace
+}

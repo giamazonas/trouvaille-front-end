@@ -5,7 +5,7 @@ function CityCard({ city, handleDeleteCity }) {
   return (
     <div className={styles.container}>
       <img
-        src={`https://picsum.photos/100/200?random=433`}
+        src={city.photo ? city.photo : `https://picsum.photos/100/200?random=433`}
         alt="city"
         className="card-img-top"
       />

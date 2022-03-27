@@ -17,7 +17,6 @@ import CityList from './pages/CityList/CityList'
 import EditCity from './pages/EditCity/EditCity'
 import CityId from './pages/CityId/CityId'
 import Itineraries from './pages/ItineraryList/ItineraryList'
-import Search from './components/Search/Search'
 
 
 const App = () => {
@@ -181,13 +180,6 @@ const App = () => {
           <Route
             path="/itineraries"
             element={user ? <Itineraries /> : <Navigate to="/login" />}
-          />
-          <Route 
-            path="/search"
-            element={
-              <Search
-                cities={cities} />
-              }
           />
         </Routes>
 

@@ -57,12 +57,7 @@ const NavBar = ({ user, handleLogout }) => {
                 </NavLink>
               </li>
             </ul>
-            {/* <ul>
-              <li className="search-container">
-                <SearchForm />
-              </li>
-            </ul> */}
-            <SearchBar placeholder="Search here" data={places}/>
+            <SearchBar placeholder="Search here" data={places} />
           </nav>
 
         </header>

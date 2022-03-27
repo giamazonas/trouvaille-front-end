@@ -80,6 +80,7 @@ const App = () => {
   const handleAddPlace = async newPlaceData => {
     const newPlace = await placeService.create(newPlaceData)
     setPlaces([...places, newPlace])
+    cityService.addPlace(newPlace.city, newPlace._id)
     navigate('/places')
   }
   
@@ -165,6 +166,12 @@ const App = () => {
             path="/places"
             element={user ? <Places /> : <Navigate to="/login" />}
           />
+
+          <Route 
+            path='/cities/:cityId/:placeId' 
+            element={<Places />}
+          />
+
           <Route
             path="/places/add"
             element={

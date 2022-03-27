@@ -43,6 +43,9 @@ const CityId = (props) => {
 
       </div>
       <MapBox city={location.state.city.city} state={location.state.city.state} />
+      <div>
+        <h3>Places to go in {location.state.city.city}</h3>
+      </div>
     </>
   );
 }

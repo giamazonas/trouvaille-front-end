@@ -24,6 +24,7 @@ const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [cities, setCities] = useState([])
   const [places, setPlaces] = useState([])
+  const [itineraries, setItineraries] = useState([])
   const navigate = useNavigate()
   const [navItems, setNavItems] = useState([
     {url: '/cities', name: 'Cities'},
@@ -100,8 +101,8 @@ const App = () => {
   /* ----------------------------- ITINERARY ----------------------------- */
 
   useEffect(() => {
-    cityService.getAll()
-      .then(allCities => setCities(allCities))
+    itineraryService.getAllItineraries()
+      .then(allItineraries => setItineraries(allItineraries))
   }, [])
 
 

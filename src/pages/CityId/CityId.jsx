@@ -9,12 +9,16 @@ const CityId = (props) => {
   const [cityDetails, setCityDetails] = useState({})
   let location = useLocation()
 
-  // const {} = useParams()
-
   useEffect(() => {
+    console.log(location.state.city)
     cityService.getOne(location.state.city._id)
-      .then(city => setCityDetails(city))
-  }, [])
+    .then(city => {
+      setCityDetails(city)
+    })
+  },[])
+
+
+  console.log('CITY DETAILS.places',cityDetails.places)
 
   return (
     <>
@@ -27,7 +31,6 @@ const CityId = (props) => {
       <div className='city-container'>
         {location.state.city._id ?
           <>
-
             <h2 className='city-details'>{location.state.city.city}</h2>
             <h3>{location.state.city.desc}</h3>
             <h4>{location.state.city.population}</h4>
@@ -45,6 +48,17 @@ const CityId = (props) => {
       <MapBox city={location.state.city.city} state={location.state.city.state} />
       <div>
         <h3>Places to go in {location.state.city.city}</h3>
+          {cityDetails.places ?
+          <div>
+            {cityDetails.places.map(place => (
+              <li>{place.name}</li>
+            ))}
+          </div>
+          :
+          <div>
+            <p>Loading Places</p>
+          </div>
+          }
       </div>
     </>
   );

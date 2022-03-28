@@ -23,6 +23,7 @@ import Search from './components/Search/Search'
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [cities, setCities] = useState([])
+  const [city, setCity] = useState([])
   const [places, setPlaces] = useState([])
   const [itineraries, setItineraries] = useState([])
   const navigate = useNavigate()
@@ -56,6 +57,19 @@ const App = () => {
       setCities([...cities, newCity])
       navigate('/cities')
     }
+
+    /* ------------------------ vvv TEST ZONE vvv ------------------------ */
+
+    const handleShowCity = id => {
+      cityService.getOne(id)
+      .then(city => {
+        console.log(':::::: App.jsx -- handleShowCity ::::::', city)
+        //setCity(city)   // <-------- WHY DOES THIS GO INFINITE?
+      })
+    }
+
+    /* ------------------------ ^^^ TEST ZONE ^^^ ------------------------ */
+
   
     const handleDeleteCity = id => {
       cityService.deleteOne(id)
@@ -129,10 +143,9 @@ const App = () => {
             path='cities/:id'
             element={
               <CityId 
-                // handleCityId={handleCityId}
-                city={cities}
+                city={city}
                 places={places}
-                //  itineraries={itineraries}
+                handleShowCity={handleShowCity}
               />
             } 
           />

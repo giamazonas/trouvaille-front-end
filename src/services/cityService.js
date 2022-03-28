@@ -1,3 +1,4 @@
+import axios from "axios";
 import * as tokenService from "../services/tokenService";
 const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/cities`;
 
@@ -16,10 +17,12 @@ function getAll() {
   return fetch(BASE_URL).then((res) => res.json());
 }
 
-function deleteOne(id) {
-  return fetch(`${BASE_URL}/${id}`, {
+async function deleteOne(id) {
+  await axios({
+    url: `${BASE_URL}/${id}`,
+    headers: { Authorization: `Bearer ${tokenService.getToken()}` },
     method: "DELETE",
-  }).then((res) => res.json());
+  });
 }
 
 function getOne(id) {
@@ -28,17 +31,22 @@ function getOne(id) {
   }).then((res) => res.json());
 }
 
-function update(city) {
-  return fetch(`${BASE_URL}/${city._id}`, {
+async function update(city) {
+  console.log("city service", city);
+  console.log("json", JSON.stringify(city));
+  const updatedCity = await axios({
+    url: `${BASE_URL}/${city._id}`,
+    headers: { Authorization: `Bearer ${tokenService.getToken()}` },
+    data: city,
     method: "PUT",
-    headers: {  'Authorization': `Bearer ${tokenService.getToken()}` },
-    body: JSON.stringify(city),
-  }).then((res) => res.json());
+  });
+  return updatedCity;
 }
 
 function search(formData) {
-  return fetch(`${BASE_URL}/api/cities/?city=${formData.query}`)
-  .then(res => res.json())
+  return fetch(`${BASE_URL}/api/cities/?city=${formData.query}`).then((res) =>
+    res.json()
+  );
 }
 
 export { create, getAll, deleteOne, update, getOne, search };

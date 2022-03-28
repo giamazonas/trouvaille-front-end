@@ -1,19 +1,26 @@
 import { useState, useRef, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import * as cityService from '../../services/cities'
+import { Link, useLocation, Navigate, } from 'react-router-dom'
+import * as cityService from '../../services/cityService'
 
 function EditCity(city) {
   const location = useLocation()
   const [cityDetails, setCityDetails] = useState({})
-  const [formData, setFormData] = useState(location.state.city._id)
+  const [formData, setFormData] = useState({_id: location.state.city._id})
   const [validForm, setValidForm] = useState(true)
   const formElement = useRef()
 
 
-  console.log('location.state: ', location.state.city._id)
+  // console.log('location.state: ', location.state.city._id)
 
   const handleChange = evt => {
-    setFormData({...formData, [evt.target.name]: evt.target.value })
+    console.log('EVT', evt )
+    let value
+    if (evt.target.checked) {
+      value = evt.target.checked 
+    }else {
+      value = evt.target.value
+    }
+    setFormData({...formData, [evt.target.name]: value })
   }
 
   useEffect(() => {
@@ -25,22 +32,16 @@ function EditCity(city) {
 		formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
 	}, [formData])
 
-  const handleSubmit = evt => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault()
-    const cityFormData = new FormData()
-    cityFormData.append('photo', formData.photo)
-    cityFormData.append('desc', formData.desc)
-    cityFormData.append('city', formData.city)
-    cityFormData.append('state', formData.state)
-    cityFormData.append('zip', formData.zip)
-    cityFormData.append('population', formData.population)
-    cityFormData.append('walkable', formData.walkable)
-    city.handleUpdateCity(formData)
+    console.log('form data', formData)
+    await cityService.update(formData)
+    return <Navigate replace to="/cities" />
   }
 
-  const handleDeleteCity = id => {
-    cityService.deleteOne(id)
-      .then(deletedCity => setCityDetails(city.filter(city => city._id !== deletedCity._id)))
+  const handleDeleteCity = async (id) => {
+    await cityService.deleteOne(id)
+    return <Navigate replace to="/cities" />
   }
 
   const handleChangePhoto = (evt) => {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import SearchForm from '../../components/SearchForm/SearchForm';
-import { search } from '../../services/cities';
+import { search } from '../../services/cityService';
 import CityCard from '../../components/CityCard/CityCard';
 
 const Search = (props) => {

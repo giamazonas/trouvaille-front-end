@@ -5,17 +5,18 @@ import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
-import Places from './pages/Places/places'
-import AddPlace from './pages/AddPlace/AddPlace'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import * as authService from './services/authService'
-import * as cityService from './services/cities'
+import * as cityService from './services/cityService'
 import * as placeService from './services/placeService'
 import * as itineraryService from './services/itineraries'
 import AddCity from './pages/AddCity/AddCity'
 import CityList from './pages/CityList/CityList'
 import EditCity from './pages/EditCity/EditCity'
 import CityId from './pages/CityId/CityId'
+import Places from './pages/Places/places'
+import AddPlace from './pages/AddPlace/AddPlace'
+import PlaceId from './pages/PlaceId/PlaceId'
 import Itineraries from './pages/ItineraryList/ItineraryList'
 import Search from './components/Search/Search'
 
@@ -114,36 +115,7 @@ const App = () => {
       />
       <main>
         <Routes>
-          <Route path='/cities' element={<CityList cities={cities} /> }
-          />
-          <Route
-            path='/cities/add'
-            element={
-              <AddCity 
-                handleAddCity={handleAddCity}
-              />
-            } />
-          <Route 
-            path='cities/:id'
-            element={
-              <CityId 
-                // handleCityId={handleCityId}
-                city={cities}
-                places={places}
-                //  itineraries={itineraries}
-              />
-            } 
-          />
-          <Route
-            path='cities/:id/edit'
-            element={
-              <EditCity
-                cities={cities}
-                handleUpdateCity={handleUpdateCity}
-                handleDeleteCity={handleDeleteCity}
-              />
-            }
-          />
+{/* ---------------      ------------------------ */}
           <Route path="/" element={<Landing user={user} />} />
           <Route
             path="/signup"
@@ -161,6 +133,63 @@ const App = () => {
             path="/changePassword"
             element={user ? <ChangePassword handleSignupOrLogin={handleSignupOrLogin} /> : <Navigate to="/login" />}
           />
+  {/* -------------- CITIES -------------------- */}
+          <Route path='/cities' 
+          element={
+          user ?
+          <CityList cities={cities} /> 
+          :
+              <Navigate to="/login" />
+            } />
+          <Route
+            path='/cities/add'
+            element={
+            user ?
+              <AddCity 
+                handleAddCity={handleAddCity}
+              />
+            :
+              <Navigate to="/login" />
+            } />
+          <Route 
+            path='cities/:id'
+            element={
+              user ?
+              <CityId 
+                // handleCityId={handleCityId}
+                city={cities}
+                places={places}
+                //  itineraries={itineraries}
+              />
+            :
+              <Navigate to="/login" />
+            } 
+          />
+          <Route
+            path='cities/:id/edit'
+            element={
+              user ?
+              <EditCity
+                cities={cities}
+                handleUpdateCity={handleUpdateCity}
+                handleDeleteCity={handleDeleteCity}
+              />
+            :
+              <Navigate to="/login" />
+            }
+          />
+          <Route 
+          path='/cities' 
+          element={
+          user ?
+            <CityList 
+              cities={cities} 
+            /> 
+          :
+            <Navigate to="/login" />
+          }
+          />
+ {/* -------------  PLACES  -------------------- */}
           <Route
             path="/places"
             element={user ? <Places /> : <Navigate to="/login" />}
@@ -177,6 +206,19 @@ const App = () => {
                 <Navigate to="/login" />
               }
           />
+          <Route
+            path='/places/:id'
+            element={
+              user ?
+              <PlaceId 
+              city={cities}
+              places={places} 
+              // handle={handle}
+              />
+            :
+              <Navigate to="/login" />
+            } />
+{/* ----------------- ITINERARIES  ----------------- */}
           <Route
             path="/itineraries"
             element={user ? <Itineraries /> : <Navigate to="/login" />}

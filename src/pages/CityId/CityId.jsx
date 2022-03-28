@@ -1,6 +1,6 @@
 // import { useState, useRef, useEffect } from 'react'
 import AddItinerary from '../../components/AddItinerary/AddItinerary'
-import * as cityService from '../../services/cities'
+import * as cityService from '../../services/cityService'
 import { useState, useEffect } from 'react'
 import { useParams, useLocation, Link } from 'react-router-dom'
 import { MapBox } from '../../components/MapBox/MapBox'

@@ -1,35 +1,47 @@
 import { NavLink } from "react-router-dom";
-import SearchForm from "../SearchForm/SearchForm";
-import Search from "../Search/Search";
+import { useState, useEffect, Fragment } from 'react'
+// import SearchForm from "../SearchForm/SearchForm";
+import SearchBar from "../SearchBar/SearchBar";
+import * as placeService from "../../services/placeService"
+// import { Popover, Transition } from '@headlessui/react'
+// import { ChevronDownIcon } from '@heroicons/react/solid'
+
+const classNames = (...classes) => {
+  return classes.filter(Boolean).join(' ')
+}
+
 
 const NavBar = ({ user, handleLogout }) => {
+  const [places, setPlaces] = useState([])
+
+  useEffect(()=> {
+    placeService.getAllPlaces()
+    .then(places => setPlaces(places))
+  }, [])
+
   return (
     <>
-      {user ? (
+      { user ? (
+        
         <header className="App-header">
           <nav>
-            <NavLink to="/">Trouvaille</NavLink>
+            <h2><NavLink to="/">Trouvaille</NavLink></h2>
             <ul>
-              Cities
               <li>
                 <NavLink to="/cities">Cities</NavLink>
               </li>
               <li>
-                <NavLink to="/cities/add">Add City</NavLink>
-              </li>
-              <li>
-                <NavLink to="/:id">Each City</NavLink>
+                <NavLink to="/cities/add">add city</NavLink>
               </li>
             </ul>
             <ul>
-              Places
               <li>
                 <NavLink to="/places">Places</NavLink>
               </li>
               <li>
-                <NavLink to="/places/add">Add a Place</NavLink>
+                <NavLink to="/places/add">add a place</NavLink>
               </li>
-            </ul>
+            </ul><br />
 
             <ul>
               {user.name} {/*  add icon */}
@@ -48,12 +60,7 @@ const NavBar = ({ user, handleLogout }) => {
                 </NavLink>
               </li>
             </ul>
-
-            <ul>
-              <li className="search-container">
-                <SearchForm />
-              </li>
-            </ul>
+            <SearchBar placeholder="Search here" data={places} /><br />
           </nav>
 
         </header>

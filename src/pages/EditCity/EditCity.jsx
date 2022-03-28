@@ -1,19 +1,17 @@
 import { useState, useRef, useEffect } from 'react'
-import { Link, useLocation, Navigate, } from 'react-router-dom'
+import { Link, useLocation, Navigate, useNavigate } from 'react-router-dom'
 import * as cityService from '../../services/cityService'
+import styles from './EditCity.module.css'
 
-function EditCity(city) {
+function EditCity({city, handleDeleteCity, handleUpdateCity}) {
   const location = useLocation()
   const [cityDetails, setCityDetails] = useState({})
   const [formData, setFormData] = useState({_id: location.state.city._id})
   const [validForm, setValidForm] = useState(true)
   const formElement = useRef()
-
-
-  // console.log('location.state: ', location.state.city._id)
+  const navigate = useNavigate()
 
   const handleChange = evt => {
-    console.log('EVT', evt )
     let value
     if (evt.target.checked) {
       value = evt.target.checked 
@@ -35,14 +33,19 @@ function EditCity(city) {
   const handleSubmit = async (evt) => {
     evt.preventDefault()
     console.log('form data', formData)
-    await cityService.update(formData)
-    return <Navigate replace to="/cities" />
+    await handleUpdateCity(formData)
+    navigate("/cities") 
   }
 
-  const handleDeleteCity = async (id) => {
-    await cityService.deleteOne(id)
-    return <Navigate replace to="/cities" />
+  const handleDelete = async (id) => {
+    await handleDeleteCity(id)
+    navigate('/cities')
   }
+
+  // const handleUpdate = async (id) => {
+  //   await handleUpdateCity(id)
+  //   navigate('/cities')
+  // }
 
   const handleChangePhoto = (evt) => {
     setFormData({...formData, photo: evt.target.files[0]})
@@ -50,6 +53,7 @@ function EditCity(city) {
 
   return (
     <>
+    <div className={styles.container}><br />
       <h1>Edit {location.state.city.city} </h1>
       <form autoComplete = 'off' ref={formElement} onSubmit={handleSubmit} >
         <div>
@@ -134,7 +138,7 @@ function EditCity(city) {
 						value={formData.walkable}
 						onChange={handleChange}
 					/>
-        </div>
+        </div><br />
         <div className="form-group mb-4">
           <label htmlFor="photo-upload" className="form-label">
             Upload Photo
@@ -146,18 +150,20 @@ function EditCity(city) {
             name="photo"
             onChange={handleChangePhoto}
           />
-        </div>
+        </div><br />
         <div className="d-grid">
 					<button
 						type="submit"
 						className="btn btn-primary btn-fluid"
+            onClick={()=> handleSubmit(location.state.city._id)}
 						// disabled={!validForm}
 					>
 						Edit City
 					</button>
-				</div>
+				</div><br /><br />
       </form> 
-      <div className='city-container'>
+      <div className={styles.cityContainer} id='cityInfo'>
+        <h2>City info currently:</h2><br />
         {location.state.city._id ?
           <>
 
@@ -172,13 +178,18 @@ function EditCity(city) {
           </>
         }
       </div>
+      <br />
+      <br />
       <button
         className="btn btn-sm btn-danger m-left"
-        onClick={()=> handleDeleteCity(location.state.city._id)}
+        onClick={()=> handleDelete(location.state.city._id)}
       >
         Delete City
       </button>
-
+      <br />
+      <br />
+      <br />
+    </div>
     </>
   )
 }

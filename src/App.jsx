@@ -18,13 +18,13 @@ import Places from './pages/Places/places'
 import AddPlace from './pages/AddPlace/AddPlace'
 import PlaceId from './pages/PlaceId/PlaceId'
 import Itineraries from './pages/ItineraryList/ItineraryList'
-import Search from './components/Search/Search'
 
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [cities, setCities] = useState([])
   const [places, setPlaces] = useState([])
+  const [itineraries, setItineraries] = useState([])
   const navigate = useNavigate()
   const [navItems, setNavItems] = useState([
     {url: '/cities', name: 'Cities'},
@@ -81,6 +81,7 @@ const App = () => {
   const handleAddPlace = async newPlaceData => {
     const newPlace = await placeService.create(newPlaceData)
     setPlaces([...places, newPlace])
+    cityService.addPlace(newPlace.city, newPlace._id)
     navigate('/places')
   }
   
@@ -101,8 +102,8 @@ const App = () => {
   /* ----------------------------- ITINERARY ----------------------------- */
 
   useEffect(() => {
-    cityService.getAll()
-      .then(allCities => setCities(allCities))
+    itineraryService.getAllItineraries()
+      .then(allItineraries => setItineraries(allItineraries))
   }, [])
 
 
@@ -194,6 +195,12 @@ const App = () => {
             path="/places"
             element={user ? <Places /> : <Navigate to="/login" />}
           />
+
+          <Route 
+            path='/cities/:cityId/:placeId' 
+            element={<Places />}
+          />
+
           <Route
             path="/places/add"
             element={
@@ -222,13 +229,6 @@ const App = () => {
           <Route
             path="/itineraries"
             element={user ? <Itineraries /> : <Navigate to="/login" />}
-          />
-          <Route 
-            path="/search"
-            element={
-              <Search
-                cities={cities} />
-              }
           />
         </Routes>
 

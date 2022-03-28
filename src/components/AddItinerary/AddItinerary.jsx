@@ -1,7 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 import styles from './AddItinerary.module.css'
-import * as itineraries from '../../services/itineraries'
 
 const AddItinerary = (props) => {
   const formElement = useRef()
@@ -25,14 +23,32 @@ const AddItinerary = (props) => {
     props.handleAddItinerary(itineraryFormData)
   }
 
-  // const handleChange = evt => {
-  //   setFormData({...formData, [evt.target.name]: evt.target.value})
-  // }
+  const handleChange = evt => {
+    setFormData({...formData, [evt.target.name]: evt.target.value})
+  }
 
   return (
-    <div className={styles.container}>
+    <div>
        <h1>Add to your Itinerary</h1>
-       <form onSubmit={handleSubmit}></form>
+       <form autoComplete = 'off' ref={formElement} onSubmit={handleSubmit}>
+       <div>
+          <label htmlFor="city-input">
+            City Name
+          </label>
+          <input
+						type="text"
+						className="form-control"
+						id="city-input"
+						name="city"
+						value={formData.city}
+						onChange={handleChange}
+						required
+					/>
+        </div>
+
+      </form>
+
+       
     </div>
   );
 }

@@ -1,0 +1,55 @@
+.searchResult {
+  margin-top: 5px;
+  width: 270px;
+  height: 200px;
+  overflow: hidden;
+  overflow-y: auto;
+  border: solid 1px lightgray;
+}
+
+.searchInputs {
+  border: 1px solid lightgray;
+  padding-left: 10px;
+  border-radius: 20px;
+  width: 220px;
+}
+
+.inputText {
+  padding: 5px;
+  width: 180px;
+  height: 20px;
+  border: none;
+  font-size: 1em;
+}
+
+.inputText:focus {
+  outline: none;
+}
+
+.searchResult .resultItem {
+  width: 100%;
+  height: 50px;
+  display: flex;
+}
+
+.resultItem p {
+  margin-left: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.placeType {
+  font-style: italic;
+  color: gray;
+}
+
+a:hover {
+  background-color: lightgray;
+}
+
+.clearBtn {
+  cursor: pointer;
+}

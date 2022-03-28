@@ -1,9 +1,15 @@
 import { NavLink } from "react-router-dom";
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 // import SearchForm from "../SearchForm/SearchForm";
 import SearchBar from "../SearchBar/SearchBar";
 import * as placeService from "../../services/placeService"
-import * as cityService from "../../services/cities"
+import { Popover, Transition } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/solid'
+
+const classNames = (...classes) => {
+  return classes.filter(Boolean).join(' ')
+}
+
 
 const NavBar = ({ user, handleLogout }) => {
   const [places, setPlaces] = useState([])
@@ -15,7 +21,8 @@ const NavBar = ({ user, handleLogout }) => {
 
   return (
     <>
-      {user ? (
+      { user ? (
+        
         <header className="App-header">
           <nav>
             <NavLink to="/">Trouvaille</NavLink>

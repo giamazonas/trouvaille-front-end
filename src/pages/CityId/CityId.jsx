@@ -4,6 +4,7 @@ import * as cityService from '../../services/cities'
 import { useState, useEffect } from 'react'
 import { useParams, useLocation, Link } from 'react-router-dom'
 import { MapBox } from '../../components/MapBox/MapBox'
+import PlaceCard from '../../components/PlaceCard/PlaceCard'
 
 const CityId = (props) => {
   const [cityDetails, setCityDetails] = useState({})
@@ -18,7 +19,8 @@ const CityId = (props) => {
   },[])
 
 
-  console.log('CITY DETAILS.places',cityDetails.places)
+  console.log('CITY DETAILS: ',cityDetails.city)
+  console.log('vs : ', location.state.city.city)
 
   return (
     <>
@@ -31,10 +33,10 @@ const CityId = (props) => {
       <div className='city-container'>
         {location.state.city._id ?
           <>
-            <h2 className='city-details'>{location.state.city.city}</h2>
-            <h3>{location.state.city.desc}</h3>
-            <h4>{location.state.city.population}</h4>
-            <h4>Walkable? {location.state.city.walkable ? 'you can walk!' : 'get a bike'}</h4>
+            <h2 className='city-details'>{cityDetails.city}</h2>
+            <h3>{cityDetails.desc}</h3>
+            <h4>{cityDetails.population}</h4>
+            <h4>Walkable? {cityDetails.walkable ? 'you can walk!' : 'get a bike'}</h4>
           </>
           :
           <>
@@ -45,18 +47,18 @@ const CityId = (props) => {
       <div className='itinerary-container'>
 
       </div>
-      <MapBox city={location.state.city.city} state={location.state.city.state} />
+      <MapBox city={location.state.city.city} state={location.state.city.state} places={cityDetails.places}/>
       <div>
-        <h3>Places to go in {location.state.city.city}</h3>
+        <h3>Places to go in {cityDetails.city}</h3>
           {cityDetails.places ?
           <div>
             {cityDetails.places.map(place => (
-              <li>{place.name}</li>
+              <PlaceCard key={place._id} place={place} />
             ))}
           </div>
           :
           <div>
-            <p>Loading Places</p>
+            <p>Loading Places ...</p>
           </div>
           }
       </div>

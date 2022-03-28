@@ -1,12 +1,12 @@
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { useState, useEffect, Fragment } from 'react'
 import * as placeService from "../../services/placeService"
 import { Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, } from '@heroicons/react/solid'
 import { MenuIcon } from '@heroicons/react/outline'
 import SearchBar from "../SearchBar/SearchBar";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ')

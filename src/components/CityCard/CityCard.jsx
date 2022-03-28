@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import styles from './CityCard.module.css'
 
-function CityCard({ city, handleDeleteCity }) {
+function CityCard({ city }) {
   return (
     <div className={styles.container}>
       <img

@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.cityContainer {
+  outline: solid black 1px;
+  background: rgb(238, 237, 237);
+  padding: 35px;
+  margin: 15px;
+}

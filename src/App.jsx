@@ -77,6 +77,7 @@ const App = () => {
     }
   
     const handleUpdateCity = updatedCityData => {
+      console.log('APP JS ')
       cityService.update(updatedCityData)
         .then(updatedCity => {
           const newCitiesArray = cities.map(city => city._id === updatedCity._id ? updatedCity : city)
@@ -84,6 +85,8 @@ const App = () => {
           navigate('/cities')
         })
     }
+
+    
 
   /* ----------------------------- PLACE ----------------------------- */
   
@@ -102,6 +105,7 @@ const App = () => {
   const handleDeletePlace = id => {
     placeService.deleteOne(id)
     .then(deletedPlace => setPlaces(places.filter(place => place._id !== deletedPlace._id)))
+    navigate('/places')
   }
 
   const handleUpdatePlace = updatedPlaceData => {
@@ -109,7 +113,7 @@ const App = () => {
     .then(updatedPlace => {
       const newPlacesArray = places.map(place => place._id === updatedPlace._id ? updatedPlace : place)
       setPlaces(newPlacesArray)
-      navigate('/')
+      navigate('/places')
     })
   }
 

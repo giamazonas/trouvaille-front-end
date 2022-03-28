@@ -12,16 +12,13 @@ const CityId = (props) => {
   let location = useLocation()
 
   useEffect(() => {
-    console.log(location.state.city)
     cityService.getOne(location.state.city._id)
     .then(city => {
       setCityDetails(city)
     })
   },[])
-
-
-  console.log('CITY DETAILS: ',cityDetails.city)
-  console.log('vs : ', location.state.city.city)
+  
+  // cityDetails.places ? console.log('::: CityId.jsx -- cityDetails :::',cityDetails) : console.log('loading cityDetails')
 
   return (
     <>
@@ -34,9 +31,9 @@ const CityId = (props) => {
       <div className={styles.container}>
         {location.state.city._id ?
           <>
-            <h2 className='city-details'>{cityDetails.city}</h2>
+            <h1 className='city-details'>{cityDetails.city}</h1>
             <h3>{cityDetails.desc}</h3>
-            <h4>{cityDetails.population}</h4>
+            <h4>Population: {cityDetails.population}</h4>
             <h4>Walkable? {cityDetails.walkable ? 'you can walk!' : 'get a bike'}</h4>
           </>
           :

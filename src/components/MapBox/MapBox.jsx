@@ -2,7 +2,7 @@ import * as React from 'react'
 import {render} from 'react-dom'
 import Map, {Marker} from 'react-map-gl'
 import { useEffect, useState } from 'react'
-import { getCityInfo } from '../../services/forwardGeocodeApi'
+import { getCoordinates } from '../../services/forwardGeocodeApi'
 import styles from './mapbox.module.css'
 
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -12,15 +12,32 @@ const API_URL = 'https://api.mapbox.com/geocoding/v5/'
 
 function MapBox(props) {
   const [cityDetails, setCityDetails] = useState({})
+  const [placeLocation, setPlaceLocation] = useState({})
   
-  let cityInfo = `${API_URL}mapbox.places/${props.city}.json?&access_token=${MAPBOX_TOKEN}`
+  let cityLatLong = `${API_URL}mapbox.places/${props.city.replaceAll(' ','%20')}/${props.state}.json?&access_token=${MAPBOX_TOKEN}`
 
   useEffect(() => {
-    getCityInfo(cityInfo)
+    getCoordinates(cityLatLong)
     .then(data => data.features)
     .then(data => data[0].center)
     .then(data=> setCityDetails(data))
     .catch(err => console.log('::: ERROR :::', err))
+  },[])
+  
+  
+  // props.places ? console.log('PROPS',props) : console.log(cityDetails)
+
+  useEffect(() => {
+    if(props.places) {
+      props.places.forEach(place => {
+      (getCoordinates(`${API_URL}mapbox.places/${props.city.replaceAll(' ','%20')}/${place.address.replaceAll(' ','%20')}.json?&access_token=${MAPBOX_TOKEN}`))
+      .then(data => data.features)
+      .then(data => data[0].center)
+      .then(data => setPlaceLocation({ ...placeLocation, data }))
+      .catch(err => console.log('::: ERROR :::', err))
+      })
+      // console.log('PlaceLocation: ',placeLocation)
+    }
   },[])
   
   return (
@@ -37,7 +54,17 @@ function MapBox(props) {
         mapStyle="mapbox://styles/mapbox/streets-v9"
         mapboxAccessToken={MAPBOX_TOKEN}
       >
-        <Marker longitude={cityDetails[0]} latitude={cityDetails[1]} color="green" />
+        <Marker longitude={cityDetails[0]} latitude={cityDetails[1]} color="green" scale='1' />
+
+
+
+        {
+          // placeLocation.forEach(location => {
+            // console.log('placeLocation.data',placeLocation.data)
+            // <Marker longitude={placeLocation.data[0]} latitude={placeLocation.datalocation[1]} color="red"/>
+          // })
+        }
+
       </Map>
       :
       <>

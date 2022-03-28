@@ -25,8 +25,9 @@ function deleteOne(id) {
 
 function getOne(id) {
   return fetch(`${BASE_URL}/${id}`, {
+    headers: {  'Authorization': `Bearer ${tokenService.getToken()}` },
     method: "GET",
-  }).then((res) => res.json());
+  }).then((res) => res.json())
 }
 
 function update(id) {
@@ -38,8 +39,8 @@ function update(id) {
 }
 
 function addPlace(cityId, placeId) {
-  console.log('::: cityId :::', cityId)
-  console.log('::: placeId :::', placeId)
+  // console.log('::: cityId :::', cityId)
+  // console.log('::: placeId :::', placeId)
   return fetch(`${BASE_URL}/${cityId}/${placeId}`, {
     method: "PATCH",
     headers: {  'Authorization': `Bearer ${tokenService.getToken()}` },

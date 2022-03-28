@@ -92,3 +92,9 @@ ______________________________
 ![my favicon](/trouvaille-front-end/public/favicon.ico)
 
 
+        <header className="App-header">
+          <nav>
+            <NavLink to="/login">Log In</NavLink>
+            <NavLink to="/signup">Sign Up</NavLink>
+          </nav>
+        </header>

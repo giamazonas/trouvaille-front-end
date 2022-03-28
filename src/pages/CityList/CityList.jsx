@@ -6,7 +6,7 @@ const CityList = props => {
 
   return (  
     <>
-      <h1>Cities</h1>
+      <h1></h1>
       <div className={styles.container}>
         {props.cities.map(city => ( 
           <CityCard 

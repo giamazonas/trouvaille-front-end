@@ -34,7 +34,7 @@ function update(city) {
   console.log("::: city :::", city);
   return fetch(`${BASE_URL}/${city._id}/edit`, {
     headers: { Authorization: `Bearer ${tokenService.getToken()}` },
-    body: JSON.stringify(city),
+    body: city,
     method: "PUT",
   }).then((res) => res.json());
 }

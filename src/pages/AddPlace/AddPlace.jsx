@@ -43,7 +43,7 @@ function AddPlace(props) {
 
   return(
     <div className={styles.container}>
-      <h1>Add Place</h1>
+      <br /><h1>Add Place</h1><br />
       <form autoComplete='off' ref={formElement} onSubmit={handleSubmit} >
         <div>
           <label htmlFor="address-input">

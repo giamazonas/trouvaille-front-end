@@ -9,13 +9,21 @@ function PlaceCard({ place }) {
         alt={`${place.name}`}
         className="card-img-top"
       />
+
       <div className="card-body">
-        <h2 className="card-text">{place.name}</h2>
+        <h2 className="card-text">
+          <Link 
+          to={`/places/${place._id}`}
+          state={{ place }}
+          >{place.name}</Link></h2>
+
         <h3 className="card-text">{place.type}</h3>
       </div>
+
       <div className="card-footer">
         <h4>{place.address}</h4>
       </div>
+
     </div>
   )
 }

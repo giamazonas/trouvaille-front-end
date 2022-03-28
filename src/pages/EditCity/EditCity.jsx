@@ -1,19 +1,24 @@
 import { useState, useRef, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import * as cityService from '../../services/cities'
+import { Link, useLocation, Navigate, useNavigate } from 'react-router-dom'
+import * as cityService from '../../services/cityService'
+import styles from './EditCity.module.css'
 
-function EditCity(city) {
+function EditCity({city, handleDeleteCity, handleUpdateCity}) {
   const location = useLocation()
   const [cityDetails, setCityDetails] = useState({})
-  const [formData, setFormData] = useState(location.state.city._id)
+  const [formData, setFormData] = useState({_id: location.state.city._id})
   const [validForm, setValidForm] = useState(true)
   const formElement = useRef()
-
-
-  console.log('location.state: ', location.state.city._id)
+  const navigate = useNavigate()
 
   const handleChange = evt => {
-    setFormData({...formData, [evt.target.name]: evt.target.value })
+    let value
+    if (evt.target.checked) {
+      value = evt.target.checked 
+    }else {
+      value = evt.target.value
+    }
+    setFormData({...formData, [evt.target.name]: value })
   }
 
   useEffect(() => {
@@ -25,23 +30,22 @@ function EditCity(city) {
 		formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
 	}, [formData])
 
-  const handleSubmit = evt => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault()
-    const cityFormData = new FormData()
-    cityFormData.append('photo', formData.photo)
-    cityFormData.append('desc', formData.desc)
-    cityFormData.append('city', formData.city)
-    cityFormData.append('state', formData.state)
-    cityFormData.append('zip', formData.zip)
-    cityFormData.append('population', formData.population)
-    cityFormData.append('walkable', formData.walkable)
-    city.handleUpdateCity(formData)
+    console.log('form data', formData)
+    await handleUpdateCity(formData)
+    navigate("/cities") 
   }
 
-  const handleDeleteCity = id => {
-    cityService.deleteOne(id)
-      .then(deletedCity => setCityDetails(city.filter(city => city._id !== deletedCity._id)))
+  const handleDelete = async (id) => {
+    await handleDeleteCity(id)
+    navigate('/cities')
   }
+
+  // const handleUpdate = async (id) => {
+  //   await handleUpdateCity(id)
+  //   navigate('/cities')
+  // }
 
   const handleChangePhoto = (evt) => {
     setFormData({...formData, photo: evt.target.files[0]})
@@ -49,6 +53,7 @@ function EditCity(city) {
 
   return (
     <>
+    <div className={styles.container}><br />
       <h1>Edit {location.state.city.city} </h1>
       <form autoComplete = 'off' ref={formElement} onSubmit={handleSubmit} >
         <div>
@@ -133,7 +138,7 @@ function EditCity(city) {
 						value={formData.walkable}
 						onChange={handleChange}
 					/>
-        </div>
+        </div><br />
         <div className="form-group mb-4">
           <label htmlFor="photo-upload" className="form-label">
             Upload Photo
@@ -145,18 +150,20 @@ function EditCity(city) {
             name="photo"
             onChange={handleChangePhoto}
           />
-        </div>
+        </div><br />
         <div className="d-grid">
 					<button
 						type="submit"
 						className="btn btn-primary btn-fluid"
+            onClick={()=> handleSubmit(location.state.city._id)}
 						// disabled={!validForm}
 					>
 						Edit City
 					</button>
-				</div>
+				</div><br /><br />
       </form> 
-      <div className='city-container'>
+      <div className={styles.cityContainer} id='cityInfo'>
+        <h2>City info currently:</h2><br />
         {location.state.city._id ?
           <>
 
@@ -171,13 +178,18 @@ function EditCity(city) {
           </>
         }
       </div>
+      <br />
+      <br />
       <button
         className="btn btn-sm btn-danger m-left"
-        onClick={()=> handleDeleteCity(location.state.city._id)}
+        onClick={()=> handleDelete(location.state.city._id)}
       >
         Delete City
       </button>
-
+      <br />
+      <br />
+      <br />
+    </div>
     </>
   )
 }

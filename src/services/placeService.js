@@ -2,7 +2,10 @@ import * as tokenService from "../services/tokenService";
 const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/places`;
 // const BASE_URL = "/places";
 
-async function getAllPlaces() {
+
+function getAllPlaces() {
+
+// async function getAllPlaces() {
   // const res = await fetch(BASE_URL, {
   //   headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
   // })
@@ -44,4 +47,16 @@ function update(place) {
   }).then((res) => res.json());
 }
 
-export { getAllPlaces, create, deleteOne, update };
+function getOne(id) {
+  return fetch(`${BASE_URL}/${id}`, {
+    method: "GET",
+  }).then((res) => res.json());
+}
+
+function search(formData) {
+  return fetch(`${BASE_URL}/api/places/?place=${formData.query}`).then((res) =>
+    res.json()
+  );
+}
+
+export { getAllPlaces, create, deleteOne, update, getOne, search, };

@@ -14,7 +14,7 @@ const Places = (props) => {
 
   return (
     <>
-      <h1>Hello. This is a list of all the places.</h1>
+      <h1></h1>
       <div className={styles.container}>
         {places.length ? 
           <>

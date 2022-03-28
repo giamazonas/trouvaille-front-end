@@ -244,7 +244,10 @@ const App = () => {
 
           <Route 
             path='/cities/:cityId/:placeId' 
-            element={<Places />}
+            element={<Places 
+              cities={cities}
+              places={places} />}
+            
           />
 
           <Route
@@ -266,7 +269,8 @@ const App = () => {
               <PlaceId 
               city={cities}
               places={places} 
-              // handle={handle}
+              handleUpdatePlace={handleUpdatePlace}
+              handleDeletePlace={handleDeletePlace}
               />
             :
               <Navigate to="/login" />

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import * as itineraryService from '../../services/itineraries.js'
+import styles from './ItineraryList.module.css'
 
 const Itineraries = (props) => {
   const [itineraries, setItineraries] = useState([])
@@ -12,7 +13,8 @@ const Itineraries = (props) => {
 
   return (
     <>
-      <h1>My Itinerary</h1>
+    <div className={styles.container}>
+      <br /><h1>My Itinerary</h1><br />
       {itineraries.length ? 
         <>
           {itineraries.map(itinerary=>
@@ -21,11 +23,16 @@ const Itineraries = (props) => {
         </>
       :
       <div>
-        <p>No Itineraries</p>
+        <p>...No Itineraries. </p><br />
+        <p> You should start one, <Link
+          className='btn btn-sm btn-warning'
+          to={`/cities/`}
+          >here</Link>!</p>
       </div>
       }
+    </div>
     </>
   )
 }
- 
+
 export default Itineraries

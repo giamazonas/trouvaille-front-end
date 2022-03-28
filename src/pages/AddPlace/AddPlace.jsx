@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import styles from './AddPlace.module.css'
+import { useNavigate } from 'react-router-dom'
 
 
 function AddPlace(props) {
@@ -13,6 +14,7 @@ function AddPlace(props) {
     url: '',
     photo: [],
   })
+  const navigate = useNavigate()
 
 	useEffect(() => {
 		formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)

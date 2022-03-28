@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react'
-import styles from './AddCity.module.css'
 
 function AddCity(props) {
   const formElement = useRef()
@@ -40,8 +39,8 @@ function AddCity(props) {
   }
 
   return(
-    <div className={styles.container}>
-      <h1> Add City </h1><br />
+    <div>
+      <h1> Add City </h1>
       <form autoComplete = 'off' ref={formElement} onSubmit={handleSubmit} >
         <div>
           <label htmlFor="city-input">
@@ -138,7 +137,7 @@ function AddCity(props) {
             name="photo"
             onChange={handleChangePhoto}
           />
-        </div><br />
+        </div>
         <br />
         <div className="d-grid">
 					<button
@@ -147,7 +146,7 @@ function AddCity(props) {
 						disabled={!validForm}
 					>
 						Add City
-					</button><br /><br />
+					</button>
 				</div>
       </form>
     </div>

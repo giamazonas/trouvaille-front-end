@@ -20,29 +20,31 @@ function deleteOne(id) {
   return fetch(`${BASE_URL}/${id}`, {
     headers: { Authorization: `Bearer ${tokenService.getToken()}` },
     method: "DELETE",
-  }).then(res => res.json());
+  }).then((res) => res.json());
 }
 
 function getOne(id) {
   return fetch(`${BASE_URL}/${id}`, {
+    headers: { Authorization: `Bearer ${tokenService.getToken()}` },
     method: "GET",
   }).then((res) => res.json());
 }
 
-function update(id) {
-  return fetch(`${BASE_URL}/${id}`, {
-    headers:  { Authorization: `Bearer ${tokenService.getToken()}` },
-    data: id,
-    method: 'PUT',
-  }).then(res => res.json());
+function update(city) {
+  console.log("::: city :::", city);
+  return fetch(`${BASE_URL}/${city._id}/edit`, {
+    headers: { Authorization: `Bearer ${tokenService.getToken()}` },
+    body: JSON.stringify(city),
+    method: "PUT",
+  }).then((res) => res.json());
 }
 
 function addPlace(cityId, placeId) {
-  console.log('::: cityId :::', cityId)
-  console.log('::: placeId :::', placeId)
+  console.log("::: cityId :::", cityId);
+  console.log("::: placeId :::", placeId);
   return fetch(`${BASE_URL}/${cityId}/${placeId}`, {
     method: "PATCH",
-    headers: {  'Authorization': `Bearer ${tokenService.getToken()}` },
+    headers: { Authorization: `Bearer ${tokenService.getToken()}` },
     // body: placeId,
   }).then((res) => res.json());
 }
@@ -53,12 +55,4 @@ function search(formData) {
   );
 }
 
-export { 
-  create, 
-  getAll, 
-  deleteOne, 
-  update, 
-  getOne, 
-  search,
-  addPlace,
-}
+export { create, getAll, deleteOne, update, getOne, search, addPlace };

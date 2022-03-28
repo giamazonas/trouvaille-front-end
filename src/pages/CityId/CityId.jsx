@@ -1,10 +1,11 @@
 // import { useState, useRef, useEffect } from 'react'
 import AddItinerary from '../../components/AddItinerary/AddItinerary'
-import * as cityService from '../../services/cities'
+import * as cityService from '../../services/cityService'
 import { useState, useEffect } from 'react'
 import { useParams, useLocation, Link } from 'react-router-dom'
 import { MapBox } from '../../components/MapBox/MapBox'
 import PlaceCard from '../../components/PlaceCard/PlaceCard'
+import styles from './CityId.module.css'
 
 const CityId = (props) => {
   const [cityDetails, setCityDetails] = useState({})
@@ -24,13 +25,13 @@ const CityId = (props) => {
 
   return (
     <>
-      <div className='mapbox-container'>
+      <div className={styles.mapboxContainer}>
 
       </div>
-      <div className='places-container'>
+      <div className={styles.placesContainer}>
         
       </div>
-      <div className='city-container'>
+      <div className={styles.container}>
         {location.state.city._id ?
           <>
             <h2 className='city-details'>{cityDetails.city}</h2>
@@ -62,6 +63,9 @@ const CityId = (props) => {
           </div>
           }
       </div>
+      <br />
+      <br />
+      <br />
     </>
   );
 }

@@ -32,11 +32,15 @@
   display: flex;
 }
 
+.resultItem:hover {
+  background-color: lightgray;
+}
+
 .resultItem p {
   margin-left: 10px;
 }
 
-a {
+.resultItem {
   text-decoration: none;
   color: black;
 }
@@ -46,9 +50,6 @@ a {
   color: gray;
 }
 
-a:hover {
-  background-color: lightgray;
-}
 
 .clearBtn {
   cursor: pointer;

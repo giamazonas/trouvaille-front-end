@@ -16,3 +16,16 @@ code {
     monospace;
 }
 
+.form-control {
+  border: 1px solid lightgray;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.form-control:focus {
+  outline: gray;
+}
+
+a {
+  text-decoration: underline;
+}

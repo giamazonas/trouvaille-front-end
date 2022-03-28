@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 // import SearchForm from "../SearchForm/SearchForm";
 import SearchBar from "../SearchBar/SearchBar";
 import * as placeService from "../../services/placeService"
+import * as cityService from "../../services/cities"
 
 const NavBar = ({ user, handleLogout }) => {
   const [places, setPlaces] = useState([])

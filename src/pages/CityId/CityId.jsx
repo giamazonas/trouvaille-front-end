@@ -46,11 +46,13 @@ const CityId = (props) => {
       <div className='itinerary-container'>
 
       </div>
-      <MapBox city={location.state.city.city} state={location.state.city.state} places={cityDetails.places}/>
+      <div className="flex content-center justify-center">
+        <MapBox city={location.state.city.city} state={location.state.city.state} places={cityDetails.places}/>
+      </div>
       <div>
-        <h3>Places to go in {cityDetails.city}</h3>
+        <h3 className="flex content-center justify-center">Places to go in {cityDetails.city}</h3>
           {cityDetails.places ?
-          <div>
+          <div  className="flex content-center justify-center">
             {cityDetails.places.map(place => (
               <PlaceCard key={place._id} place={place} />
             ))}

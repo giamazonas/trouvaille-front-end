@@ -12,32 +12,27 @@ const CityId = (props) => {
   let location = useLocation()
 
   useEffect(() => {
-    console.log(location.state.city)
     cityService.getOne(location.state.city._id)
     .then(city => {
       setCityDetails(city)
     })
   },[])
-
-
-  console.log('CITY DETAILS: ',cityDetails.city)
-  console.log('vs : ', location.state.city.city)
+  
+  // cityDetails.places ? console.log('::: CityId.jsx -- cityDetails :::',cityDetails) : console.log('loading cityDetails')
 
   return (
     <>
-      <div className={styles.mapboxContainer}>
-
-      </div>
+    <div >
       <div className={styles.placesContainer}>
         
-      </div>
+      </div><br />
       <div className={styles.container}>
         {location.state.city._id ?
           <>
-            <h2 className='city-details'>{cityDetails.city}</h2>
+            <h1 className='city-details'>{cityDetails.city}</h1><br />
             <h3>{cityDetails.desc}</h3>
-            <h4>{cityDetails.population}</h4>
-            <h4>Walkable? {cityDetails.walkable ? 'you can walk!' : 'get a bike'}</h4>
+            <h4>Population: {cityDetails.population}</h4>
+            <h4>Walkable? {cityDetails.walkable ? 'you can walk!' : 'get a bike'}</h4><br />
           </>
           :
           <>
@@ -48,11 +43,14 @@ const CityId = (props) => {
       <div className='itinerary-container'>
 
       </div>
-      <MapBox city={location.state.city.city} state={location.state.city.state} places={cityDetails.places}/>
+      <div className="flex content-center justify-center">
+        <MapBox city={location.state.city.city} state={location.state.city.state} places={cityDetails.places}/>
+      </div>
+
       <div>
-        <h3>Places to go in {cityDetails.city}</h3>
+        <h3 className="flex content-center justify-center">Places to go in {cityDetails.city}</h3>
           {cityDetails.places ?
-          <div>
+          <div  className="flex content-center justify-center">
             {cityDetails.places.map(place => (
               <PlaceCard key={place._id} place={place} />
             ))}
@@ -63,9 +61,11 @@ const CityId = (props) => {
           </div>
           }
       </div>
+      </div>
       <br />
       <br />
       <br />
+    </div>
     </>
   );
 }

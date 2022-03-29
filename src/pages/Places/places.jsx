@@ -13,6 +13,7 @@ const Places = (props) => {
   }, [])
 
   return (
+    <>
     <div className="bg-white">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">Places</h2>
@@ -33,9 +34,11 @@ const Places = (props) => {
               <Link to="/places/add">Add a Place</Link>
             </div>
           }
+
         </div>
       </div>
     </div>
+  </>
   )
 }
 

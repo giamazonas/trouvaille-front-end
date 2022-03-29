@@ -41,7 +41,7 @@ function AddCity(props) {
 
   return(
     <div className={styles.container}>
-      <h1> Add City </h1><br />
+      <br /><h1> Add City </h1><br /><br />
       <form autoComplete = 'off' ref={formElement} onSubmit={handleSubmit} >
         <div>
           <label htmlFor="city-input">
@@ -56,7 +56,7 @@ function AddCity(props) {
 						onChange={handleChange}
 						required
 					/>
-        </div>
+        </div><br />
         <div>
           <label htmlFor="state-input">
             State
@@ -70,7 +70,7 @@ function AddCity(props) {
 						onChange={handleChange}
 						required
 					/>
-        </div>
+        </div><br />
         <div>
           <label htmlFor="zip-input">
             Zip
@@ -84,7 +84,7 @@ function AddCity(props) {
 						onChange={handleChange}
 						required
 					/>
-        </div>
+        </div><br />
         <div>
           <label htmlFor="desc-input">
             Description
@@ -98,7 +98,7 @@ function AddCity(props) {
 						onChange={handleChange}
 						required
 					/>
-        </div>
+        </div><br />
         <div>
           <label htmlFor="population-input">
             Population
@@ -112,7 +112,7 @@ function AddCity(props) {
 						onChange={handleChange}
 						required
 					/>
-        </div>
+        </div><br />
         <div>
           <label htmlFor="walkable-input">
             Walkable?  
@@ -125,7 +125,7 @@ function AddCity(props) {
 						value={formData.walkable}
 						onChange={handleChange}
 					/>
-        </div>
+        </div><br />
         <br />
         <div className="form-group mb-4">
           <label htmlFor="photo-upload" className="form-label">
@@ -138,7 +138,7 @@ function AddCity(props) {
             name="photo"
             onChange={handleChangePhoto}
           />
-        </div><br />
+        </div>
         <br />
         <div className="d-grid">
 					<button
@@ -147,7 +147,7 @@ function AddCity(props) {
 						disabled={!validForm}
 					>
 						Add City
-					</button><br /><br />
+					</button>
 				</div>
       </form>
     </div>

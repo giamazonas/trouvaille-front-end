@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, Component } from 'react'
 import { Link, useLocation, Navigate, useNavigate } from 'react-router-dom'
 import * as cityService from '../../services/cityService'
 import styles from './EditCity.module.css'
@@ -6,10 +6,24 @@ import styles from './EditCity.module.css'
 function EditCity({city, handleDeleteCity, handleUpdateCity}) {
   const location = useLocation()
   const [cityDetails, setCityDetails] = useState({})
-  const [formData, setFormData] = useState({_id: location.state.city._id})
+  const [formData, setFormData] = useState({_id: location.state.city._id,
+    desc: '',
+    city: '',
+    state: '',
+    zip: [],
+    population: '', 
+    walkable: true, 
+    photo: [], 
+  })
   const [validForm, setValidForm] = useState(true)
   const formElement = useRef()
   const navigate = useNavigate()
+  console.log(location.state.city._id)
+
+  useEffect(() => {
+		formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
+
+	}, [formData])
 
   const handleChange = evt => {
     let value
@@ -18,7 +32,7 @@ function EditCity({city, handleDeleteCity, handleUpdateCity}) {
     }else {
       value = evt.target.value
     }
-    setFormData({...formData, [evt.target.name]: value })
+    setFormData({...formData, [evt.target.name]: value });
   }
 
   useEffect(() => {
@@ -26,14 +40,20 @@ function EditCity({city, handleDeleteCity, handleUpdateCity}) {
       .then(city => setCityDetails(city))
   }, [])
 
-  useEffect(() => {
-		formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
-	}, [formData])
-
   const handleSubmit = async (evt) => {
     evt.preventDefault()
-    console.log('form data', formData)
-    await handleUpdateCity(formData)
+    // 
+    const placeFormData = new FormData()
+    placeFormData.append('photo', formData.photo)
+    placeFormData.append('address', formData.address)
+    placeFormData.append('city', formData.city)
+    placeFormData.append('name', formData.name)
+    placeFormData.append('type', formData.type)
+    await handleUpdateCity(placeFormData)
+    console.log(placeFormData)
+    // await handleUpdateCity(formData)
+
+    /// pass location.stat.city.id into placeformdata 
     navigate("/cities") 
   }
 
@@ -42,14 +62,16 @@ function EditCity({city, handleDeleteCity, handleUpdateCity}) {
     navigate('/cities')
   }
 
-  // const handleUpdate = async (id) => {
-  //   await handleUpdateCity(id)
-  //   navigate('/cities')
-  // }
-
   const handleChangePhoto = (evt) => {
     setFormData({...formData, photo: evt.target.files[0]})
   }
+
+  // async componentDidMount() {
+  //   const cityDetails = await getCityDetails();
+  //   this.setState({ results: cityDetails.results });
+  //   console.log(this.state.results)
+  // }
+
 
   return (
     <>
@@ -155,8 +177,9 @@ function EditCity({city, handleDeleteCity, handleUpdateCity}) {
 					<button
 						type="submit"
 						className="btn btn-primary btn-fluid"
-            onClick={()=> handleSubmit(location.state.city._id)}
-						// disabled={!validForm}
+            onClick={(e)=> handleSubmit(e, location.state.city._id)}
+            onChange={handleChange}
+						disabled={!validForm}
 					>
 						Edit City
 					</button>

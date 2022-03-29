@@ -21,6 +21,7 @@ const CityList = props => {
             </div>
           ))}
         </div>
+
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import styles from './AddPlace.module.css'
+import { useNavigate } from 'react-router-dom'
 
 
 function AddPlace(props) {
@@ -13,6 +14,7 @@ function AddPlace(props) {
     url: '',
     photo: [],
   })
+  const navigate = useNavigate()
 
 	useEffect(() => {
 		formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
@@ -41,7 +43,7 @@ function AddPlace(props) {
 
   return(
     <div className={styles.container}>
-      <h1>Add Place</h1>
+      <br /><h1>Add Place</h1><br />
       <form autoComplete='off' ref={formElement} onSubmit={handleSubmit} >
         <div>
           <label htmlFor="address-input">

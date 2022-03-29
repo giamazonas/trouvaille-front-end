@@ -18,7 +18,7 @@ import Places from './pages/Places/places'
 import AddPlace from './pages/AddPlace/AddPlace'
 import PlaceId from './pages/PlaceId/PlaceId'
 import Itineraries from './pages/ItineraryList/ItineraryList'
-
+import styles from './App.css'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
@@ -44,7 +44,7 @@ const App = () => {
     setUser(authService.getUser())
   }
 
-    /* ----------------------------- CITY ----------------------------- */
+    /* ----------------------------- CITY git ----------------------------- */
   
     useEffect(() => {
       cityService.getAll()
@@ -77,6 +77,7 @@ const App = () => {
     }
   
     const handleUpdateCity = updatedCityData => {
+      console.log('APP JS ')
       cityService.update(updatedCityData)
         .then(updatedCity => {
           const newCitiesArray = cities.map(city => city._id === updatedCity._id ? updatedCity : city)
@@ -84,6 +85,8 @@ const App = () => {
           navigate('/cities')
         })
     }
+
+    
 
   /* ----------------------------- PLACE ----------------------------- */
   
@@ -102,6 +105,7 @@ const App = () => {
   const handleDeletePlace = id => {
     placeService.deleteOne(id)
     .then(deletedPlace => setPlaces(places.filter(place => place._id !== deletedPlace._id)))
+    navigate('/places')
   }
 
   const handleUpdatePlace = updatedPlaceData => {
@@ -109,7 +113,7 @@ const App = () => {
     .then(updatedPlace => {
       const newPlacesArray = places.map(place => place._id === updatedPlace._id ? updatedPlace : place)
       setPlaces(newPlacesArray)
-      navigate('/')
+      navigate('/places')
     })
   }
 
@@ -240,7 +244,10 @@ const App = () => {
 
           <Route 
             path='/cities/:cityId/:placeId' 
-            element={<Places />}
+            element={<Places 
+              cities={cities}
+              places={places} />}
+            
           />
 
           <Route
@@ -262,7 +269,8 @@ const App = () => {
               <PlaceId 
               city={cities}
               places={places} 
-              // handle={handle}
+              handleUpdatePlace={handleUpdatePlace}
+              handleDeletePlace={handleDeletePlace}
               />
             :
               <Navigate to="/login" />

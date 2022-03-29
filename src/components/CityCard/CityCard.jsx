@@ -14,17 +14,16 @@ function CityCard({ city }) {
       </div>
       <div className="mt-4 flex justify-between">
         <div>
-          <h3 className="text-sm text-gray-700">
+          <h2 className="text-md text-gray-900">
             <Link
-              className='btn btn-sm btn-warning'
               to={`/cities/${city._id}`}
               state={{ city }}
-            >{city.city}</Link></h3>
-          <p className="mt-1 text-sm text-gray-500">{city.state}</p>
+            >{city.city}</Link></h2>
+          <h3 className="mt-1 text-sm text-gray-700">{city.state}</h3>
         </div>
-        <p className="text-sm font-medium text-gray-900">
+        <p className="mt-1 text-sm text-gray-700">
           <Link
-            className='editBtn'
+            className="editBtn"
             to={`/cities/${city._id}/edit`}
             state={{ city }}
           >Edit</Link>

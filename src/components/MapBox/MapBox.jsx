@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {render} from 'react-dom'
 import Map, {Marker} from 'react-map-gl'
-import { useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { getCoordinates } from '../../services/forwardGeocodeApi'
 import styles from './mapbox.module.css'
 
@@ -16,6 +16,8 @@ function MapBox(props) {
   
   let cityLatLong = `${API_URL}mapbox.places/${props.city.replaceAll(' ','%20')}/${props.state}.json?&access_token=${MAPBOX_TOKEN}`
 
+  // https://api.mapbox.com/isochrone/v1/mapbox/walking/-73.990593%2C40.740121?contours_minutes=30&contours_colors=005a32&polygons=true&denoise=1&access_token${MAPBOX_TOKEN}
+
   useEffect(() => {
     getCoordinates(cityLatLong)
     .then(data => data.features)
@@ -27,6 +29,11 @@ function MapBox(props) {
   
   // props.places ? console.log('PROPS',props) : console.log(cityDetails)
 
+  let placesCheck
+  if(props.places) {
+    placesCheck = props.places
+  }
+  
   useEffect(() => {
     if(props.places) {
       props.places.forEach(place => {
@@ -36,41 +43,39 @@ function MapBox(props) {
       .then(data => setPlaceLocation({ ...placeLocation, data }))
       .catch(err => console.log('::: ERROR :::', err))
       })
-      // console.log('PlaceLocation: ',placeLocation)
     }
-  },[])
+  },[placesCheck])
   
   return (
     <>
       <div className='mapbox-container'>
-      {cityDetails.length?
-      <Map
-        initialViewState={{
-          latitude: cityDetails[1],
-          longitude: cityDetails[0],
-          zoom: 12,
-        }}
-        style={{width: 800, height: 600}}
-        mapStyle="mapbox://styles/mapbox/streets-v9"
-        mapboxAccessToken={MAPBOX_TOKEN}
-      >
-        <Marker longitude={cityDetails[0]} latitude={cityDetails[1]} color="green" scale='1' />
+        {cityDetails.length?
+          <Map
+            initialViewState={{
+              latitude: cityDetails[1],
+              longitude: cityDetails[0],
+              zoom: 12,
+            }}
+            style={{width: 800, height: 600}}
+            mapStyle="mapbox://styles/mapbox/streets-v9"
+            mapboxAccessToken={MAPBOX_TOKEN}
+          
+          >
+            <Marker longitude={cityDetails[0]} latitude={cityDetails[1]} color="green" scale='1' />
 
+            {
+              console.log('::: placeLocation :::',placeLocation)
+              // placeLocation?.forEach(location => {
+              //   <Marker longitude={placeLocation.data[0]} latitude={placeLocation.datalocation[1]} color="red" scale=".5" />
+              // })
+            }
 
-
-        {
-          // placeLocation.forEach(location => {
-            // console.log('placeLocation.data',placeLocation.data)
-            // <Marker longitude={placeLocation.data[0]} latitude={placeLocation.datalocation[1]} color="red"/>
-          // })
+          </Map>
+          :
+          <>
+            <h3>loading map</h3>
+          </>
         }
-
-      </Map>
-      :
-      <>
-        <h3>loading map</h3>
-      </>
-      }
       </div>
     </>
   )

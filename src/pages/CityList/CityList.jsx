@@ -7,7 +7,7 @@ const CityList = props => {
   return (  
     <>
       <h1></h1>
-      <div className={styles.container}>
+      <div className="h-56 grid md:grid-cols-3 lg:grid-cols-5 content-start">
         {props.cities.map(city => ( 
           <CityCard 
             key={city._id}

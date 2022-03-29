@@ -6,10 +6,14 @@ import { useParams, useLocation, Link } from 'react-router-dom'
 import { MapBox } from '../../components/MapBox/MapBox'
 import PlaceCard from '../../components/PlaceCard/PlaceCard'
 import styles from './CityId.module.css'
+import { constants } from 'buffer'
+import Itineraries from '../ItineraryList/ItineraryList'
+import ItineraryCard from '../../components/ItineraryCard/ItineraryCard'
 
 const CityId = (props) => {
+  const location = useLocation()
   const [cityDetails, setCityDetails] = useState({})
-  let location = useLocation()
+  
 
   useEffect(() => {
     cityService.getOne(location.state.city._id)
@@ -40,12 +44,16 @@ const CityId = (props) => {
           </>
         }
       </div>
-      <div className='itinerary-container'>
 
-      </div>
       <div className="flex content-center justify-center">
         <MapBox city={location.state.city.city} state={location.state.city.state} places={cityDetails.places}/>
       </div>
+
+      <div className="flex content-center justify-center">
+        <br /><h1>My Itineraries in {location.state.city.city}  </h1>
+          {}
+
+      </div> <br /> <br />
 
       <div>
         <h3 className="flex content-center justify-center">Places to go in {cityDetails.city}</h3>
@@ -60,7 +68,6 @@ const CityId = (props) => {
             <p>Loading Places ...</p>
           </div>
           }
-      </div>
       </div>
       <br />
       <br />

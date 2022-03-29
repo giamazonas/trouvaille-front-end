@@ -6,6 +6,8 @@ import styles from './EditCity.module.css'
 function EditCity({city, handleDeleteCity, handleUpdateCity}) {
   const location = useLocation()
   const [cityDetails, setCityDetails] = useState({})
+  const formElement = useRef()
+  const [validForm, setValidForm] = useState(true)
   const [formData, setFormData] = useState({_id: location.state.city._id,
     desc: '',
     city: '',
@@ -15,8 +17,7 @@ function EditCity({city, handleDeleteCity, handleUpdateCity}) {
     walkable: true, 
     photo: [], 
   })
-  const [validForm, setValidForm] = useState(true)
-  const formElement = useRef()
+  
   const navigate = useNavigate()
   console.log(location.state.city._id)
 
@@ -24,16 +25,6 @@ function EditCity({city, handleDeleteCity, handleUpdateCity}) {
 		formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
 
 	}, [formData])
-
-  const handleChange = evt => {
-    let value
-    if (evt.target.checked) {
-      value = evt.target.checked 
-    }else {
-      value = evt.target.value
-    }
-    setFormData({...formData, [evt.target.name]: value });
-  }
 
   useEffect(() => {
     cityService.getOne(location.state.city._id)
@@ -55,6 +46,16 @@ function EditCity({city, handleDeleteCity, handleUpdateCity}) {
 
     /// pass location.stat.city.id into placeformdata 
     navigate("/cities") 
+  }
+
+  const handleChange = evt => {
+    let value
+    if (evt.target.checked) {
+      value = evt.target.checked 
+    }else {
+      value = evt.target.value
+    }
+    setFormData({...formData, [evt.target.name]: value });
   }
 
   const handleDelete = async (id) => {

@@ -17,7 +17,8 @@ import CityId from './pages/CityId/CityId'
 import Places from './pages/Places/places'
 import AddPlace from './pages/AddPlace/AddPlace'
 import PlaceId from './pages/PlaceId/PlaceId'
-import Itineraries from './pages/ItineraryList/ItineraryList'
+import ItineraryList from './pages/ItineraryList/ItineraryList'
+import AddItinerary from './components/AddItinerary/AddItinerary'
 import styles from './App.css'
 
 const App = () => {
@@ -77,7 +78,7 @@ const App = () => {
     }
   
     const handleUpdateCity = updatedCityData => {
-      console.log('APP JS ')
+      console.log('APP JS ', updatedCityData)
       cityService.update(updatedCityData)
         .then(updatedCity => {
           const newCitiesArray = cities.map(city => city._id === updatedCity._id ? updatedCity : city)
@@ -118,12 +119,25 @@ const App = () => {
   }
 
   /* ----------------------------- ITINERARY ----------------------------- */
+  const handleAddItinerary = async newItineraryData => {
+    const newItinerary = await itineraryService.create(newItineraryData)
+    setItineraries([...itineraries, newItineraryData])
+    navigate('/itineraries')
+  }
 
   useEffect(() => {
-    itineraryService.getAllItineraries()
+    if(user) {
+      itineraryService.getAllItineraries()
       .then(allItineraries => setItineraries(allItineraries))
-  }, [])
+    }
+  }, [user])
 
+  const handleDeleteItinerary = id => {
+    itineraryService.deleteOne(id)
+    .then(deletedItinerary => setItineraries(itineraries.filter(itinerary => itinerary._id !== id)))
+  }
+
+  // -------------------  ROUTES  --------------------
 
   return (
     <div className="App">
@@ -278,8 +292,28 @@ const App = () => {
 {/* ----------------- ITINERARIES  ----------------- */}
           <Route
             path="/itineraries"
-            element={user ? <Itineraries /> : <Navigate to="/login" />}
+            element={
+              user ? 
+                <ItineraryList 
+                  handleAddItinerary={handleAddItinerary}
+                  handleDeleteItinerary={handleDeleteItinerary}
+                  // handleUpdateItinerary={handleUpdateItinerary}
+                  itineraries={itineraries}
+                  user={user}
+                  cities={cities}
+                  places={places}
+                /> 
+                : 
+                <Navigate to="/login" />}
           />
+          <Route 
+            path="/itineraries/add" 
+            element={<AddItinerary
+              handleAddItinerary={handleAddItinerary}
+              /> } 
+
+          />
+
         </Routes>
 
       </main>

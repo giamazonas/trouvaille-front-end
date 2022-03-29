@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import * as itineraryService from '../../services/itineraries.js'
-import styles from './ItineraryList.module.css'
+import { Link } from 'react-router-dom'
 import ItineraryCard from '../../components/ItineraryCard/ItineraryCard.jsx'
+import styles from './ItineraryList.module.css'
 
-const Itineraries = (props) => {
+const ItineraryList = (props, handleAddItinerary, handleDeleteItinerary) => {
   const [itineraries, setItineraries] = useState([])
 
   useEffect(()=> {
@@ -16,11 +16,18 @@ const Itineraries = (props) => {
     <>
     <div className={styles.container}>
       <br /><h1>My Itinerary</h1><br />
-      {itineraries.length ? 
+      {props.itineraries.length ? 
         <>
-          {itineraries.map(itinerary=>
-            <p key={itinerary._id}>{itinerary.name}</p>
-          )}
+          {itineraries.map(itinerary =>
+            <ItineraryCard 
+              user={props.user}
+              key={itinerary._id}
+              itinerary={itinerary}
+              handleAddItinerary={handleAddItinerary}
+              handleDeleteItinerary={handleDeleteItinerary}
+              // handleUpdateItinerary={handleUpdateItinerary}
+              />
+            )}
         </>
       :
       <div>
@@ -36,4 +43,4 @@ const Itineraries = (props) => {
   )
 }
 
-export default Itineraries
+export default ItineraryList

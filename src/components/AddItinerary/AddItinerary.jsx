@@ -21,6 +21,7 @@ const AddItinerary = (props) => {
     itineraryFormData.append('time', formData.time)
     itineraryFormData.append('place', formData.place)
     props.handleAddItinerary(itineraryFormData)
+    console.log('ADD IT', itineraryFormData )
   }
 
   const handleChange = evt => {
@@ -28,27 +29,61 @@ const AddItinerary = (props) => {
   }
 
   return (
-    <div>
-       <h1>Add to your Itinerary</h1>
-       <form autoComplete = 'off' ref={formElement} onSubmit={handleSubmit}>
-       <div>
-          <label htmlFor="city-input">
-            City Name
+    <div className={styles.container}>
+      <h1>Add to your Itinerary</h1>
+      <form autoComplete = 'off' ref={formElement} onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="name-input">
+            Name
           </label>
           <input
 						type="text"
 						className="form-control"
-						id="city-input"
-						name="city"
-						value={formData.city}
+						id="name-input"
+						name="name"
+						value={formData.name}
 						onChange={handleChange}
 						required
 					/>
-        </div>
-
+        </div><br />
+        <div>
+          <label htmlFor="time-input">
+            Time
+          </label>
+          <input
+						type="text"
+						className="form-control"
+						id="time-input"
+						name='time'
+						value={formData.time}
+						onChange={handleChange}
+						required
+					/>
+        </div><br />
+        <div>
+          <label htmlFor="place-input">
+            Place
+          </label>
+          <input
+						type="text"
+						className="form-control"
+						id="place-input"
+						name='place'
+						value={formData.place}
+						onChange={handleChange}
+						required
+					/>
+        </div><br />
+        <div className="d-grid">
+					<button
+						type="submit"
+						className="btn btn-primary btn-fluid"
+            disabled={!validForm}
+					>
+						Add Itinerary
+					</button>
+				</div>
       </form>
-
-       
     </div>
   );
 }

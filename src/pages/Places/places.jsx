@@ -35,5 +35,5 @@ const Places = (props) => {
     </>
   )
 }
- 
+
 export default Places

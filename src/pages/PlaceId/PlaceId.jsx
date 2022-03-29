@@ -5,9 +5,9 @@ import { MapBox } from '../../components/MapBox/MapBox';
 import styles from './PlaceId.module.css'
 
 const PlaceId = (props) => {
-  const [placeDetails, setPlaceDetails] = useState({})
   let location = useLocation()
-
+  const [placeDetails, setPlaceDetails] = useState({})
+  
   useEffect(() => {
     placeService.getOne(location.state.place.id)
     .then(place => setPlaceDetails(place))

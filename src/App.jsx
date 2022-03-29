@@ -205,7 +205,7 @@ const App = () => {
                 // handleCityId={handleCityId}
                 city={cities}
                 places={places}
-                //  itineraries={itineraries}
+                itineraries={itineraries}
               />
             :
               <Navigate to="/login" />

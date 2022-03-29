@@ -22,9 +22,9 @@ const NavBar = ({ user, handleLogout }) => {
   return (
     <>
       {user ? (
-        <div>
+        <>
           <Popover className="relative bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="h-full mx-auto px-4 sm:px-6">
               <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
                 <div className="flex justify-start lg:w-0 lg:flex-1">
                   <a href="/"> <span>Trouvaille</span> </a>
@@ -35,7 +35,7 @@ const NavBar = ({ user, handleLogout }) => {
                     <MenuIcon className="h-6 w-6" aria-hidden="true" />
                   </Popover.Button>
                 </div>
-                <Popover.Group as="nav" className="hidden md:flex space-x-10">
+                <Popover.Group as="nav" className="hidden md:flex space-x-10" id="menu">
                   <Popover className="relative">
                     {({ open }) => (
                       <>
@@ -158,7 +158,9 @@ const NavBar = ({ user, handleLogout }) => {
                       </>
                     )}
                   </Popover>
+                </Popover.Group>
 
+                <Popover.Group as="nav" className="hidden md:flex items-center justify-end md:flex-1 lg:w-0" id="profile">
                   <Popover className="relative">
                     {({ open }) => (
                       <>
@@ -232,8 +234,8 @@ const NavBar = ({ user, handleLogout }) => {
                       </>
                     )}
                   </Popover>
+                  </Popover.Group>
 
-                </Popover.Group>
               </div>
             </div>
 
@@ -318,7 +320,7 @@ const NavBar = ({ user, handleLogout }) => {
             </Transition>
 
           </Popover>
-        </div>
+        </>
       ) : (
         <Popover className="relative bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">

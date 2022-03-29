@@ -125,6 +125,8 @@ const App = () => {
 
 
   return (
+    <html class="h-full bg-white">
+    <body class="h-full">
     <div className="App">
       <NavBar user={user} handleLogout={handleLogout} 
         cities={cities}
@@ -284,6 +286,8 @@ const App = () => {
 
       </main>
     </div>
+      </body>
+    </html>
   )
 }
 

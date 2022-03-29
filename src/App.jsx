@@ -131,6 +131,7 @@ const App = () => {
         navItems={navItems}
         // places={places}
       />
+
       <main>
         <Routes>
           <Route path='/cities' element={<CityList cities={cities} /> }

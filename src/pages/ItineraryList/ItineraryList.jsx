@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import * as itineraryService from '../../services/itineraries.js'
 import styles from './ItineraryList.module.css'
+import ItineraryCard from '../../components/ItineraryCard/ItineraryCard.jsx'
 
 const Itineraries = (props) => {
   const [itineraries, setItineraries] = useState([])

@@ -87,7 +87,6 @@ const App = () => {
         })
     }
 
-    
 
   /* ----------------------------- PLACE ----------------------------- */
   
@@ -146,6 +145,7 @@ const App = () => {
         navItems={navItems}
         // places={places}
       />
+
       <main>
         <Routes>
           <Route path='/cities' element={<CityList cities={cities} /> }
@@ -155,6 +155,7 @@ const App = () => {
             element={
               <AddCity 
                 handleAddCity={handleAddCity}
+                user={user}
               />
             } />
           <Route 
@@ -172,6 +173,7 @@ const App = () => {
             element={
               <EditCity
                 cities={cities}
+                user={user}
                 handleUpdateCity={handleUpdateCity}
                 handleDeleteCity={handleDeleteCity}
               />

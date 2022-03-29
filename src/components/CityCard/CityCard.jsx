@@ -3,36 +3,33 @@ import styles from './CityCard.module.css'
 
 function CityCard({ city }) {
   return (
-    <div className={styles.container}>
-      <img
-        src={city.photo ? city.photo : `https://picsum.photos/100/200?random=433`}
-        alt="city"
-        className="card-img-top"
-      />
-      <div className="card-body">
-        <h2 className="card-text">
+    <>
+      <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+        <Link to={`/cities/${city._id}`} state={{ city }}>
+          <img
+            src={city.photo ? city.photo : `https://picsum.photos/100/200?random=433`}
+            alt="city"
+            className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+          /></Link>
+      </div>
+      <div className="mt-4 flex justify-between">
+        <div>
+          <h2 className="text-md text-gray-900">
+            <Link
+              to={`/cities/${city._id}`}
+              state={{ city }}
+            >{city.city}</Link></h2>
+          <h3 className="mt-1 text-sm text-gray-700">{city.state}</h3>
+        </div>
+        <p className="mt-1 text-sm text-gray-700">
           <Link
-
-            className='btn btn-sm btn-warning'
-            to={`/cities/${city._id}`}
+            className="editBtn"
+            to={`/cities/${city._id}/edit`}
             state={{ city }}
-
-          >{city.city}</Link></h2>
-        <p className="card-text">{city.state}</p>
+          >Edit</Link>
+        </p>
       </div>
-      <div className="card-footer">
-        <Link
-
-          className='btn btn-sm btn-warning'
-          to={`/cities/${city._id}/edit`}
-          state={{ city }}
-
-        >
-          Edit
-        </Link>
-
-      </div>
-    </div>
+    </>
   )
 }
 

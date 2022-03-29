@@ -23,19 +23,16 @@ const CityId = (props) => {
   return (
     <>
     <div >
-      <div className={styles.mapboxContainer}>
-
-      </div>
       <div className={styles.placesContainer}>
         
-      </div>
+      </div><br />
       <div className={styles.container}>
         {location.state.city._id ?
           <>
-            <h1 className='city-details'>{cityDetails.city}</h1>
+            <h1 className='city-details'>{cityDetails.city}</h1><br />
             <h3>{cityDetails.desc}</h3>
             <h4>Population: {cityDetails.population}</h4>
-            <h4>Walkable? {cityDetails.walkable ? 'you can walk!' : 'get a bike'}</h4>
+            <h4>Walkable? {cityDetails.walkable ? 'you can walk!' : 'get a bike'}</h4><br />
           </>
           :
           <>
@@ -46,6 +43,7 @@ const CityId = (props) => {
       <div className='itinerary-container'>
 
       </div>
+      <div className={styles.mapboxContainer}>
       <MapBox city={location.state.city.city} state={location.state.city.state} places={cityDetails.places}/>
       <div>
         <h3>Places to go in {cityDetails.city}</h3>
@@ -60,6 +58,7 @@ const CityId = (props) => {
             <p>Loading Places ...</p>
           </div>
           }
+      </div>
       </div>
       <br />
       <br />

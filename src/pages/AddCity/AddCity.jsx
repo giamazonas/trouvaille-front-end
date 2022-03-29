@@ -14,6 +14,8 @@ function AddCity(props) {
     photo: [],  
   })
 
+  console.log(props.user)
+
   useEffect(() => {
     formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
   }, [formData])

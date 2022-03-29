@@ -35,9 +35,9 @@ const CityId = (props) => {
           {cityDetails ?
             <>
               <h1 className='city-details'>{cityDetails?.city}</h1><br />
-              <h3>{cityDetails.desc}</h3>
-              <h4>Population: {cityDetails.population}</h4>
-              <h4>Walkable? {cityDetails.walkable ? 'you can walk!' : 'get a bike'}</h4><br />
+              <h3>{cityDetails?.desc}</h3>
+              <h4>Population: {cityDetails?.population}</h4>
+              <h4>Walkable? {cityDetails?.walkable ? 'you can walk!' : 'get a bike'}</h4><br />
             </>
             :
             <>
@@ -51,15 +51,14 @@ const CityId = (props) => {
         <div className="flex content-center justify-center">
           {
             cityDetails &&
-          <MapBox city={cityDetails.city} state={cityDetails.state} places={cityDetails.places} />
+          <MapBox city={cityDetails?.city} state={cityDetails?.state} places={cityDetails?.places} />
           }
         </div>
-
       <div><br /> <br />
-        <h3 className="flex content-center justify-center">Places to go in {cityDetails.city}</h3>
-          {cityDetails.places ?
+        <h3 className="flex content-center justify-center">Places to go in {cityDetails?.city}</h3>
+          {cityDetails?.places ?
           <div  className="flex content-center justify-center">
-            {cityDetails.places.map(place => (
+            {cityDetails?.places.map(place => (
               <PlaceCard key={place._id} place={place} />
             ))}
           </div>

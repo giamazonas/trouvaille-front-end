@@ -29,7 +29,7 @@ export default function Example() {
                           type="text"
                           name="company-website"
                           id="company-website"
-                          className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                          className="focus:ring-gray-500 focus:border-gray-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
                           placeholder="www.example.com"
                         />
                       </div>
@@ -45,7 +45,7 @@ export default function Example() {
                         id="about"
                         name="about"
                         rows={3}
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                        className="shadow-sm focus:ring-gray-500 focus:border-gray-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                         placeholder="you@example.com"
                         defaultValue={''}
                       />
@@ -65,7 +65,7 @@ export default function Example() {
                       </span>
                       <button
                         type="button"
-                        className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                       >
                         Change
                       </button>
@@ -93,7 +93,7 @@ export default function Example() {
                         <div className="flex text-sm text-gray-600">
                           <label
                             htmlFor="file-upload"
-                            className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                            className="relative cursor-pointer bg-white rounded-md font-medium text-gray-600 hover:text-gray-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-gray-500"
                           >
                             <span>Upload a file</span>
                             <input id="file-upload" name="file-upload" type="file" className="sr-only" />
@@ -108,7 +108,7 @@ export default function Example() {
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                   <button
                     type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                   >
                     Save
                   </button>
@@ -127,16 +127,17 @@ export default function Example() {
       </div>
 
   {/* goes to the page */}
-      <div className="mt-10 sm:mt-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="md:col-span-1">
-            <div className="px-4 sm:px-0">
+            <div className="px-4 sm:px-0"> 
+            
               <h3 className="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
               <p className="mt-1 text-sm text-gray-600">Use a permanent address where you can receive mail.</p>
             </div>
           </div>
           
-          {/* below is the form (component) */}
+          {/* below is the form (for component) */}
           <div className="mt-5 md:mt-0 md:col-span-2">
             <form action="#" method="POST">
               <div className="shadow overflow-hidden sm:rounded-md">
@@ -151,7 +152,7 @@ export default function Example() {
                         name="street-address"
                         id="street-address"
                         autoComplete="street-address"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
 
@@ -164,7 +165,7 @@ export default function Example() {
                         name="city"
                         id="city"
                         autoComplete="address-level2"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
 
@@ -177,7 +178,7 @@ export default function Example() {
                         name="region"
                         id="region"
                         autoComplete="address-level1"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
 
@@ -190,15 +191,16 @@ export default function Example() {
                         name="postal-code"
                         id="postal-code"
                         autoComplete="postal-code"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
                   </div>
                 </div>
+                
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                   <button
                     type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                   >
                     Save
                   </button>
@@ -237,7 +239,7 @@ export default function Example() {
                             id="comments"
                             name="comments"
                             type="checkbox"
-                            className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            className="focus:ring-gray-500 h-4 w-4 text-gray-600 border-gray-300 rounded"
                           />
                         </div>
                         <div className="ml-3 text-sm">
@@ -253,7 +255,7 @@ export default function Example() {
                             id="candidates"
                             name="candidates"
                             type="checkbox"
-                            className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            className="focus:ring-gray-500 h-4 w-4 text-gray-600 border-gray-300 rounded"
                           />
                         </div>
                         <div className="ml-3 text-sm">
@@ -269,7 +271,7 @@ export default function Example() {
                             id="offers"
                             name="offers"
                             type="checkbox"
-                            className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                            className="focus:ring-gray-500 h-4 w-4 text-gray-600 border-gray-300 rounded"
                           />
                         </div>
                         <div className="ml-3 text-sm">
@@ -292,7 +294,7 @@ export default function Example() {
                           id="push-everything"
                           name="push-notifications"
                           type="radio"
-                          className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                          className="focus:ring-gray-500 h-4 w-4 text-gray-600 border-gray-300"
                         />
                         <label htmlFor="push-everything" className="ml-3 block text-sm font-medium text-gray-700">
                           Everything
@@ -303,7 +305,7 @@ export default function Example() {
                           id="push-email"
                           name="push-notifications"
                           type="radio"
-                          className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                          className="focus:ring-gray-500 h-4 w-4 text-gray-600 border-gray-300"
                         />
                         <label htmlFor="push-email" className="ml-3 block text-sm font-medium text-gray-700">
                           Same as email
@@ -314,7 +316,7 @@ export default function Example() {
                           id="push-nothing"
                           name="push-notifications"
                           type="radio"
-                          className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                          className="focus:ring-gray-500 h-4 w-4 text-gray-600 border-gray-300"
                         />
                         <label htmlFor="push-nothing" className="ml-3 block text-sm font-medium text-gray-700">
                           No push notifications
@@ -326,7 +328,7 @@ export default function Example() {
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                   <button
                     type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                   >
                     Save
                   </button>

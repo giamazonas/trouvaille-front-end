@@ -131,7 +131,7 @@ const App = () => {
       <NavBar user={user} handleLogout={handleLogout} 
         cities={cities}
         navItems={navItems}
-        // places={places}
+        places={places}
       />
 
       <main>

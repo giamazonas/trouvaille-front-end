@@ -55,18 +55,18 @@ const CityId = (props) => {
           }
         </div>
 
-        <div>
-          <h3 className="flex content-center justify-center">Places to go in {cityDetails?.city}</h3>
-          {cityDetails?.places ?
-            <div className="flex content-center justify-center">
-              {cityDetails?.places.map(place => (
-                <PlaceCard key={place._id} place={place} />
-              ))}
-            </div>
-            :
-            <div>
-              <p>Loading Places ...</p>
-            </div>
+      <div><br /> <br />
+        <h3 className="flex content-center justify-center">Places to go in {cityDetails.city}</h3>
+          {cityDetails.places ?
+          <div  className="flex content-center justify-center">
+            {cityDetails.places.map(place => (
+              <PlaceCard key={place._id} place={place} />
+            ))}
+          </div>
+          :
+          <div>
+            <p>Loading Places ...</p>
+          </div>
           }
         </div>
       </div>

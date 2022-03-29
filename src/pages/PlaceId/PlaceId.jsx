@@ -15,10 +15,14 @@ const PlaceId = (props) => {
 
   return (
     <>
+      <img
+        src={location.state.place.photo ? location.state.place.photo : `https://picsum.photos/100/200?random=433`}
+        alt="place"
+        className="card-img-top"
+      />
       <div className={styles.container}>
       {location.state.place._id ?
           <>
-            <h4>{location.state.place.photo}</h4>
             <h2>{location.state.place.name}</h2>
             <h4>{location.state.place.address}</h4>
             <h4>{location.state.place.city}</h4>

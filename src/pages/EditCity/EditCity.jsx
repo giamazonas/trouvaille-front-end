@@ -13,11 +13,12 @@ function EditCity({city, handleDeleteCity, handleUpdateCity}) {
     zip: [],
     population: '', 
     walkable: true, 
-    photo: [],  
+    photo: [], 
   })
   const [validForm, setValidForm] = useState(true)
   const formElement = useRef()
   const navigate = useNavigate()
+  console.log(location.state.city._id)
 
   useEffect(() => {
 		formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
@@ -41,6 +42,7 @@ function EditCity({city, handleDeleteCity, handleUpdateCity}) {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault()
+    // 
     const placeFormData = new FormData()
     placeFormData.append('photo', formData.photo)
     placeFormData.append('address', formData.address)
@@ -48,7 +50,10 @@ function EditCity({city, handleDeleteCity, handleUpdateCity}) {
     placeFormData.append('name', formData.name)
     placeFormData.append('type', formData.type)
     await handleUpdateCity(placeFormData)
+    console.log(placeFormData)
     // await handleUpdateCity(formData)
+
+    /// pass location.stat.city.id into placeformdata 
     navigate("/cities") 
   }
 

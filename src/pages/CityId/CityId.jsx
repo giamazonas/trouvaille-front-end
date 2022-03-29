@@ -22,6 +22,7 @@ const CityId = (props) => {
 
   return (
     <>
+    <div >
       <div className={styles.mapboxContainer}>
 
       </div>
@@ -63,6 +64,7 @@ const CityId = (props) => {
       <br />
       <br />
       <br />
+    </div>
     </>
   );
 }

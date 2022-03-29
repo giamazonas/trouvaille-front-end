@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link } from 'react-router-dom'
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons'
 import styles from './SearchBar.module.css'
 
@@ -37,10 +38,11 @@ const SearchBar = ({ placeholder, data }) => {
       {filteredData.length !== 0 && (
         <div className={styles.searchResult}>
           {filteredData.map((place) => {
+            console.log(place._id)
             return (
-              <a key={place._id} className={styles.resultItem} href={`/places/${place._id}`}>
+              <Link to={`/places/${place._id}`} key={place._id} className={styles.resultItem}>
                 <p>{place.name} <span className={styles.placeType}>{place.type}</span></p>
-              </a>
+              </Link>
             )
           })}
         </div>
@@ -49,6 +51,5 @@ const SearchBar = ({ placeholder, data }) => {
     </div>
   )
 }
-
 
 export default SearchBar;

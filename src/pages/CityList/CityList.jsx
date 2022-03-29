@@ -10,9 +10,9 @@ const CityList = props => {
         <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">Cities</h2>
         <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {props.cities.map(city => (
-            <div className="group relative">
+            <div key={city._id + city.name} className="group relative">
               <CityCard
-              key={city._id}
+              key={city._id + city.name}
               city={city}
               // insert photo link
               handleUpdateCity={props.handleUpdateCity}

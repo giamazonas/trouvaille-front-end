@@ -141,6 +141,7 @@ const App = () => {
             element={
               <AddCity 
                 handleAddCity={handleAddCity}
+                user={user}
               />
             } />
           <Route 
@@ -158,6 +159,7 @@ const App = () => {
             element={
               <EditCity
                 cities={cities}
+                user={user}
                 handleUpdateCity={handleUpdateCity}
                 handleDeleteCity={handleDeleteCity}
               />

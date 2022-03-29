@@ -149,7 +149,7 @@ const NavBar = ({ user, handleLogout }) => {
                                 </a>
                                 <div className="ml-4">
                                   <p className="text-base font-medium text-gray-900">Quick Search</p>
-                                  <p><SearchBar placeholder="Search here" data={places} /></p>
+                                  <SearchBar placeholder="Search here" data={places} />
                                 </div>
                               </div>
                             </div>

@@ -17,7 +17,8 @@ import CityId from './pages/CityId/CityId'
 import Places from './pages/Places/places'
 import AddPlace from './pages/AddPlace/AddPlace'
 import PlaceId from './pages/PlaceId/PlaceId'
-import Itineraries from './pages/ItineraryList/ItineraryList'
+import ItineraryList from './pages/ItineraryList/ItineraryList'
+import AddItinerary from './components/AddItinerary/AddItinerary'
 import styles from './App.css'
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
   const [city, setCity] = useState([])
   const [places, setPlaces] = useState([])
   const [itineraries, setItineraries] = useState([])
+  const [reviews, setReviews] = useState([])
   const navigate = useNavigate()
   const [navItems, setNavItems] = useState([
     { url: '/cities', name: 'Cities' },
@@ -71,20 +73,24 @@ const App = () => {
   /* ------------------------ ^^^ TEST ZONE ^^^ ------------------------ */
 
 
-  const handleDeleteCity = id => {
-    cityService.deleteOne(id)
-      .then(deletedCity => setCities(cities.filter(city => city._id !== deletedCity._id)))
-  }
+  
+    const handleDeleteCity = id => {
+      cityService.deleteOne(id)
+        .then(deletedCity => setCities(cities.filter(city => city._id !== deletedCity._id)))
+    }
+  
+    const handleUpdateCity = (id, updatedCityData) => {
+      for(let pair of updatedCityData.entries()){
+        console.log(pair[0], pair[1])
+      }
+      cityService.update(id, updatedCityData)
+        .then(updatedCity => {
+          const newCitiesArray = cities.map(city => city._id === updatedCity._id ? updatedCity : city)
+          setCities(newCitiesArray)
+          navigate('/cities')
+        })
+    }
 
-  const handleUpdateCity = updatedCityData => {
-    console.log('APP JS ')
-    cityService.update(updatedCityData)
-      .then(updatedCity => {
-        const newCitiesArray = cities.map(city => city._id === updatedCity._id ? updatedCity : city)
-        setCities(newCitiesArray)
-        navigate('/cities')
-      })
-  }
 
 
   /* ----------------------------- PLACE ----------------------------- */
@@ -116,13 +122,34 @@ const App = () => {
       })
   }
 
+  const handleReview = async newReviewData => {
+    console.log("NEW REVIEW DATA", newReviewData)
+    const newReview = await placeService.create(newReviewData)
+    setReviews([...reviews, newReview])
+    placeService.createReview(newReview.place, newReview._id)
+    navigate('/places')
+  }
+
   /* ----------------------------- ITINERARY ----------------------------- */
+  const handleAddItinerary = async newItineraryData => {
+    const newItinerary = await itineraryService.create(newItineraryData)
+    setItineraries([...itineraries, newItineraryData])
+    navigate('/itineraries')
+  }
 
   useEffect(() => {
-    itineraryService.getAllItineraries()
+    if(user) {
+      itineraryService.getAllItineraries()
       .then(allItineraries => setItineraries(allItineraries))
-  }, [])
+    }
+  }, [user])
 
+  const handleDeleteItinerary = id => {
+    itineraryService.deleteOne(id)
+    .then(deletedItinerary => setItineraries(itineraries.filter(itinerary => itinerary._id !== id)))
+  }
+
+  // -------------------  ROUTES  --------------------
 
   return (
         <div className="App">
@@ -132,16 +159,15 @@ const App = () => {
             places={places}
           />
 
-          <main>
             <Routes>
               <Route path='/cities' element={<CityList cities={cities} />}
-              />
-              <Route
-                path='/cities/add'
-                element={
-                  <AddCity
-                    handleAddCity={handleAddCity}
-                  />
+
+          <Route
+            path='/cities/add'
+            element={
+              <AddCity 
+                handleAddCity={handleAddCity}
+                user={user}
                 } />
               <Route
                 path='cities/:id'
@@ -153,15 +179,15 @@ const App = () => {
                   />
                 }
               />
-              <Route
-                path='cities/:id/edit'
-                element={
-                  <EditCity
-                    cities={cities}
-                    handleUpdateCity={handleUpdateCity}
-                    handleDeleteCity={handleDeleteCity}
-                  />
-                }
+
+          <Route
+            path='cities/:id/edit'
+            element={
+              <EditCity
+                cities={cities}
+                user={user}
+                handleUpdateCity={handleUpdateCity}
+                handleDeleteCity={handleDeleteCity}
               />
               <Route path="/" element={<Landing user={user} />} />
               <Route
@@ -247,8 +273,18 @@ const App = () => {
                 element={<Places
                   cities={cities}
                   places={places} />}
-
-              />
+          />
+          <Route
+            path='/places/:id'
+            element={
+              user ?
+              <PlaceId 
+              city={cities}
+              places={places} 
+              handleUpdatePlace={handleUpdatePlace}
+              handleDeletePlace={handleDeletePlace}
+              handleReview={handleReview} />}
+            />
 
               <Route
                 path="/places/add"

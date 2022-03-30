@@ -19,6 +19,7 @@ function EditCity({city, handleDeleteCity, handleUpdateCity}) {
   })
   
   const navigate = useNavigate()
+
   console.log(location.state.city._id)
 
   useEffect(() => {
@@ -33,15 +34,18 @@ function EditCity({city, handleDeleteCity, handleUpdateCity}) {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault()
-    // 
-    const placeFormData = new FormData()
-    placeFormData.append('photo', formData.photo)
-    placeFormData.append('address', formData.address)
-    placeFormData.append('city', formData.city)
-    placeFormData.append('name', formData.name)
-    placeFormData.append('type', formData.type)
-    await handleUpdateCity(placeFormData)
-    console.log(placeFormData)
+    console.log(formData)
+    const cityFormData = new FormData()
+    cityFormData.append('photo', formData.photo)
+    cityFormData.append('desc', formData.desc)
+    cityFormData.append('city', formData.city)
+    cityFormData.append('state', formData.state)
+    cityFormData.append('zip', formData.zip)
+    cityFormData.append('population', formData.population)
+    cityFormData.append('walkable', formData.walkable)
+    const updatedCity = await handleUpdateCity(location.state.city._id, cityFormData)
+
+    console.log(updatedCity)
     // await handleUpdateCity(formData)
 
     /// pass location.stat.city.id into placeformdata 

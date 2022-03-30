@@ -23,10 +23,10 @@ function PlaceCard({ place }) {
               to={`/places/${place._id}`}
               state={{ place }}
             >{place.name}</Link></h2>
-          <h1 className="mt-1 text-sm text-gray-700">{place.city?.city}</h1>
-          <h2 className="mt-1 text-sm text-gray-700">{place.city?.state}</h2>
-          <h3 className="mt-1 text-sm text-gray-700">{place.type}</h3>
+          <h4 className="mt-1 text-sm text-gray-700">{place.type}</h4>
           <h4 className="mt-1 text-sm text-gray-700">{place.address}</h4>
+          <h4 className="mt-1 text-sm text-gray-700">{place.city?.city}</h4>
+          <h4 className="mt-1 text-sm text-gray-700">{place.city?.state}</h4>
         </div>
       </div>
     </>

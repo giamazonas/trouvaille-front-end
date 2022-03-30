@@ -27,12 +27,12 @@ function getOne(id) {
   return fetch(`${BASE_URL}/${id}`, {
     headers: { Authorization: `Bearer ${tokenService.getToken()}` },
     method: "GET",
-  }).then((res) => res.json())
+  }).then((res) => res.json());
 }
 
-function update(city) {
+function update(id, city) {
   console.log("::: city :::", city);
-  return fetch(`${BASE_URL}/${city._id}/edit`, {
+  return fetch(`${BASE_URL}/${id}`, {
     headers: { Authorization: `Bearer ${tokenService.getToken()}` },
     body: city,
     method: "PUT",

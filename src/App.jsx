@@ -27,6 +27,7 @@ const App = () => {
   const [city, setCity] = useState([])
   const [places, setPlaces] = useState([])
   const [itineraries, setItineraries] = useState([])
+  const [reviews, setReviews] = useState([])
   const navigate = useNavigate()
   const [navItems, setNavItems] = useState([
     {url: '/cities', name: 'Cities'},
@@ -77,9 +78,11 @@ const App = () => {
         .then(deletedCity => setCities(cities.filter(city => city._id !== deletedCity._id)))
     }
   
-    const handleUpdateCity = updatedCityData => {
-      console.log('APP JS ', updatedCityData)
-      cityService.update(updatedCityData)
+    const handleUpdateCity = (id, updatedCityData) => {
+      for(let pair of updatedCityData.entries()){
+        console.log(pair[0], pair[1])
+      }
+      cityService.update(id, updatedCityData)
         .then(updatedCity => {
           const newCitiesArray = cities.map(city => city._id === updatedCity._id ? updatedCity : city)
           setCities(newCitiesArray)
@@ -115,6 +118,14 @@ const App = () => {
       setPlaces(newPlacesArray)
       navigate('/places')
     })
+  }
+
+  const handleReview = async newReviewData => {
+    console.log("NEW REVIEW DATA", newReviewData)
+    const newReview = await placeService.create(newReviewData)
+    setReviews([...reviews, newReview])
+    placeService.createReview(newReview.place, newReview._id)
+    navigate('/places')
   }
 
   /* ----------------------------- ITINERARY ----------------------------- */
@@ -287,6 +298,7 @@ const App = () => {
               places={places} 
               handleUpdatePlace={handleUpdatePlace}
               handleDeletePlace={handleDeletePlace}
+              handleReview={handleReview}
               />
             :
               <Navigate to="/login" />

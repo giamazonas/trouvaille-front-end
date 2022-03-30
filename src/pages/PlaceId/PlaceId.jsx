@@ -40,12 +40,14 @@ const PlaceId = (props, handleReview) => {
   
 
   const handleChange = evt => {
+    // console.log(formData)
     setFormData({ ...formData, [evt.target.name]: evt.target.value })
   }
 
   // const handleChangePhoto = (evt) => {
   //   setFormData({...formData, photo: evt.target.files[0]})
   // }
+  console.log(location.state)
 
   return (
     <>

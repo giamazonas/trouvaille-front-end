@@ -58,7 +58,7 @@ function search(formData) {
 function createReview(id, place) {
   console.log("create review in placeService place: ", id);
 
-  return fetch(`${BASE_URL}`, {
+  return fetch(`${BASE_URL}/${id}`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${tokenService.getToken()}`,

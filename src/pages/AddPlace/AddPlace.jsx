@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
 import styles from './AddPlace.module.css'
-import { useNavigate } from 'react-router-dom'
 
 
 function AddPlace(props) {
@@ -8,7 +7,7 @@ function AddPlace(props) {
   const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState({
     address: '',
-    city: '', //object.Id ref city
+    city: '', 
     name: '',
     type: '',
     url: '',
@@ -77,11 +76,9 @@ function AddPlace(props) {
               </option>)}
             </select>
         </div>
-
         <br />
-
         <div>
-          {/* CHANGE THIS IN NOT TO DISTANT FUTURE */}
+          {/* CHANGE THIS IN NOT TOO DISTANT FUTURE */}
           <label htmlFor="name-input">
             Name of place (required)
           </label>

@@ -1,7 +1,6 @@
 import * as React from 'react'
-import { render } from 'react-dom'
 import Map, { Marker } from 'react-map-gl'
-import { useRef, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { getCoordinates } from '../../services/forwardGeocodeApi'
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -44,8 +43,6 @@ function MapBox(props) {
         .catch(err => console.log('::: ERROR :::', err))
     })
     setPlaceLocation(newPlaces)
-
-
     //    v----------------  Force a Reload to get markers to appear
     // forceReload()
 

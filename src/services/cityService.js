@@ -2,8 +2,7 @@ import * as tokenService from "../services/tokenService";
 const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/cities`;
 
 function create(city) {
-  console.log('OOOOOOOO', city);
-  return fetch(`${BASE_URL}`, {
+  return fetch(BASE_URL, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${tokenService.getToken()}`,
@@ -31,7 +30,6 @@ function getOne(id) {
 }
 
 function update(id, city) {
-  console.log("::: city :::", city);
   return fetch(`${BASE_URL}/${id}`, {
     headers: { Authorization: `Bearer ${tokenService.getToken()}` },
     body: city,
@@ -40,8 +38,6 @@ function update(id, city) {
 }
 
 function addPlace(cityId, placeId) {
-  console.log("::: cityId :::", cityId);
-  console.log("::: placeId :::", placeId);
   return fetch(`${BASE_URL}/${cityId}/${placeId}`, {
     method: "PATCH",
     headers: { Authorization: `Bearer ${tokenService.getToken()}` },

@@ -22,8 +22,6 @@ const Places = (props) => {
             places.map((place, i) => (
                 <div key={place._id + i} className="group relative">
                   <PlaceCard
-                    
-
                     place={place}
                   />
                 </div>

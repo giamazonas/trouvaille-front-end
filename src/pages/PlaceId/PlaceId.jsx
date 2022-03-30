@@ -99,7 +99,6 @@ const PlaceId = (props, handleReview) => {
             <h2>Loading Place Details...</h2>
           </>
         }
-
       </div>
     </>
   )

@@ -1,6 +1,5 @@
-import { useState, useRef, useEffect, Component} from 'react';
 import Select from 'react-select'
-import { Link, useLocation, Navigate, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import * as itineraryService from '../../services/itineraries'
 import styles from './ItineraryCard.module.css'
 
@@ -22,7 +21,6 @@ const ItineraryCard = (props, handleDeleteItinerary) => {
   ))
   console.log('++++ props.places ++++', options)
 
-
   return (
     <div>
       <div className={styles.container}>
@@ -41,7 +39,6 @@ const ItineraryCard = (props, handleDeleteItinerary) => {
           }
         </ul>
       </div>
-
       <div className="card-footer">
         <button
           className="btn btn-sm btn-danger m-left"
@@ -49,7 +46,6 @@ const ItineraryCard = (props, handleDeleteItinerary) => {
           Delete Entire Itinerary
         </button>
       </div>
-
     </div>
   )
 }

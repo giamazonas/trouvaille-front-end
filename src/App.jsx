@@ -18,8 +18,7 @@ import Places from './pages/Places/places'
 import AddPlace from './pages/AddPlace/AddPlace'
 import PlaceId from './pages/PlaceId/PlaceId'
 import ItineraryList from './pages/ItineraryList/ItineraryList'
-import AddItinerary from './components/AddItinerary/AddItinerary'
-import styles from './App.css'
+
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
@@ -35,7 +34,6 @@ const App = () => {
     { url: '/itineraries', name: 'My Itineraries' },
   ])
 
-
   const handleLogout = () => {
     authService.logout()
     setUser(null)
@@ -50,7 +48,7 @@ const App = () => {
 
   useEffect(() => {
     cityService.getAll()
-      .then(allCities => setCities(allCities))
+    .then(allCities => setCities(allCities))
   }, [])
 
 
@@ -71,8 +69,6 @@ const App = () => {
   }
 
   /* ------------------------ ^^^ TEST ZONE ^^^ ------------------------ */
-
-
   
     const handleDeleteCity = id => {
       cityService.deleteOne(id)
@@ -95,7 +91,7 @@ const App = () => {
 
   useEffect(() => {
     placeService.getAllPlaces()
-      .then(allPlaces => setPlaces(allPlaces))
+    .then(allPlaces => setPlaces(allPlaces))
   }, [])
 
   const handleAddPlace = async newPlaceData => {
@@ -107,7 +103,7 @@ const App = () => {
 
   const handleDeletePlace = id => {
     placeService.deleteOne(id)
-      .then(deletedPlace => setPlaces(places.filter(place => place._id !== deletedPlace._id)))
+    .then(deletedPlace => setPlaces(places.filter(place => place._id !== deletedPlace._id)))
     navigate('/places')
   }
 
@@ -123,7 +119,6 @@ const App = () => {
   const handleReview = async newReviewData => {
     console.log("NEW REVIEW DATA", newReviewData)
     const newReview = await placeService.createReview(newReviewData)
-
     navigate('/places')
   }
 
@@ -150,23 +145,27 @@ const App = () => {
 
   return (
         <div className="App">
-          <NavBar user={user} handleLogout={handleLogout}
+          <NavBar 
+            user={user} 
+            handleLogout={handleLogout}
             cities={cities}
             navItems={navItems}
             places={places}
           />
-
-            <Routes>
-              <Route path='/cities' element={<CityList cities={cities} />}
-          />
-          <Route
-            path='/cities/add'
-            element={
-              <AddCity 
-                handleAddCity={handleAddCity}
-                user={user}/>
-              } /> 
-
+          <Routes>
+            <Route 
+              path='/cities' 
+              element={
+                <CityList 
+                  cities={cities} />}
+            />
+            <Route
+              path='/cities/add'
+              element={
+                <AddCity 
+                  handleAddCity={handleAddCity}
+                  user={user}/>
+                } /> 
               <Route
                 path='cities/:id'
                 element={
@@ -177,7 +176,6 @@ const App = () => {
                   />
                 }
               />
-
           <Route
             path='cities/:id/edit'
             element={
@@ -186,16 +184,27 @@ const App = () => {
                 user={user}
                 handleUpdateCity={handleUpdateCity}
                 handleDeleteCity={handleDeleteCity} />}
-
               />
-              <Route path="/" element={<Landing user={user} />} />
+              <Route 
+                path="/" 
+                element={
+                  <Landing 
+                    user={user} 
+                  />}
+              />
               <Route
                 path="/signup"
-                element={<Signup handleSignupOrLogin={handleSignupOrLogin} />}
+                element={
+                  <Signup 
+                    handleSignupOrLogin={handleSignupOrLogin} 
+                  />}
               />
               <Route
                 path="/login"
-                element={<Login handleSignupOrLogin={handleSignupOrLogin} />}
+                element={
+                  <Login 
+                    handleSignupOrLogin={handleSignupOrLogin} 
+                  />}
               />
               <Route
                 path="/profiles"
@@ -203,14 +212,22 @@ const App = () => {
               />
               <Route
                 path="/changePassword"
-                element={user ? <ChangePassword handleSignupOrLogin={handleSignupOrLogin} /> : <Navigate to="/login" />}
+                element={
+                  user ? 
+                  <ChangePassword 
+                    handleSignupOrLogin={handleSignupOrLogin} 
+                    /> 
+                  : 
+                    <Navigate 
+                      to="/login" 
+                    />}
               />
               {/* -------------- CITIES -------------------- */}
               <Route path='/cities'
                 element={
                   user ?
                     <CityList cities={cities} />
-                    :
+                  :
                     <Navigate to="/login" />
                 } />
               <Route
@@ -220,7 +237,7 @@ const App = () => {
                     <AddCity
                       handleAddCity={handleAddCity}
                     />
-                    :
+                  :
                     <Navigate to="/login" />
                 } />
               <Route
@@ -233,7 +250,7 @@ const App = () => {
                       places={places}
                       itineraries={itineraries}
                     />
-                    :
+                  :
                     <Navigate to="/login" />
                 }
               />
@@ -246,7 +263,7 @@ const App = () => {
                       handleUpdateCity={handleUpdateCity}
                       handleDeleteCity={handleDeleteCity}
                     />
-                    :
+                  :
                     <Navigate to="/login" />
                 }
               />
@@ -257,38 +274,45 @@ const App = () => {
                     <CityList
                       cities={cities}
                     />
-                    :
-                    <Navigate to="/login" />
-                }
+                  :
+                    <Navigate to="/login"
+                    />}
               />
               {/* -------------  PLACES  -------------------- */}
               <Route
                 path="/places"
-                element={user ? <Places /> : <Navigate to="/login" />}
+                element={
+                  user ? 
+                    <Places /> 
+                  : 
+                    <Navigate 
+                      to="/login" 
+                    />}
               />
-
               <Route
                 path='/cities/:cityId/:placeId'
-                element={<Places
-                  cities={cities}
-                  places={places} />}
+                element={
+                  <Places
+                    cities={cities}
+                    places={places} 
+                    />}
           />
           <Route
             path='/places/:id'
             element={
               user ?
-              <PlaceId 
-              city={cities}
-              places={places} 
-              handleUpdatePlace={handleUpdatePlace}
-              handleDeletePlace={handleDeletePlace}
-              handleReview={handleReview} 
-              />
+                <PlaceId 
+                  city={cities}
+                  places={places} 
+                  handleUpdatePlace={handleUpdatePlace}
+                  handleDeletePlace={handleDeletePlace}
+                  handleReview={handleReview} 
+                />
               :
-              <Navigate to="/login" />
+                <Navigate 
+                  to="/login" />
             }
             />
-
               <Route
                 path="/places/add"
                 element={
@@ -297,12 +321,12 @@ const App = () => {
                       handleAddPlace={handleAddPlace}
                       cities={cities}
                     />
-                    :
+                  :
                     <Navigate to="/login" />
                 }
               />
               <Route
-                path='/places/:id'
+                pth='/places/:id'
                 element={
                   user ?
                     <PlaceId
@@ -311,7 +335,7 @@ const App = () => {
                       handleUpdatePlace={handleUpdatePlace}
                       handleDeletePlace={handleDeletePlace}
                     />
-                    :
+                  :
                     <Navigate to="/login" />
                 } />
               {/* ----------------- ITINERARIES  ----------------- */}
@@ -319,13 +343,15 @@ const App = () => {
                 path="/itineraries"
                 element={
                   user ? 
-                  <ItineraryList 
-                  cities={cities}
-                  places={places}
-                  itineraries={itineraries}
-                  /> 
+                    <ItineraryList 
+                      cities={cities}
+                      places={places}
+                      itineraries={itineraries}
+                    /> 
                   : 
-                  <Navigate to="/login" />}
+                    <Navigate 
+                      to="/login" 
+                      />}
               />
             </Routes>
         </div>

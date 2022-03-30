@@ -19,7 +19,6 @@ import AddPlace from './pages/AddPlace/AddPlace'
 import PlaceId from './pages/PlaceId/PlaceId'
 import ItineraryList from './pages/ItineraryList/ItineraryList'
 
-
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [cities, setCities] = useState([])
@@ -141,7 +140,7 @@ const App = () => {
     .then(deletedItinerary => setItineraries(itineraries.filter(itinerary => itinerary._id !== id)))
   }
 
-  // -------------------  ROUTES  --------------------
+  // ---------------------------  ROUTES  ----------------------------------
 
   return (
         <div className="App">

@@ -122,11 +122,18 @@ const App = () => {
       })
   }
 
+  // const handleReview = async newReviewData => {
+  //   console.log("NEW REVIEW DATA", newReviewData)
+  //   const newReview = await placeService.create(newReviewData)
+  //   setReviews([...reviews, newReview])
+  //   placeService.createReview(newReview.place, newReview._id)
+  //   navigate('/places')
+  // }
+
   const handleReview = async newReviewData => {
     console.log("NEW REVIEW DATA", newReviewData)
     const newReview = await placeService.create(newReviewData)
-    setReviews([...reviews, newReview])
-    placeService.createReview(newReview.place, newReview._id)
+    setReviews([...places, newReview])
     navigate('/places')
   }
 

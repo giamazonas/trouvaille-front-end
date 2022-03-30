@@ -17,6 +17,7 @@
     "axios": "^0.26.1",
     "buffer": "^6.0.3",
     "cloudinary": "^1.29.0",
+    "dotenv": "^16.0.0",
     "express-form-data": "^2.0.17",
     "mapbox-gl": "^2.7.1",
     "react": "^17.0.2",

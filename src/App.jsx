@@ -123,6 +123,7 @@ const App = () => {
   const handleReview = async newReviewData => {
     console.log("NEW REVIEW DATA", newReviewData)
     const newReview = await placeService.createReview(newReviewData)
+
     navigate('/places')
   }
 
@@ -165,6 +166,7 @@ const App = () => {
                 handleAddCity={handleAddCity}
                 user={user}/>
               } /> 
+
               <Route
                 path='cities/:id'
                 element={
@@ -184,6 +186,7 @@ const App = () => {
                 user={user}
                 handleUpdateCity={handleUpdateCity}
                 handleDeleteCity={handleDeleteCity} />}
+
               />
               <Route path="/" element={<Landing user={user} />} />
               <Route

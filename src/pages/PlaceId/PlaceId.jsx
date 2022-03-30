@@ -60,7 +60,8 @@ const PlaceId = (props, handleReview) => {
                       type="number"
                       min="1"
                       max="5"
-                      className="form-control"          id="rating-input"
+                      className="form-control"         
+                      id="rating-input"
                       name="rating"
                       value={formData.rating}
                       onChange={handleChange}

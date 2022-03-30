@@ -20,9 +20,10 @@ const Places = (props) => {
         <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {places.length ?
             places.map((place, i) => (
-                <div key={place._id} className="group relative">
+                <div key={place._id + i} className="group relative">
                   <PlaceCard
-                    key={place._id}
+                    
+
                     place={place}
                   />
                 </div>

@@ -1,19 +1,13 @@
 import * as tokenService from "../services/tokenService";
 const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/places`;
-// const BASE_URL = "/places";
+
+
 
 function getAllPlaces() {
-  // async function getAllPlaces() {
-  // const res = await fetch(BASE_URL, {
-  //   headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
-  // })
-  // return await res.json()
-
-  return fetch(BASE_URL).then((res) => res.json())
+  return fetch(BASE_URL).then((res) => res.json());
 }
 
 function create(place) {
-  console.log("create in placeService ___ place: ", place)
 
   return fetch(BASE_URL, {
     method: "POST",
@@ -55,16 +49,20 @@ function search(formData) {
   );
 }
 
-function createReview(id, place) {
-  console.log("create review in placeService place: ", id);
 
-  return fetch(`${BASE_URL}/${id}`, {
+function createReview(data) {
+  return fetch(`${BASE_URL}/${data._id}/reviews`, {
+
+
     method: "POST",
     headers: {
       Authorization: `Bearer ${tokenService.getToken()}`,
+      'content-type': 'application/json',
     },
-    // body: ,
-  }).then((res) => res.json())
+
+    body: JSON.stringify(data)
+  }).then((res) => res.json());
+
 }
 
 export {

@@ -12,12 +12,8 @@ const PlaceId = (props, handleReview) => {
   const [formData, setFormData] = useState({_id: location.state.place._id,
     rating: 0,
     comment: "",
-    // photo: [],
   }, 
   )
-  
-  console.log('REVIW FORM', location.state.place._id)
-  console.log('REVIW FORM', formData)
 
   useEffect(() => {
     placeService.getOne(location.state.place.id)
@@ -30,25 +26,13 @@ const PlaceId = (props, handleReview) => {
 
   const handleSubmit = evt => {
     evt.preventDefault()
-    const placeFormData = new FormData()
-    placeFormData.append('rating', formData.rating)
-    placeFormData.append('comment', formData.comment)
-    // placeFormData.append('photo', formData.photo)
-    props.handleReview(placeFormData)
-    console.log('REVIW FORM', placeFormData)
+    props.handleReview(formData)
   }
-  
 
   const handleChange = evt => {
     // console.log(formData)
     setFormData({ ...formData, [evt.target.name]: evt.target.value })
   }
-
-  // const handleChangePhoto = (evt) => {
-  //   setFormData({...formData, photo: evt.target.files[0]})
-  // }
-  console.log(location.state)
-
   return (
     <>
       <img
@@ -61,7 +45,7 @@ const PlaceId = (props, handleReview) => {
           <>
             <h2>{location.state.place.name}</h2>
             <h4>{location.state.place.address}</h4>
-            <h4>{location.state.place.city}</h4>
+            <h4>{location.state.place.city.city}</h4>
             <h4>{location.state.place.type}</h4>
             <h4>{location.state.place.url}</h4><br />
             <h4> -- Reviews -- {location.state.place.reviews}</h4><br /><br />
@@ -76,7 +60,8 @@ const PlaceId = (props, handleReview) => {
                       type="number"
                       min="1"
                       max="5"
-                      className="form-control"          id="rating-input"
+                      className="form-control"         
+                      id="rating-input"
                       name="rating"
                       value={formData.rating}
                       onChange={handleChange}

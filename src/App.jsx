@@ -91,8 +91,6 @@ const App = () => {
         })
     }
 
-
-
   /* ----------------------------- PLACE ----------------------------- */
 
   useEffect(() => {
@@ -124,9 +122,8 @@ const App = () => {
 
   const handleReview = async newReviewData => {
     console.log("NEW REVIEW DATA", newReviewData)
-    const newReview = await placeService.create(newReviewData)
-    setReviews([...reviews, newReview])
-    placeService.createReview(newReview._id, newReview.place)
+    const newReview = await placeService.createReview(newReviewData)
+
     navigate('/places')
   }
 
@@ -167,9 +164,9 @@ const App = () => {
             element={
               <AddCity 
                 handleAddCity={handleAddCity}
-                user={user}
-              />
-              } />
+                user={user}/>
+              } /> 
+
               <Route
                 path='cities/:id'
                 element={
@@ -188,8 +185,8 @@ const App = () => {
                 cities={cities}
                 user={user}
                 handleUpdateCity={handleUpdateCity}
-                handleDeleteCity={handleDeleteCity}
-              />}
+                handleDeleteCity={handleDeleteCity} />}
+
               />
               <Route path="/" element={<Landing user={user} />} />
               <Route
@@ -331,9 +328,8 @@ const App = () => {
                   <Navigate to="/login" />}
               />
             </Routes>
-
         </div>
   )
 }
 
-export default App
+export default App;

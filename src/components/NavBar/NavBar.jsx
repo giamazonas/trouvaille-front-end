@@ -169,14 +169,22 @@ const NavBar = ({ user, handleLogout }) => {
                           'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500'
                         )}
                       >
+
                         <span>{user.name}</span>
-                        <ChevronDownIcon
+                          <span className="inline-block h-7 w-7 mx-3 rounded-full overflow-hidden bg-gray-100" aria-hidden="true">
+                            <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                          </span>
+                  
+                        {/* <ChevronDownIcon
                           className={classNames(
                             open ? 'text-gray-600' : 'text-gray-400',
                             'ml-2 h-5 w-5 group-hover:text-gray-500'
                           )}
-                          aria-hidden="true"
-                        />
+                          
+                        /> */}
+
                       </Popover.Button>
 
                       <Transition

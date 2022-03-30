@@ -50,7 +50,7 @@ function getOne(id) {
 }
 
 function search(formData) {
-  return fetch(`${BASE_URL}/api/places/?place=${formData.query}`).then((res) =>
+  return fetch(`${BASE_URL}/?place=${formData.query}`).then((res) =>
     res.json()
   );
 }

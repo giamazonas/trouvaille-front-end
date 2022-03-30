@@ -4,9 +4,9 @@ const Landing = ({ user }) => {
   return (
     <main className={styles.container}>
       { user ? 
-      <div>
-      <h1>Trouvaille</h1>
-      <h1>/tro͞o`vī/</h1>
+      <div><br /> <br/>
+      <h1>Trouvaille</h1><br />
+      <h2>/tro͞o`vī/</h2><br /><br />
       <h3>a chance encounter with something wonderful</h3>
       </div>
     :

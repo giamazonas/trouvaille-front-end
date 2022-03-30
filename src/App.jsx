@@ -124,7 +124,7 @@ const App = () => {
     console.log("NEW REVIEW DATA", newReviewData)
     const newReview = await placeService.create(newReviewData)
     setReviews([...reviews, newReview])
-    placeService.createReview(newReview.place, newReview._id)
+    placeService.createReview(newReview._id, newReview.place)
     navigate('/places')
   }
 

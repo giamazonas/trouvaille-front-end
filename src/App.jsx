@@ -161,14 +161,14 @@ const App = () => {
 
             <Routes>
               <Route path='/cities' element={<CityList cities={cities} />}
-
+          />
           <Route
             path='/cities/add'
             element={
               <AddCity 
                 handleAddCity={handleAddCity}
-                user={user}
-                } />
+                user={user}/>
+              } /> 
               <Route
                 path='cities/:id'
                 element={
@@ -187,7 +187,7 @@ const App = () => {
                 cities={cities}
                 user={user}
                 handleUpdateCity={handleUpdateCity}
-                handleDeleteCity={handleDeleteCity}
+                handleDeleteCity={handleDeleteCity} />}
               />
               <Route path="/" element={<Landing user={user} />} />
               <Route
@@ -283,7 +283,9 @@ const App = () => {
               places={places} 
               handleUpdatePlace={handleUpdatePlace}
               handleDeletePlace={handleDeletePlace}
-              handleReview={handleReview} />}
+              handleReview={handleReview} /> 
+              :
+              <Navigate to="/login" />}
             />
 
               <Route
@@ -314,13 +316,20 @@ const App = () => {
               {/* ----------------- ITINERARIES  ----------------- */}
               <Route
                 path="/itineraries"
-                element={user ? <Itineraries /> : <Navigate to="/login" />}
+                element={
+                  user ? 
+                  <ItineraryList 
+                  cities={cities}
+                  places={places}
+                  itineraries={itineraries}
+                  /> 
+                  : 
+                  <Navigate to="/login" />}
               />
             </Routes>
-
-          </main>
+          
         </div>
   )
 }
 
-export default App
+export default App;

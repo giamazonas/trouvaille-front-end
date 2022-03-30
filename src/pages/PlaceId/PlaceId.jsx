@@ -30,7 +30,6 @@ const PlaceId = (props, handleReview) => {
   }
 
   const handleChange = evt => {
-    // console.log(formData)
     setFormData({ ...formData, [evt.target.name]: evt.target.value })
   }
   return (

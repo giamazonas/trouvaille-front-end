@@ -44,7 +44,6 @@ function MapBox(props) {
         .catch(err => console.log('::: ERROR :::', err))
     })
     setPlaceLocation(newPlaces)
-    componentDidMount()
 
 
     //    v----------------  Force a Reload to get markers to appear

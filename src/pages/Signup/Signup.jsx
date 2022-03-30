@@ -25,7 +25,7 @@ const Signup = props => {
             <p className="mt-1 text-md text-gray-600">You're just a step away from encountering your best day of your life!</p>
             <p className="mt-1 text-sm text-gray-600">{message}</p>
             <br></br>
-            <Link to="/" className="">Go back to main</Link>
+            <Link to="/" className="underline underline-offset-2 hover:font-bold">Go back to main</Link>
           </div>
         </div>
         <SignupForm {...props} updateMessage={updateMessage} />

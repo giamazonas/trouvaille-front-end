@@ -9,11 +9,11 @@ function getAllPlaces() {
   // })
   // return await res.json()
 
-  return fetch(BASE_URL).then((res) => res.json());
+  return fetch(BASE_URL).then((res) => res.json())
 }
 
 function create(place) {
-  console.log("create in placeService ___ place: ", place);
+  console.log("create in placeService ___ place: ", place)
 
   return fetch(BASE_URL, {
     method: "POST",
@@ -21,7 +21,7 @@ function create(place) {
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
     body: place,
-  }).then((res) => res.json());
+  }).then((res) => res.json())
 }
 
 function deleteOne(id) {
@@ -30,7 +30,7 @@ function deleteOne(id) {
     headers: {
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
-  }).then((res) => res.json());
+  }).then((res) => res.json())
 }
 
 function update(place) {
@@ -40,13 +40,13 @@ function update(place) {
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
     body: place,
-  }).then((res) => res.json());
+  }).then((res) => res.json())
 }
 
 function getOne(id) {
   return fetch(`${BASE_URL}/${id}`, {
     method: "GET",
-  }).then((res) => res.json());
+  }).then((res) => res.json())
 }
 
 function search(formData) {
@@ -64,7 +64,7 @@ function createReview(id, place) {
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
     // body: ,
-  }).then((res) => res.json());
+  }).then((res) => res.json())
 }
 
 export {

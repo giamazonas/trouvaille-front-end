@@ -1,16 +1,31 @@
 .container {
-  width: 90%;
+  width: 40vw;
+  height: 60vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   border: 1px solid black;
   border-radius: 3px;
   margin: 5px;
-  max-width: 250px;
+  overflow-y: scroll; 
 }
 
 div > img {
   max-width: 200px;
   max-height: 300px;
+}
+
+.timeSlots {
+  /* display: flex; */
+  /* flex-direction: row; */
+  margin: 5px;
+}
+
+.time {
+  /* display: flex-inline; */
+  flex-direction: flex-start;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: 5px;
 }

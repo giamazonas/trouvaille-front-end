@@ -14,15 +14,12 @@ function AddPlace(props) {
     url: '',
     photo: [],
   })
-  const navigate = useNavigate()
 
 	useEffect(() => {
 		formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
 	}, [formData])
 
   const handleSubmit = evt => {
-    // console.log('evt: ', evt)
-    // console.log('formData: ', formData)
     evt.preventDefault()
     const placeFormData = new FormData()
     placeFormData.append('photo', formData.photo)

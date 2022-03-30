@@ -20,11 +20,11 @@ const ItineraryList = (props, handleAddItinerary, handleDeleteItinerary) => {
         <>
           {itineraries.map(itinerary =>
             <ItineraryCard 
-              user={props.user}
-              key={itinerary._id}
-              itinerary={itinerary}
-              handleAddItinerary={handleAddItinerary}
-              handleDeleteItinerary={handleDeleteItinerary}
+              // user={props.user}
+              // key={itinerary._id}
+              // itinerary={itinerary}
+              // handleAddItinerary={handleAddItinerary}
+              // handleDeleteItinerary={handleDeleteItinerary}
               // handleUpdateItinerary={handleUpdateItinerary}
               />
             )}

@@ -6,8 +6,7 @@ import { getCoordinates } from '../../services/forwardGeocodeApi'
 import styles from './mapbox.module.css'
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-// const MAPBOX_TOKEN = process.env.MAPBOX_TOKEN; // Set your mapbox token here
-const MAPBOX_TOKEN = 'pk.eyJ1IjoibWF4bWF5OTQiLCJhIjoiY2wxMmVlNGswMGE0ZzNpcHdhajcxaWJpcSJ9.S4qg-xBnCdH5ji7yJC2Tyw'
+const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 const API_URL = 'https://api.mapbox.com/geocoding/v5/'
 
 function MapBox(props) {
@@ -45,8 +44,6 @@ function MapBox(props) {
         .catch(err => console.log('::: ERROR :::', err))
     })
     setPlaceLocation(newPlaces)
-    // window.location.reload(false)
-
     componentDidMount()
 
   }, [props.places, cityLatLong, props.city])
@@ -72,7 +69,6 @@ function MapBox(props) {
                 <Marker key={idx} longitude={location[0]} latitude={location[1]} color="red" scale=".5" />
 
               ))
-              // window.location.reload(true)
             }
           </Map>
           :

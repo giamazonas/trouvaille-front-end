@@ -91,8 +91,6 @@ const App = () => {
         })
     }
 
-
-
   /* ----------------------------- PLACE ----------------------------- */
 
   useEffect(() => {
@@ -122,18 +120,9 @@ const App = () => {
       })
   }
 
-  // const handleReview = async newReviewData => {
-  //   console.log("NEW REVIEW DATA", newReviewData)
-  //   const newReview = await placeService.create(newReviewData)
-  //   setReviews([...reviews, newReview])
-  //   placeService.createReview(newReview.place, newReview._id)
-  //   navigate('/places')
-  // }
-
   const handleReview = async newReviewData => {
     console.log("NEW REVIEW DATA", newReviewData)
-    const newReview = await placeService.create(newReviewData)
-    setReviews([...places, newReview])
+    const newReview = await placeService.createReview(newReviewData)
     navigate('/places')
   }
 
@@ -290,9 +279,11 @@ const App = () => {
               places={places} 
               handleUpdatePlace={handleUpdatePlace}
               handleDeletePlace={handleDeletePlace}
-              handleReview={handleReview} /> 
+              handleReview={handleReview} 
+              />
               :
-              <Navigate to="/login" />}
+              <Navigate to="/login" />
+            }
             />
 
               <Route
@@ -334,7 +325,6 @@ const App = () => {
                   <Navigate to="/login" />}
               />
             </Routes>
-          
         </div>
   )
 }

@@ -2,21 +2,17 @@ import * as tokenService from "../services/tokenService";
 const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/places`;
 // const BASE_URL = "/places";
 
-
 function getAllPlaces() {
-
-// async function getAllPlaces() {
+  // async function getAllPlaces() {
   // const res = await fetch(BASE_URL, {
   //   headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
   // })
   // return await res.json()
-  
+
   return fetch(BASE_URL).then((res) => res.json());
-  
 }
 
 function create(place) {
-  
   console.log("create in placeService ___ place: ", place);
 
   return fetch(BASE_URL, {
@@ -59,4 +55,24 @@ function search(formData) {
   );
 }
 
-export { getAllPlaces, create, deleteOne, update, getOne, search, };
+function createReview(id, place) {
+  console.log("create review in placeService place: ", id);
+
+  return fetch(`${BASE_URL}`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${tokenService.getToken()}`,
+    },
+    // body: ,
+  }).then((res) => res.json());
+}
+
+export {
+  getAllPlaces,
+  create,
+  deleteOne,
+  update,
+  getOne,
+  search,
+  createReview,
+};

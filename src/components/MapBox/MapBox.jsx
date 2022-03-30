@@ -47,7 +47,7 @@ function MapBox(props) {
 
 
     //    v----------------  Force a Reload to get markers to appear
-    forceReload()
+    // forceReload()
 
   }, [props.places, cityLatLong, props.city])
 

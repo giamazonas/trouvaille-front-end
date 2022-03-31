@@ -1,7 +1,5 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, Navigate, useNavigate } from 'react-router-dom'
-
 import * as itineraryService from '../../services/itineraries'
 import styles from './ItineraryCard.module.css'
 
@@ -9,10 +7,8 @@ const ItineraryCard = (props) => {
   const formElement = useRef()
   const [validForm, setValidForm] = useState(false)
   const navigate = useNavigate()
-  const [itinerearyData, setItineraryData] = useState({
-    name: '',
-    timePlace: [],
-  })
+  const [nameData, setNameData] = useState()
+  const [itinerearyData, setItineraryData] = useState([{}])
 
   const hours = ['12 am', '1 am', '2 am', '3 am', '4 am', '5 am', '6 am', '7 am', '8 am', '9 am', '10 am', '11 am','12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm', '8 pm', '9 pm', '10 pm', '11 pm']
   let options =[{}]
@@ -20,24 +16,22 @@ const ItineraryCard = (props) => {
     options[i]=({value: i, label: hour})
   ))
 
-
   useEffect(() => {
     formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
-  }, [itinerearyData])
-
-  // console.log('++++ props.city?.places ++++', props.city?.places)
+  }, [nameData])
 
   const handleSubmit = evt => {
     evt.preventDefault()
+    console.log(nameData)
     console.log(itinerearyData)
   }
 
   const handleChange = (evt) => {
+    // console.log('itinerearyData: ',itinerearyData)
     setItineraryData({...itinerearyData, [evt.target.value]: evt.target.name })
-    console.log('itinerearyData: ',itinerearyData)
   }
   const handleTextChange = evt => {
-    setItineraryData({ ...itinerearyData.timePlace, [evt.target.name]: evt.target.value })
+    setNameData({ ...nameData, [evt.target.name]: evt.target.value })
   }
 
   return (
@@ -68,8 +62,7 @@ const ItineraryCard = (props) => {
                           <option value="" disabled defaultValue={true}>Select A Time</option>
                           {
                             options.map(hour => (
-                              // console.log(hour)
-                              <option key={hour.label} value={hour.value} defaultValue="select a value">{hour.label}</option>
+                              <option key={hour.label} value={hour.value}>{hour.label}</option>
                             ))
                           }
                         </select>

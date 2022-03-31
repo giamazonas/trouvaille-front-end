@@ -34,7 +34,7 @@ const NavBar = ({ user, handleLogout }) => {
                   <MenuIcon className="h-6 w-6" aria-hidden="true" />
                 </Popover.Button>
               </div>
-              
+
               <Popover.Group as="nav" className="hidden md:flex space-x-10" id="menu">
                 <Popover className="relative">
                   {({ open }) => (
@@ -75,9 +75,19 @@ const NavBar = ({ user, handleLogout }) => {
                                   <p className="mt-1 text-sm text-gray-500">Browse all cities</p>
                                 </div>
                               </a>
+                              <a
+                                href="/cities/add"
+                                className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
+                              >
+                                <div className="ml-4">
+                                  <p className="text-base font-medium text-gray-900">Add a City</p>
+                                  <p className="mt-1 text-sm text-gray-500">Add a new city</p>
+                                </div>
+                              </a>
                             </div>
+                          </div>
 
-                            <div className="px-5 py-5 bg-gray-50 sm:px-8 sm:py-8">
+                          {/* <div className="px-5 py-5 bg-gray-50 sm:px-8 sm:py-8">
                               <div>
                                 <h3 className="text-sm tracking-wide font-medium text-gray-500 uppercase">Admin</h3>
                                 <ul role="list" className="mt-4 space-y-4">
@@ -88,9 +98,8 @@ const NavBar = ({ user, handleLogout }) => {
                                   </li>
                                 </ul>
                               </div>
-                            </div>
+                            </div> */}
 
-                          </div>
                         </Popover.Panel>
                       </Transition>
                     </>
@@ -170,12 +179,12 @@ const NavBar = ({ user, handleLogout }) => {
                         )}
                       >
                         <span>{user.name}</span>
-                          <span className="inline-block h-7 w-7 mx-3 rounded-full overflow-hidden bg-gray-100" aria-hidden="true">
-                            <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                            </svg>
-                          </span>
-                  
+                        <span className="inline-block h-7 w-7 mx-3 rounded-full overflow-hidden bg-gray-100" aria-hidden="true">
+                          <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                          </svg>
+                        </span>
+
                         {/* <ChevronDownIcon
                           className={classNames(
                             open ? 'text-gray-600' : 'text-gray-400',
@@ -206,14 +215,14 @@ const NavBar = ({ user, handleLogout }) => {
                                   <p className="text-base font-medium text-gray-900">My Itineraries</p>
                                 </div>
                               </a>
-                              <a
+                              {/* <a
                                 href="/starred"
                                 className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                               >
                                 <div className="ml-4">
                                   <p className="text-base font-medium text-gray-900">Starred Places</p>
                                 </div>
-                              </a>
+                              </a> */}
                             </div>
 
                             <div className="px-5 py-5 bg-gray-50 sm:px-8 sm:py-8">
@@ -336,7 +345,8 @@ const NavBar = ({ user, handleLogout }) => {
             </div>
           </div>
         </Popover>
-      )}
+      )
+      }
     </>
   );
 };

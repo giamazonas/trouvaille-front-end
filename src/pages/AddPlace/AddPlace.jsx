@@ -3,26 +3,24 @@ import styles from './AddPlace.module.css'
 import { useNavigate, Link } from 'react-router-dom'
 
 
+
 function AddPlace(props) {
   const formElement = useRef()
   const [validForm, setValidForm] = useState(false)
   const [formData, setFormData] = useState({
     address: '',
-    city: '', //object.Id ref city
+    city: '', 
     name: '',
     type: '',
     url: '',
     photo: [],
   })
-  const navigate = useNavigate()
 
   useEffect(() => {
     formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
   }, [formData])
 
   const handleSubmit = evt => {
-    // console.log('evt: ', evt)
-    // console.log('formData: ', formData)
     evt.preventDefault()
     const placeFormData = new FormData()
     placeFormData.append('photo', formData.photo)

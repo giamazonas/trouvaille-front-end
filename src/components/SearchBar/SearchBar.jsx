@@ -47,7 +47,6 @@ const SearchBar = ({ placeholder, data }) => {
           })}
         </div>
       )}
-
     </div>
   )
 }

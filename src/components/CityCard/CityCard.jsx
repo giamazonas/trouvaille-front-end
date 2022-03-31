@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import styles from './CityCard.module.css'
 
 function CityCard({ city }) {
   return (
@@ -26,11 +25,11 @@ function CityCard({ city }) {
             className="italic underline underline-offset-2 hover:font-bold text-gray-800"
             to={`/cities/${city._id}/edit`}
             state={{ city }}
-          >Manage</Link>
+          >manage</Link>
         </p>
       </div>
     </>
   )
 }
 
-export default CityCard
+export default CityCard;

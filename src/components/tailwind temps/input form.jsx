@@ -306,7 +306,7 @@ export default function Example() {
                           />
                         </div>
                         <div className="ml-3 text-sm">
-                          <label htmlFor="comments" className="font-medium text-gray-700">
+                          <label htmlFor="comments"  >
                             Comments
                           </label>
                           <p className="text-gray-500">Get notified when someones posts a comment on a posting.</p>

@@ -65,7 +65,7 @@ function AddPlace(props) {
 
                 <div className="col-span-6">
                   {/* CHANGE THIS IN NOT TO DISTANT FUTURE */}
-                  <label htmlFor="name-input" className="block text-sm font-medium text-gray-700" placeholder="required">
+                  <label htmlFor="name-input" className="block text-sm font-medium text-gray-700">
                     Name of place
                   </label>
                   <input
@@ -76,6 +76,7 @@ function AddPlace(props) {
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    placeholder="required"
                   />
                 </div>
 
@@ -103,7 +104,7 @@ function AddPlace(props) {
                 </div>
 
                 <div className="col-span-6">
-                  <label htmlFor="address-input" className="block text-sm font-medium text-gray-700" placeholder="required">
+                  <label htmlFor="address-input" className="block text-sm font-medium text-gray-700">
                     Address
                   </label>
                   <input
@@ -114,6 +115,7 @@ function AddPlace(props) {
                     value={formData.address}
                     onChange={handleChange}
                     required
+                    placeholder="required"
                   />
                 </div>
 
@@ -139,7 +141,7 @@ function AddPlace(props) {
 
 
                 <div className="col-span-4">
-                  <label className="block text-sm font-medium text-gray-700">Photo</label>
+                  <label htmlFor="photo-upload" className="block text-sm font-medium text-gray-700">Photo <span className="text-gray-400">(optional)</span></label>
                   <div className="mt-1 flex items-center">
                     <input id="photo-upload" name="photo" type="file" onChange={handleChangePhoto} className="bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" />
                   </div>
@@ -151,7 +153,7 @@ function AddPlace(props) {
                     disabled={!validForm}
                     className="block w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-500 disabled:bg-gray-200 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                   >
-                    Add Place
+                    Submit
                   </button>
                 </div>
 

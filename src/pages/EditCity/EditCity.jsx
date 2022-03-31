@@ -1,31 +1,32 @@
 import { useState, useRef, useEffect, } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, Link } from 'react-router-dom'
 import * as cityService from '../../services/cityService'
 import styles from './EditCity.module.css'
+import { ExclamationIcon } from '@heroicons/react/outline'
 
-function EditCity({city, handleDeleteCity, handleUpdateCity}) {
+function EditCity({ city, handleDeleteCity, handleUpdateCity }) {
   const location = useLocation()
   const [cityDetails, setCityDetails] = useState({})
   const formElement = useRef()
   const [validForm, setValidForm] = useState(true)
-  const [formData, setFormData] = useState({_id: location.state.city._id,
+  const [formData, setFormData] = useState({
+    _id: location.state.city._id,
     desc: '',
     city: '',
     state: '',
     zip: [],
-    population: '', 
-    walkable: true, 
-    photo: [], 
+    population: '',
+    walkable: true,
+    photo: [],
   })
-  
+
   const navigate = useNavigate()
 
   console.log(location.state.city._id)
 
   useEffect(() => {
-		formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
-
-	}, [formData])
+    formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
+  }, [formData])
 
   useEffect(() => {
     cityService.getOne(location.state.city._id)
@@ -44,17 +45,17 @@ function EditCity({city, handleDeleteCity, handleUpdateCity}) {
     cityFormData.append('population', formData.population)
     cityFormData.append('walkable', formData.walkable)
     const updatedCity = await handleUpdateCity(location.state.city._id, cityFormData)
-    navigate("/cities") 
+    navigate(`/cities/`)
   }
 
   const handleChange = evt => {
     let value
     if (evt.target.checked) {
-      value = evt.target.checked 
-    }else {
+      value = evt.target.checked
+    } else {
       value = evt.target.value
     }
-    setFormData({...formData, [evt.target.name]: value });
+    setFormData({ ...formData, [evt.target.name]: value });
   }
 
   const handleDelete = async (id) => {
@@ -63,148 +64,204 @@ function EditCity({city, handleDeleteCity, handleUpdateCity}) {
   }
 
   const handleChangePhoto = (evt) => {
-    setFormData({...formData, photo: evt.target.files[0]})
+    setFormData({ ...formData, photo: evt.target.files[0] })
   }
 
   return (
     <>
-    <div className={styles.container}><br />
-      <h1>Edit {location.state.city.city} </h1>
-      <form autoComplete = 'off' ref={formElement} onSubmit={handleSubmit} >
-        <div>
-          <label htmlFor="city-input">
-            City Name
-          </label>
-          <input
-						type="text"
-						className="form-control"
-						id="city-input"
-						name="city"
-						value={formData.city}
-						onChange={handleChange}
-						required
-					/>
+      <div className="hidden sm:block" aria-hidden="true">
+        <div className="py-5">
         </div>
-        <div>
-          <label htmlFor="state-input">
-            State
-          </label>
-          <input
-						type="text"
-						className="form-control"
-						id="state-input"
-						name='state'
-						value={formData.state}
-						onChange={handleChange}
-						required
-					/>
-        </div>
-        <div>
-          <label htmlFor="zip-input">
-            Zip
-          </label>
-          <input
-						type="text"
-						className="form-control"
-						id="zip-input"
-						name="zip"
-						value={formData.zip}
-						onChange={handleChange}
-						required
-					/>
-        </div>
-        <div>
-          <label htmlFor="desc-input">
-            Description
-          </label>
-          <input
-						type="text"
-						className="form-control"
-						id="desc-input"
-						name="desc"
-						value={formData.desc}
-						onChange={handleChange}
-						required
-					/>
-        </div>
-        <div>
-          <label htmlFor="population-input">
-            Population
-          </label>
-          <input
-						type="text"
-						className="form-control"
-						id="population-input"
-						name="population"
-						value={formData.population}
-						onChange={handleChange}
-						required
-					/>
-        </div>
-        <div>
-          <label htmlFor="walkable-input">
-            Walkable?  
-          </label> 
-          <input
-						type="checkbox"
-						className="form-control"
-						id="walkable-input"
-						name="walkable"
-						value={formData.walkable}
-						onChange={handleChange}
-					/>
-        </div><br />
-        <div className="form-group mb-4">
-          <label htmlFor="photo-upload" className="form-label">
-            Upload Photo
-          </label>
-          <input
-            type="file"
-            className="form-control"
-            id="photo-upload"
-            name="photo"
-            onChange={handleChangePhoto}
-          />
-        </div><br />
-        <div className="d-grid">
-					<button
-						type="submit"
-						className="btn btn-primary btn-fluid"
-            onClick={(e)=> handleSubmit(e, location.state.city._id)}
-            onChange={handleChange}
-						disabled={!validForm}
-					>
-						Edit City
-					</button>
-				</div><br /><br />
-      </form> 
-      <div className={styles.cityContainer} id='cityInfo'>
-        <h2>City info currently:</h2><br />
-        {location.state.city._id ?
-          <>
-            <h2 className='city-details'>{location.state.city.city}</h2>
-            <h3>{location.state.city.desc}</h3>
-            <h4>{location.state.city.population}</h4>
-            <h4>Walkable?  {location.state.city.walkable ? 'you can walk!' : 'get a bike'}</h4>
-          </>
-          :
-          <>
-            <h2>Loading City Details...</h2>
-          </>
-        }
       </div>
-      <br />
-      <br />
-      <button
-        className="btn btn-sm btn-danger m-left"
-        onClick={()=> handleDelete(location.state.city._id)}
-      >
-        Delete City
-      </button>
-      <br />
-      <br />
-      <br />
-    </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:grid md:grid-cols-3 md:gap-6">
+        <div className="md:col-span-1">
+          <div className="px-4 sm:px-0">
+            <h1 className="text-xl font-medium leading-6 text-gray-900">Manage city</h1>
+            <div className="grid grid-cols-2 gap-y-1">
+              <div className="col-span-2">
+                <h2 className="mt-7 text-lg font-bold leading-6 text-gray-600"><span className="mt-5 text-md font-medium text-gray-600">Current info of </span>{location.state.city.city}, {location.state.city.state}</h2>
+              </div>
+              <div className="mt-3 col-span-2">
+                <p className="mt-1 text-md font-bold text-gray-500 underline underline-offset-2">Zip</p>
+                <p className="mt-1 text-md text-gray-600">{location.state.city.zip}</p>
+              </div>
+              <div className="col-span-1">
+                <p className="mt-1 text-md font-bold text-gray-500 underline underline-offset-2">Population</p>
+                <p className="mt-1 text-md text-gray-600">{location.state.city.population}</p>
+              </div>
+              <div className="col-span-1">
+                <p className="mt-1 text-md font-bold text-gray-500 underline underline-offset-2">Walkable?</p>
+                <p className="mt-1 text-md text-gray-600">{location.state.city.walkable ? `Yes` : `No`}</p>
+              </div>
+              <div className="col-span-2">
+                <p className="mt-1 text-md font-bold text-gray-500 underline underline-offset-2">Description</p>
+                <p className="mt-1 text-md text-gray-600">{location.state.city.desc}</p>
+              </div>
+
+              <div className="mt-7 col-span-2">
+                <Link to="/places" className="block w-full underline underline-offset-2 hover:font-bold">Go back to Cities</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-5 md:mt-0 md:col-span-2">
+          <form autoComplete='off' ref={formElement} onSubmit={handleSubmit}>
+            <div className="shadow overflow-hidden sm:rounded-md">
+              <div className="grid grid-cols-6 px-4 py-5 gap-6 bg-white sm:p-6">
+              <div className="col-span-6">
+                  <h1 className="text-xl font-medium leading-6 text-black">Edit {location.state.city.city}, {location.state.city.state}</h1>
+                </div>
+
+                <div className="col-span-4">
+                  <label htmlFor="city-input" className="block text-sm font-medium text-gray-700">City name
+                  </label>
+                  <input
+                    type="text"
+                    className="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    id="city-input"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                    required
+                    placeholder="required"
+                  />
+                </div>
+
+                <div className="col-span-3">
+                  <label htmlFor="state-input" className="block text-sm font-medium text-gray-700">
+                    State
+                  </label>
+                  <input
+                    type="text"
+                    className="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    id="state-input"
+                    name='state'
+                    value={formData.state}
+                    onChange={handleChange}
+                    required
+                    placeholder="required"
+                  />
+                </div>
+
+                <div className="col-span-3">
+                  <label htmlFor="zip-input" className="block text-sm font-medium text-gray-700">
+                    Zip
+                  </label>
+                  <input
+                    type="text"
+                    className="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    id="zip-input"
+                    name="zip"
+                    value={formData.zip}
+                    onChange={handleChange}
+                    required
+                    placeholder="required"
+                  />
+                </div>
+
+                <div className="col-span-3">
+                  <label htmlFor="population-input" className="block text-sm font-medium text-gray-700" >
+                    Population
+                  </label>
+                  <input
+                    type="text"
+                    className="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    id="population-input"
+                    name="population"
+                    value={formData.population}
+                    onChange={handleChange}
+                    required
+                    placeholder="required"
+                  />
+                </div>
+
+                <div className="col-span-2">
+                  <label htmlFor="walkable-input" className="block text-sm font-medium text-gray-700">
+                    Walkable?
+                  </label>
+                  <select
+                    name="walkable"
+                    id="walkable-input"
+                    value={formData.walkable}
+                    onChange={handleChange}
+                    required
+                    className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
+                  >
+                    <option key="1" value={true} defaultValue={true}>Yes</option>
+                    <option key="0" value={false}>No</option>
+                  </select>
+                </div>
+
+                <div className="col-span-6">
+                  <label htmlFor="desc-input" className="block text-sm font-medium text-gray-700">
+                    Description
+                  </label>
+                  <textarea
+                    type="text"
+                    className="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    id="desc-input"
+                    name="desc"
+                    value={formData.desc}
+                    onChange={handleChange}
+                    required
+                    rows={3}
+                    placeholder="required"
+                    defaultValue={''}
+                  />
+                  <p className="mt-2 text-sm text-gray-500"></p>
+                </div>
+
+                <div className="col-span-6">
+                  <button
+                    type="submit"
+                    disabled={!validForm}
+                    className="block w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-500 disabled:bg-gray-200 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                    onChange={handleChange}
+                    onClick={(e) => handleSubmit(e, location.state.city._id)}
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div className="hidden sm:block" aria-hidden="true">
+        <div className="py-5">
+        </div>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:grid md:grid-cols-3 md:gap-6">
+        <div className="md:col-span-1">
+          <div className="px-4 sm:px-0">
+          </div>
+        </div>
+
+        <div className="mt-5 md:mt-0 md:col-span-2">
+          <form autoComplete='off' ref={formElement} onSubmit={handleSubmit}>
+            <div className="shadow overflow-hidden sm:rounded-md">
+              <div className="grid grid-cols-6 px-4 py-5 gap-6 bg-white sm:p-6">
+
+                <div className="col-span-6">
+                  <h1 className="text-xl font-medium leading-6 text-black"><ExclamationIcon className="h-6 w-6 text-gray-600 inline" aria-hidden="true" /> Delete {location.state.city.city}, {location.state.city.state}</h1>
+                </div>
+
+                <div className="col-span-6">
+                  <button
+                    type="submit"
+                    className="block w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-400 disabled:bg-gray-200 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                    onClick={() => handleDelete(location.state.city._id)}
+                  >
+                    <span>Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </>
   )
 }

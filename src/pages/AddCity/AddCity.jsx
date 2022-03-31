@@ -65,7 +65,7 @@ function AddCity(props) {
               <div className="grid grid-cols-6 px-4 py-5 gap-6 bg-white sm:p-6">
 
                 <div className="col-span-4">
-                  <label htmlFor="city-input" className="block text-sm font-medium text-gray-700">Name of city
+                  <label htmlFor="city-input" className="block text-sm font-medium text-gray-700">City name
                   </label>
                   <input
                     type="text"

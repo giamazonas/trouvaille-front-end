@@ -71,13 +71,14 @@ const PlaceId = (props, handleReview) => {
             </ol>
           </nav>
 
-          <div className="max-w-2xl mx-auto py-24 px-4 grid items-center grid-cols-1 gap-y-16 gap-x-8 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8 lg:grid-cols-2">
+          <div className="max-w-2xl relative mx-auto px-4 grid items-center grid-cols-1 gap-y-16 gap-x-8 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8 lg:grid-cols-2">
             <div>
-              <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">{location.state.place.name}</h2>
-              <p className="mt-4 text-gray-500">
-                URL?
-                <h4>{location.state.place.url}</h4>
-              </p>
+              <div className="absolute top-10">
+                <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">{location.state.place.name}</h1>
+                <h2 className="mt-4 text-gray-500">
+                  {location.state.place.url ? location.state.place.url : `website not available`}
+                </h2>
+              </div>
 
               <dl className="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
                 <div key={location.state.place.id} className="border-t border-gray-200 pt-4">
@@ -98,61 +99,64 @@ const PlaceId = (props, handleReview) => {
               </dl>
             </div>
 
-            <div className="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
-              <div className="col-span-2">
-                <h1 className="font-medium text-gray-900 border-b border-gray-200 pb-4">Reviews</h1>
-              
-              {location.state.place.reviews.map((review) =>
-                <ul className="font-medium text-gray-900 border-b border-gray-150 mx-3 px-2">
-                  <li> {review.rating} </li>
-                  <li> {review.comment} </li>
-                </ul>
-              )}
-              </div>
 
-              <div className="review-container">
-                <h2>Add a Review!</h2><br />
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+              <div className="col-span-2 py-10">
+                <h1 className="font-medium text-gray-900 border-b border-gray-200 pb-4">Reviews</h1>
+
+                {location.state.place.reviews.map((review) =>
+                  <ul key={location.state.place._id} className="font-medium text-gray-900 border-b border-gray-150 mx-3 px-2">
+                    <li className="mt-2 font-medium text-gray-900"> Rating: {review.rating} </li>
+                    <li className="mt-1 text-sm text-gray-500"> {review.comment} </li>
+                    <li className="text-xs text-gray-400 flex justify-end"> {new Date(review.createdAt).toLocaleDateString()} </li>
+                  </ul>
+                )}
+
                 <form autoComplete='off' ref={formElement} onSubmit={handleSubmit} >
-                  <div>
-                    <label htmlFor="rating-input">
-                      Rating
-                    </label>
-                    <input
-                      type="number"
-                      min="1"
-                      max="5"
-                      className="form-control"
-                      id="rating-input"
-                      name="rating"
-                      value={formData.rating}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="comment-input">
-                      Share your opinion!
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="comment-input"
-                      name='comment'
-                      value={formData.comment}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                  <br /><br />
-                  <div className="d-grid">
-                    <button
-                      type="submit"
-                      className="btn btn-primary btn-fluid"
-                      disabled={!validForm}
-                    >
-                      Save your review!
-                    </button>
-                  </div>
+                  <dl className="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
+                    <div className="border-t border-gray-200 pt-4">
+                      <dt className="mt-2 text-sm text-gray-500"><label htmlFor="rating-input">
+                        Rating
+                      </label></dt>
+                      <dd className="font-medium text-gray-900">
+                        <input
+                          type="number"
+                          min="1"
+                          max="5"
+                          className="mt-1 focus:ring-gray-500 focus:border-gray-500 block shadow-sm sm:text-sm border-gray-300 rounded-md relative inline-flex items-right pl-5 pr-1 py-2 border text-sm font-medium"
+                          id="rating-input"
+                          name="rating"
+                          value={formData.rating}
+                          onChange={handleChange}
+                          required
+                        />
+                      </dd>
+                    </div>
+                    <div className="col-span-2">
+                      <label htmlFor="comment-input">
+                        Share your opinion!
+                      </label>
+                      <textarea
+                        type="text"
+                        className="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        id="comment-input"
+                        rows={2}
+                        name='comment'
+                        value={formData.comment}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div className="col-span-2">
+                      <button
+                        type="submit"
+                        className="btn btn-primary btn-fluid"
+                        disabled={!validForm}
+                      >
+                        Save your review!
+                      </button>
+                    </div>
+                  </dl>
                 </form>
               </div>
             </div>

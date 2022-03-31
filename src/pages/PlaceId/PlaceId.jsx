@@ -15,6 +15,8 @@ const PlaceId = (props, handleReview) => {
   },
   )
 
+  console.log('HELLO', location.state.place._id)
+
   useEffect(() => {
     placeService.getOne(location.state.place.id)
       .then(place => setPlaceDetails(place))
@@ -33,7 +35,6 @@ const PlaceId = (props, handleReview) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value })
   }
 
-  console.log('PRACTICE')
   return (
     <>
       {location.state.place._id ?
@@ -80,11 +81,11 @@ const PlaceId = (props, handleReview) => {
               </div>
 
               <dl className="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
-                <div key={location.state.place.id} className="border-t border-gray-200 pt-4">
+                <div key={location.state.place.address} className="border-t border-gray-200 pt-4">
                   <dt className="mt-2 text-sm text-gray-500">Address</dt>
                   <dd className="font-medium text-gray-900">{location.state.place.address}</dd>
                 </div>
-                <div key={location.state.place.id} className="border-t border-gray-200 pt-4">
+                <div key={location.state.place.type} className="border-t border-gray-200 pt-4">
                   <dt className="mt-2 text-sm text-gray-500">Type</dt>
                   <dd className="font-medium text-gray-900">{location.state.place.type}</dd>
                 </div>

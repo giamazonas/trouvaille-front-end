@@ -26,6 +26,13 @@ function PlaceCard({ place }) {
           <h4 className="mt-1 text-sm text-gray-700">{place.address}</h4>
           <h4 className="mt-1 text-sm text-gray-700">{place.city?.city}</h4>
           <h4 className="mt-1 text-sm text-gray-700">{place.city?.state}</h4>
+          <p className="mt-1 text-sm text-gray-700">
+          <Link
+            className="italic underline underline-offset-2 hover:font-bold text-gray-800"
+            to={`/places/${place._id}/edit`}
+            state={{ place }}
+          >manage</Link>
+        </p>
         </div>
       </div>
     </>

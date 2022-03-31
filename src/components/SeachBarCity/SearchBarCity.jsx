@@ -1,23 +1,20 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons'
-import styles from './SearchBar.module.css'
+import styles from '../SearchBar/SearchBar.module.css'
 
-const SearchBar = ({ placeholder, data }) => {
-  // const navigate = useNavigate()
+const SearchBarCity = ({ placeholder, data }) => {
   const [filteredData, setFilteredData] = useState([])
   const [searchInput, setSearchInput] = useState("")
 
   const handleFilter = (evt) => {
     const searchWord = evt.target.value
     setSearchInput(searchWord)
-    const newFilter = data.filter((place) => {
-      return place.name.toLowerCase().includes(searchWord.toLowerCase())
+    const newFilter = data.filter((city) => {
+      return city.name.toLowerCase().includes(searchWord.toLowerCase())
     })
     searchWord ? setFilteredData(newFilter) : setFilteredData([])
-    // navigate(`/places/${place._id}`)
-    console.log('TEST SEARCH', searchWord)
   }
 
   const clearInput = () => {
@@ -40,11 +37,11 @@ const SearchBar = ({ placeholder, data }) => {
       </div>
       {filteredData.length !== 0 && (
         <div className={styles.searchResult}>
-          {filteredData.map((place) => {
-            console.log(place._id)
+          {filteredData.map((city) => {
+            console.log(city._id)
             return (
-              <Link to={`/places/${place._id}`} key={place._id} state={{place}} className={styles.resultItem}>
-                <p>{place.name} <span className={styles.placeType}>{place.type}</span></p>
+              <Link to={`/cities/${city._id}`} key={city._id} state={{city}} className={styles.resultItem}>
+                <p>{city.name} <span className={styles.city}>{city.type}</span></p>
               </Link>
             )
           })}
@@ -54,4 +51,4 @@ const SearchBar = ({ placeholder, data }) => {
   )
 }
 
-export default SearchBar;
+export default SearchBarCity;

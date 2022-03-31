@@ -1,10 +1,12 @@
 // import { NavLink } from "react-router-dom";
 import { useState, useEffect, Fragment } from 'react'
+import { useLocation } from 'react-router-dom'
 import * as placeService from "../../services/placeService"
 import { Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, XIcon } from '@heroicons/react/solid'
 import { MenuIcon } from '@heroicons/react/outline'
 import SearchBar from "../SearchBar/SearchBar";
+import SearchBarCity from "../SeachBarCity/SearchBarCity"; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
@@ -13,6 +15,8 @@ const classNames = (...classes) => {
 }
 const NavBar = ({ user, handleLogout, profileId }) => {
   const [places, setPlaces] = useState([])
+  const [cities, setCities] = useState([])
+  const location = useLocation()
 
   useEffect(() => {
     placeService.getAllPlaces()
@@ -84,9 +88,12 @@ const NavBar = ({ user, handleLogout, profileId }) => {
                                   <p className="mt-1 text-sm text-gray-500">Add a new city</p>
                                 </div>
                               </a>
+                              <div className="ml-4">
+                                <p className="text-base font-medium text-gray-900">Quick Search</p>
+                                <SearchBarCity placeholder="Search here" data={cities} />
+                              </div>
                             </div>
                           </div>
-
                           {/* <div className="px-5 py-5 bg-gray-50 sm:px-8 sm:py-8">
                               <div>
                                 <h3 className="text-sm tracking-wide font-medium text-gray-500 uppercase">Admin</h3>

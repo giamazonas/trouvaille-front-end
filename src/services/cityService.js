@@ -46,7 +46,7 @@ function addPlace(cityId, placeId) {
 }
 
 function search(formData) {
-  return fetch(`${BASE_URL}/api/cities/?city=${formData.query}`).then((res) =>
+  return fetch(`${BASE_URL}/cities/?city=${formData.query}`).then((res) =>
     res.json()
   )
 }

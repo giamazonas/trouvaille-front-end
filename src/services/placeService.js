@@ -17,21 +17,21 @@ function create(place) {
 
 function deleteOne(id) {
   return fetch(`${BASE_URL}/${id}`, {
-    method: "DELETE",
     headers: {
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
-  }).then((res) => res.json())
+    method: "DELETE",
+  }).then((res) => res.json());
 }
 
-function update(place) {
-  return fetch(`${BASE_URL}/${place.get("._id")}`, {
-    method: "PUT",
+function update(id, place) {
+  return fetch(`${BASE_URL}/${id}`, {
     headers: {
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
     body: place,
-  }).then((res) => res.json())
+    method: "PUT",
+  }).then((res) => res.json());
 }
 
 function getOne(id) {
@@ -47,7 +47,7 @@ function search(formData) {
 }
 
 function createReview(data) {
-  console.log('SERVICES', data)
+  console.log("SERVICES", data);
   return fetch(`${BASE_URL}/${data._id}/reviews`, {
     method: "POST",
     headers: {

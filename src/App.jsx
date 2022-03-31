@@ -10,6 +10,7 @@ import * as authService from './services/authService'
 import * as cityService from './services/cityService'
 import * as placeService from './services/placeService'
 import * as itineraryService from './services/itineraries'
+import * as profileService from './services/profileService'
 import AddCity from './pages/AddCity/AddCity'
 import CityList from './pages/CityList/CityList'
 import EditCity from './pages/EditCity/EditCity'
@@ -124,8 +125,9 @@ const App = () => {
   /* ----------------------------- ITINERARY ----------------------------- */
   const handleAddItinerary = async newItineraryData => {
     const newItinerary = await itineraryService.create(newItineraryData)
-    console.log('%%%% App.jsx_handleAddItinerary %%%%', newItinerary)
-    // setItineraries([...itineraries, newItineraryData])
+    console.log('()()() handleAddItinerary_newItinerary ()()()', newItinerary)
+    setItineraries([...itineraries, newItinerary])
+    profileService.addItinerary(newItinerary.owner, newItinerary._id)
     navigate('/itineraries')
   }
 

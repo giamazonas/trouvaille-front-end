@@ -20,7 +20,7 @@ const CityId = (props) => {
     })
   }, [location.state.city._id])
 
-  // console.log('cityDetails: ',cityDetails)
+  console.log('cityDetails: ',cityDetails)
 
   return (
     <>

@@ -8,7 +8,7 @@ function EditCity({ city, handleDeleteCity, handleUpdateCity }) {
   const location = useLocation()
   const [cityDetails, setCityDetails] = useState({})
   const formElement = useRef()
-  const [validForm, setValidForm] = useState(false)
+  const [validForm, setValidForm] = useState(true)
   const [formData, setFormData] = useState({
     _id: location.state.city._id,
     desc: '',
@@ -45,7 +45,7 @@ function EditCity({ city, handleDeleteCity, handleUpdateCity }) {
     cityFormData.append('population', formData.population)
     cityFormData.append('walkable', formData.walkable)
     const updatedCity = await handleUpdateCity(location.state.city._id, cityFormData)
-    navigate("/cities")
+    navigate(`/cities/`)
   }
 
   const handleChange = evt => {

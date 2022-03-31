@@ -101,7 +101,6 @@ const PlaceId = (props, handleReview) => {
                 </div>
                 </div>
               </div>
-
             </div>
 
 

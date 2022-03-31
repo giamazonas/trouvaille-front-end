@@ -1,5 +1,6 @@
 // import { NavLink } from "react-router-dom";
 import { useState, useEffect, Fragment } from 'react'
+import { useLocation } from 'react-router-dom'
 import * as placeService from "../../services/placeService"
 import { Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, XIcon } from '@heroicons/react/solid'
@@ -13,6 +14,7 @@ const classNames = (...classes) => {
 }
 const NavBar = ({ user, handleLogout }) => {
   const [places, setPlaces] = useState([])
+  const location = useLocation()
 
   useEffect(() => {
     placeService.getAllPlaces()

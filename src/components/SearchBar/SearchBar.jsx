@@ -43,7 +43,7 @@ const SearchBar = ({ placeholder, data }) => {
           {filteredData.map((place) => {
             console.log(place._id)
             return (
-              <Link to={`/places/${place._id}`} key={place._id} className={styles.resultItem}>
+              <Link to={`/places/${place._id}`} key={place._id} state={{place}} className={styles.resultItem}>
                 <p>{place.name} <span className={styles.placeType}>{place.type}</span></p>
               </Link>
             )

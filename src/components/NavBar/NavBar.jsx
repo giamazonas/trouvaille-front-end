@@ -13,7 +13,7 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ')
 }
-const NavBar = ({ user, handleLogout }) => {
+const NavBar = ({ user, handleLogout, profileId }) => {
   const [places, setPlaces] = useState([])
   const [cities, setCities] = useState([])
   const location = useLocation()
@@ -215,7 +215,8 @@ const NavBar = ({ user, handleLogout }) => {
                           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                             <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                               <a
-                                href="/itineraries"
+                                // href="/itineraries/:id"
+                                href={`/itineraries/${profileId}`}
                                 className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                               >
                                 <div className="ml-4">

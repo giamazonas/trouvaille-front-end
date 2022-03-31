@@ -5,48 +5,48 @@ import { getCoordinates } from '../../services/forwardGeocodeApi'
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 
-const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN; // Set your mapbox token here
+const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN; // Set your mapbox token here
 const API_URL = 'https://api.mapbox.com/geocoding/v5/'
 
 function MapBox(props) {
   const [cityDetails, setCityDetails] = useState({})
   const [placeLocation, setPlaceLocation] = useState([])
 
-  // let cityLatLong = `${API_URL}mapbox.places/${props.city.replaceAll(' ', '%20')}/${props.state}.json?&access_token=${MAPBOX_TOKEN}`
+  let cityLatLong = `${API_URL}mapbox.places/${props.city.replaceAll(' ', '%20')}/${props.state}.json?&access_token=${MAPBOX_TOKEN}`
 
   /* #################vvvv CIRCLE BACK FOR A MORE PROFESSIONAL FIX vvvv################# */
-  // function forceReload() {
-  //   const reloadCount = sessionStorage.getItem('reloadCount');
-  //   if(reloadCount < 1) {
-  //     sessionStorage.setItem('reloadCount', String(reloadCount + 1));
-  //     window.location.reload();
-  //   } else {
-  //     sessionStorage.removeItem('reloadCount');
-  //   }
-  // }
+  function forceReload() {
+    const reloadCount = sessionStorage.getItem('reloadCount');
+    if(reloadCount < 1) {
+      sessionStorage.setItem('reloadCount', String(reloadCount + 1));
+      window.location.reload();
+    } else {
+      sessionStorage.removeItem('reloadCount');
+    }
+  }
   /* #################^^^^ CIRCLE BACK FOR A MORE PROFESSIONAL FIX ^^^^################# */
 
-  // useEffect(() => {
-  //   props.places &&
-  //     getCoordinates(cityLatLong)
-  //       .then(data => data.features)
-  //       .then(data => data[0].center)
-  //       .then(data => {
-  //         setCityDetails(data)
-  //       })
-  //   const newPlaces = []
-  //   props.places?.forEach(place => {
-  //     (getCoordinates(`${API_URL}mapbox.places/${props.city.replaceAll(' ', '%20')}/${place.address.replaceAll(' ', '%20')}.json?&access_token=${MAPBOX_TOKEN}`))
-  //       .then(data => data.features)
-  //       .then(data => data[0].center)
-  //       .then(data => newPlaces.push(data))
-  //       .catch(err => console.log('::: ERROR :::', err))
-  //   })
-  //   setPlaceLocation(newPlaces)
-  //   //    v----------------  Force a Reload to get markers to appear
-  //   // forceReload()
+  useEffect(() => {
+    props.places &&
+      getCoordinates(cityLatLong)
+        .then(data => data.features)
+        .then(data => data[0].center)
+        .then(data => {
+          setCityDetails(data)
+        })
+    const newPlaces = []
+    props.places?.forEach(place => {
+      (getCoordinates(`${API_URL}mapbox.places/${props.city.replaceAll(' ', '%20')}/${place.address.replaceAll(' ', '%20')}.json?&access_token=${MAPBOX_TOKEN}`))
+        .then(data => data.features)
+        .then(data => data[0].center)
+        .then(data => newPlaces.push(data))
+        .catch(err => console.log('::: ERROR :::', err))
+    })
+    setPlaceLocation(newPlaces)
+    //    v----------------  Force a Reload to get markers to appear
+    forceReload()
 
-  // }, [props.places, cityLatLong, props.city])
+  }, [props.places, cityLatLong, props.city])
 
   return (
     <>
@@ -82,6 +82,4 @@ function MapBox(props) {
   )
 }
 
-export {
-  MapBox
-}
+export default MapBox

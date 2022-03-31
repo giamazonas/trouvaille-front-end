@@ -28,6 +28,7 @@ function AddPlace(props) {
     placeFormData.append('city', formData.city)
     placeFormData.append('name', formData.name)
     placeFormData.append('type', formData.type)
+    placeFormData.append('url', formData.url)
     props.handleAddPlace(placeFormData)
   }
 
@@ -138,6 +139,21 @@ function AddPlace(props) {
                   </select>
                 </div>
 
+                <div className="col-span-6">
+                  <label htmlFor="url-input" className="block text-sm font-medium text-gray-700">
+                    Website Address:
+                  </label>
+                  <input
+                    type="text"
+                    className="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    id="address-input"
+                    name="url"
+                    value={formData.url}
+                    onChange={handleChange}
+                    required
+                    placeholder="required"
+                  />
+                </div>
 
                 <div className="col-span-4">
                   <label htmlFor="photo-upload" className="block text-sm font-medium text-gray-700">Photo <span className="text-gray-400">(optional)</span></label>

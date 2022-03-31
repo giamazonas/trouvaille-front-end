@@ -1,4 +1,5 @@
 import styles from './Landing.module.css'
+import MapBoxTwo from '../../components/MapBox/MapBoxTwo'
 
 const Landing = ({ user }) => {
   return (

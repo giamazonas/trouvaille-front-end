@@ -34,6 +34,7 @@ const NavBar = ({ user, handleLogout }) => {
                   <MenuIcon className="h-6 w-6" aria-hidden="true" />
                 </Popover.Button>
               </div>
+
               <Popover.Group as="nav" className="hidden md:flex space-x-10" id="menu">
                 <Popover className="relative">
                   {({ open }) => (
@@ -74,9 +75,19 @@ const NavBar = ({ user, handleLogout }) => {
                                   <p className="mt-1 text-sm text-gray-500">Browse all cities</p>
                                 </div>
                               </a>
+                              <a
+                                href="/cities/add"
+                                className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
+                              >
+                                <div className="ml-4">
+                                  <p className="text-base font-medium text-gray-900">Add a City</p>
+                                  <p className="mt-1 text-sm text-gray-500">Add a new city</p>
+                                </div>
+                              </a>
                             </div>
+                          </div>
 
-                            <div className="px-5 py-5 bg-gray-50 sm:px-8 sm:py-8">
+                          {/* <div className="px-5 py-5 bg-gray-50 sm:px-8 sm:py-8">
                               <div>
                                 <h3 className="text-sm tracking-wide font-medium text-gray-500 uppercase">Admin</h3>
                                 <ul role="list" className="mt-4 space-y-4">
@@ -87,9 +98,8 @@ const NavBar = ({ user, handleLogout }) => {
                                   </li>
                                 </ul>
                               </div>
-                            </div>
+                            </div> */}
 
-                          </div>
                         </Popover.Panel>
                       </Transition>
                     </>
@@ -158,24 +168,23 @@ const NavBar = ({ user, handleLogout }) => {
                 </Popover>
               </Popover.Group>
 
-              <Popover.Group as="nav" className="hidden md:flex items-center justify-end md:flex-1 lg:w-0" id="profile">
+              <Popover.Group as="nav" className="flex justify-end hidden md:flex md:flex-1 lg:w-0" id="profile">
                 <Popover className="relative">
                   {({ open }) => (
                     <>
                       <Popover.Button
                         className={classNames(
                           open ? 'text-gray-900' : 'text-gray-500',
-                          'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500'
+                          'group bg-white rounded-md inline-flex justify-end text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500'
                         )}
                       >
-
                         <span>{user.name}</span>
-                          <span className="inline-block h-7 w-7 mx-3 rounded-full overflow-hidden bg-gray-100" aria-hidden="true">
-                            <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                            </svg>
-                          </span>
-                  
+                        <span className="inline-block h-7 w-7 mx-3 rounded-full overflow-hidden bg-gray-100" aria-hidden="true">
+                          <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                          </svg>
+                        </span>
+
                         {/* <ChevronDownIcon
                           className={classNames(
                             open ? 'text-gray-600' : 'text-gray-400',
@@ -195,7 +204,7 @@ const NavBar = ({ user, handleLogout }) => {
                         leaveFrom="opacity-100 translate-y-0"
                         leaveTo="opacity-0 translate-y-1"
                       >
-                        <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
+                        <Popover.Panel className="absolute right-0 z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:-translate-x-1">
                           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                             <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                               <a
@@ -206,14 +215,14 @@ const NavBar = ({ user, handleLogout }) => {
                                   <p className="text-base font-medium text-gray-900">My Itineraries</p>
                                 </div>
                               </a>
-                              <a
+                              {/* <a
                                 href="/starred"
                                 className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                               >
                                 <div className="ml-4">
                                   <p className="text-base font-medium text-gray-900">Starred Places</p>
                                 </div>
-                              </a>
+                              </a> */}
                             </div>
 
                             <div className="px-5 py-5 bg-gray-50 sm:px-8 sm:py-8">
@@ -254,7 +263,7 @@ const NavBar = ({ user, handleLogout }) => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <Popover.Panel focus className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
+            <Popover.Panel focus className="absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
               <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
                 <div className="pt-5 pb-6 px-5">
                   <div className="flex items-center justify-between">
@@ -336,7 +345,8 @@ const NavBar = ({ user, handleLogout }) => {
             </div>
           </div>
         </Popover>
-      )}
+      )
+      }
     </>
   );
 };

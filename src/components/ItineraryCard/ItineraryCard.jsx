@@ -22,8 +22,7 @@ const ItineraryCard = (props) => {
 
   const handleSubmit = evt => {
     evt.preventDefault()
-    console.log(nameData)
-    console.log(itinerearyData)
+    props.handleAddItinerary(nameData, itinerearyData)
   }
 
   const handleChange = (evt) => {

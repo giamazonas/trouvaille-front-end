@@ -44,7 +44,7 @@ const CityId = (props) => {
           }
         </div>
         <div>
-          <ItineraryCard city={cityDetails} />
+          <ItineraryCard city={cityDetails} handleAddItinerary={props.handleAddItinerary} />
         </div>
       <div><br /> <br />
         <h3 className="flex content-center justify-center">Places to go in {cityDetails?.city}</h3>

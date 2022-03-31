@@ -1,17 +1,20 @@
-// import * as React from 'react'
-// import Map, { Marker } from 'react-map-gl'
-// import { useEffect, useState } from 'react'
-// import { getCoordinates } from '../../services/forwardGeocodeApi'
-// import 'mapbox-gl/dist/mapbox-gl.css';
+import * as React from 'react'
+import Map, { Marker } from 'react-map-gl'
+import { useEffect, useState } from 'react'
+import { getCoordinates } from '../../services/forwardGeocodeApi'
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 
-// const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN; // Set your mapbox token here
-// const API_URL = 'https://api.mapbox.com/geocoding/v5/'
+const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN; // Set your mapbox token here
+const API_URL = 'https://api.mapbox.com/geocoding/v5/'
 
-// function MapBox(props) {
-//   const [cityDetails, setCityDetails] = useState({})
-//   const [placeLocation, setPlaceLocation] = useState([])
+function MapBox(props) {
+  const [cityDetails, setCityDetails] = useState({})
+  const [placeLocation, setPlaceLocation] = useState([])
 
+<<<<<<< HEAD
+  let cityLatLong = `${API_URL}mapbox.places/${props.city.replaceAll(' ', '%20')}/${props.state}.json?&access_token=${MAPBOX_TOKEN}`
+=======
 <<<<<<< HEAD
   // let cityLatLong = `${API_URL}mapbox.places/${props.city.replaceAll(' ', '%20')}/${props.state}.json?&access_token=${MAPBOX_TOKEN}`
 
@@ -50,76 +53,79 @@
   // }, [props.places, cityLatLong, props.city])
 =======
 //   let cityLatLong = `${API_URL}mapbox.places/${props.city.replaceAll(' ', '%20')}/${props.state}.json?&access_token=${MAPBOX_TOKEN}`
+>>>>>>> 26b604b00f2ae2f00b45d8a0f9f991b8688c72fd
 
-//   /* #################vvvv CIRCLE BACK FOR A MORE PROFESSIONAL FIX vvvv################# */
-//   function forceReload() {
-//     const reloadCount = sessionStorage.getItem('reloadCount');
-//     if(reloadCount < 1) {
-//       sessionStorage.setItem('reloadCount', String(reloadCount + 1));
-//       window.location.reload();
-//     } else {
-//       sessionStorage.removeItem('reloadCount');
-//     }
-//   }
-//   /* #################^^^^ CIRCLE BACK FOR A MORE PROFESSIONAL FIX ^^^^################# */
+  /* #################vvvv CIRCLE BACK FOR A MORE PROFESSIONAL FIX vvvv################# */
+  function forceReload() {
+    const reloadCount = sessionStorage.getItem('reloadCount');
+    if(reloadCount < 1) {
+      sessionStorage.setItem('reloadCount', String(reloadCount + 1));
+      window.location.reload();
+    } else {
+      sessionStorage.removeItem('reloadCount');
+    }
+  }
+  /* #################^^^^ CIRCLE BACK FOR A MORE PROFESSIONAL FIX ^^^^################# */
 
-//   useEffect(() => {
-//     props.places &&
-//       getCoordinates(cityLatLong)
-//         .then(data => data.features)
-//         .then(data => data[0].center)
-//         .then(data => {
-//           setCityDetails(data)
-//         })
-//     const newPlaces = []
-//     props.places?.forEach(place => {
-//       (getCoordinates(`${API_URL}mapbox.places/${props.city.replaceAll(' ', '%20')}/${place.address.replaceAll(' ', '%20')}.json?&access_token=${MAPBOX_TOKEN}`))
-//         .then(data => data.features)
-//         .then(data => data[0].center)
-//         .then(data => newPlaces.push(data))
-//         .catch(err => console.log('::: ERROR :::', err))
-//     })
-//     setPlaceLocation(newPlaces)
-//     //    v----------------  Force a Reload to get markers to appear
-//     // forceReload()
+  useEffect(() => {
+    props.places &&
+      getCoordinates(cityLatLong)
+        .then(data => data.features)
+        .then(data => data[0].center)
+        .then(data => {
+          setCityDetails(data)
+        })
+    const newPlaces = []
+    props.places?.forEach(place => {
+      (getCoordinates(`${API_URL}mapbox.places/${props.city.replaceAll(' ', '%20')}/${place.address.replaceAll(' ', '%20')}.json?&access_token=${MAPBOX_TOKEN}`))
+        .then(data => data.features)
+        .then(data => data[0].center)
+        .then(data => newPlaces.push(data))
+        .catch(err => console.log('::: ERROR :::', err))
+    })
+    setPlaceLocation(newPlaces)
+    //    v----------------  Force a Reload to get markers to appear
+    // forceReload()
 
+<<<<<<< HEAD
+  }, [props.places, cityLatLong, props.city])
+=======
 //   }, [props.places, cityLatLong, props.city])
 >>>>>>> 8fc227dc2e9be3c1d8946e74e79c457c7f57090a
+>>>>>>> 26b604b00f2ae2f00b45d8a0f9f991b8688c72fd
 
-//   return (
-//     <>
-//       <div className='mapbox-container'>
-//         {cityDetails.length ?
-//           <Map
-//             initialViewState={{
-//               latitude: cityDetails[1],
-//               longitude: cityDetails[0],
-//               zoom: 12,
-//             }}
-//             style={{ width: 800, height: 600 }}
-//             mapStyle="mapbox://styles/maxmay94/cl1cfxpkt000914n0o0c1hojk"
-//             // mapStyle="mapbox://styles/maxmay94/cl1cv5rwv000c17nonvzqhlt4" //dark map
-//             mapboxAccessToken={MAPBOX_TOKEN}
-//           >
-//             <Marker longitude={cityDetails[0]} latitude={cityDetails[1]} color="green" scale='1' />
-//             {
-//               placeLocation?.map((location, idx) => (
-//                 <Marker key={idx} title='location' description='some stuff about place' longitude={location[0]} latitude={location[1]} color="red" scale=".5" >
-//                   {/* <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>woah look at this guys</button> */}
-//                 </Marker>
-//               ))
-//             }
-//           </Map>
-//           :
-//           <>
-//             <h3>loading map</h3>
-//           </>
-//         }
-//       </div>
-//     </>
-//   )
-// }
+  return (
+    <>
+      <div className='mapbox-container'>
+        {cityDetails.length ?
+          <Map
+            initialViewState={{
+              latitude: cityDetails[1],
+              longitude: cityDetails[0],
+              zoom: 12,
+            }}
+            style={{ width: 800, height: 600 }}
+            mapStyle="mapbox://styles/maxmay94/cl1cfxpkt000914n0o0c1hojk"
+            // mapStyle="mapbox://styles/maxmay94/cl1cv5rwv000c17nonvzqhlt4" //dark map
+            mapboxAccessToken={MAPBOX_TOKEN}
+          >
+            <Marker longitude={cityDetails[0]} latitude={cityDetails[1]} color="green" scale='1' />
+            {
+              placeLocation?.map((location, idx) => (
+                <Marker key={idx} title='location' description='some stuff about place' longitude={location[0]} latitude={location[1]} color="red" scale=".5" >
+                  {/* <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>woah look at this guys</button> */}
+                </Marker>
+              ))
+            }
+          </Map>
+          :
+          <>
+            <h3>loading map</h3>
+          </>
+        }
+      </div>
+    </>
+  )
+}
 
-// export {
-//   MapBox
-// }
+export default MapBox

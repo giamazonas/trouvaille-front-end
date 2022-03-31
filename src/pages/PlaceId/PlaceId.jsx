@@ -89,14 +89,20 @@ const PlaceId = (props, handleReview) => {
                   <dt className="mt-2 text-sm text-gray-500">Type</dt>
                   <dd className="font-medium text-gray-900">{location.state.place.type}</dd>
                 </div>
-                <div key={location.state.place.id} className="col-span-2">
+              </dl>
+
+              <div className="col-span-2 h-200 mt-10">
+                <div className="flex flex-col">
+                <div className="h-200 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80">
                   <img
                     src={location.state.place.photo ? location.state.place.photo : `https://picsum.photos/100/200?random=433`}
                     alt="place"
-                    className="card-img-top"
+                    className="mx-auto object-center object-cover aspect-none lg:w-full"
                   />
                 </div>
-              </dl>
+                </div>
+              </div>
+
             </div>
 
 
@@ -106,63 +112,65 @@ const PlaceId = (props, handleReview) => {
 
                 {location.state.place.reviews.map((review) =>
                   <ul key={location.state.place._id} className="font-medium text-gray-900 border-b border-gray-150 mx-3 px-2">
-                    <li className="mt-2 font-medium text-gray-900"> Rating: {review.rating} </li>
+                    <li className="mt-2 font-medium text-gray-700"> Rating: {review.rating} </li>
                     <li className="mt-1 text-sm text-gray-500"> {review.comment} </li>
                     <li className="text-xs text-gray-400 flex justify-end"> {new Date(review.createdAt).toLocaleDateString()} </li>
                   </ul>
                 )}
 
-                <form autoComplete='off' ref={formElement} onSubmit={handleSubmit} >
-                  <dl className="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
-                    <div className="border-t border-gray-200 pt-4">
-                      <dt className="mt-2 text-sm text-gray-500"><label htmlFor="rating-input">
-                        Rating
-                      </label></dt>
-                      <dd className="font-medium text-gray-900">
-                        <input
-                          type="number"
-                          min="1"
-                          max="5"
-                          className="mt-1 focus:ring-gray-500 focus:border-gray-500 block shadow-sm sm:text-sm border-gray-300 rounded-md relative inline-flex items-right pl-5 pr-1 py-2 border text-sm font-medium"
-                          id="rating-input"
-                          name="rating"
-                          value={formData.rating}
+                <div className="col-span-2 mt-2 text-sm px-4 text-gray-500">
+                  <form autoComplete='off' ref={formElement} onSubmit={handleSubmit} >
+                    <div>
+                      <p className="mt-10 text-md font-bold text-gray-700">Leave a review!</p>
+                      <div className="px-2 mt-3 gap-x-6 gap-y-10 sm:gap-y-16 lg:gap-x-8">
+                        <label htmlFor="rating-input">
+                          <p className="inline-flex mt-2 pr-5 text-sm text-gray-500">
+                            Rating</p>
+                        </label>
+                        <span className="font-medium text-gray-900">
+                          <input
+                            type="number"
+                            min="1"
+                            max="5"
+                            className="mt-1 focus:ring-gray-500 focus:border-gray-500 block shadow-sm sm:text-sm border-gray-300 rounded-md relative inline-flex items-right pl-5 pr-1 py-2 border text-sm font-medium"
+                            id="rating-input"
+                            name="rating"
+                            value={formData.rating}
+                            onChange={handleChange}
+                            required
+                          />
+                        </span>
+                      </div>
+                      <div className="px-2 mt-3">
+                        <label htmlFor="comment-input">Comment</label>
+                        <textarea
+                          type="text"
+                          className="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                          id="comment-input"
+                          rows={2}
+                          name='comment'
+                          value={formData.comment}
                           onChange={handleChange}
                           required
                         />
-                      </dd>
+                      </div>
                     </div>
-                    <div className="col-span-2">
-                      <label htmlFor="comment-input">
-                        Share your opinion!
-                      </label>
-                      <textarea
-                        type="text"
-                        className="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                        id="comment-input"
-                        rows={2}
-                        name='comment'
-                        value={formData.comment}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                    <div className="col-span-2">
+                    <div className="col-span-2 px-2 py-3">
                       <button
                         type="submit"
-                        className="btn btn-primary btn-fluid"
+                        className="block w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-500 disabled:bg-gray-200 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                         disabled={!validForm}
                       >
-                        Save your review!
+                        Submit
                       </button>
                     </div>
-                  </dl>
-                </form>
+                  </form>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
-
         :
         <>
           <h2>Loading Place Details...</h2>

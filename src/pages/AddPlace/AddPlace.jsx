@@ -98,6 +98,7 @@ function AddPlace(props) {
                     <option key='7' value="bowling">Bowling</option>
                     <option key='8' value="arcade">Arcade</option>
                     <option key='9' value="shop">Shop</option>
+                    <option key='9' value="other">Other</option>
                   </select>
                 </div>
 

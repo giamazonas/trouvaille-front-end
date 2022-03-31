@@ -10,10 +10,12 @@ function getAllItineraries() {
 }
 
 function create(itinerary) {
-  return fetch(BASE_URL, {
+  console.log('#### itinerary service_create #####',itinerary)
+  return fetch(`${BASE_URL}/add`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${tokenService.getToken()}`,
+      "content-type": "application/json",
     },
     body: JSON.stringify(itinerary),
   }).then((res) => res.json());

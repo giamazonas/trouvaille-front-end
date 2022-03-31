@@ -123,8 +123,8 @@ const App = () => {
 
   /* ----------------------------- ITINERARY ----------------------------- */
   const handleAddItinerary = async newItineraryData => {
-    console.log('%%%% App.jsx_handleAddItinerary %%%%', newItinerary)
     const newItinerary = await itineraryService.create(newItineraryData)
+    console.log('%%%% App.jsx_handleAddItinerary %%%%', newItinerary)
     // setItineraries([...itineraries, newItineraryData])
     navigate('/itineraries')
   }

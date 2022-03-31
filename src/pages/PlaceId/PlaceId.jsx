@@ -71,9 +71,9 @@ const PlaceId = (props, handleReview) => {
             </ol>
           </nav>
 
-          <div className="max-w-2xl relative mx-auto px-4 grid items-center grid-cols-1 gap-y-16 gap-x-8 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8 lg:grid-cols-2">
-            <div>
-              <div className="absolute top-10">
+          <div className="max-w-2xl  mx-auto px-4 grid items-center grid-cols-1 gap-y-16 gap-x-8 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8 lg:grid-cols-2">
+            <div className="relative">
+              <div>
                 <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">{location.state.place.name}</h1>
                 <h2 className="mt-4 text-gray-500">
                   {location.state.place.url ? location.state.place.url : `website not available`}

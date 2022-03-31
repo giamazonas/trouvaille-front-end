@@ -90,11 +90,7 @@ function EditCity({ city, handleDeleteCity, handleUpdateCity }) {
           <div className="px-4 sm:px-0">
             <h1 className="text-xl font-medium leading-6 text-gray-900">Edit a city</h1>
             <br></br>
-            <p className="mt-1 text-md text-gray-600">Current info</p>
-            <p className="mt-1 text-md text-gray-600">{location.state.city.city}</p>
-            <p className="mt-1 text-md text-gray-600">{location.state.city.population}</p>
-            <p className="mt-1 text-md text-gray-600">{location.state.city.desc}</p>
-            <p className="mt-1 text-md text-gray-600">{location.state.city.walkable}</p>
+            <p className="mt-1 text-md text-gray-600">Edit {location.state.city.city}</p>
             <br></br>
             <Link to="/places" className="underline underline-offset-2 hover:font-bold">Cancel</Link>
           </div>
@@ -117,7 +113,7 @@ function EditCity({ city, handleDeleteCity, handleUpdateCity }) {
                     value={formData.city}
                     onChange={handleChange}
                     required
-                    placeholder={location.state.city.city}
+                    placeholder="required"
                   />
                 </div>
 
@@ -202,18 +198,18 @@ function EditCity({ city, handleDeleteCity, handleUpdateCity }) {
                     placeholder="required"
                     defaultValue={''}
                   />
-                  <p className="mt-2 text-sm text-gray-500"></p>
+                  {/* <p className="mt-2 text-sm text-gray-500"></p> */}
                 </div>
 
-                <div className="col-span-6">
+                <div className="d-grid">
                   <button
                     type="submit"
-                    className="block w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-500 disabled:bg-gray-200 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                    className="btn btn-primary btn-fluid"
                     onClick={(e) => handleSubmit(e, location.state.city._id)}
                     onChange={handleChange}
                     disabled={!validForm}
                   >
-                    Submit
+                    Edit City
                   </button>
                 </div>
                 </div>

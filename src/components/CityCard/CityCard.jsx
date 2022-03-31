@@ -23,10 +23,10 @@ function CityCard({ city }) {
         </div>
         <p className="mt-1 text-sm text-gray-700">
           <Link
-            className="editBtn"
+            className="italic underline underline-offset-2 hover:font-bold text-gray-800"
             to={`/cities/${city._id}/edit`}
             state={{ city }}
-          >Edit</Link>
+          >Manage</Link>
         </p>
       </div>
     </>

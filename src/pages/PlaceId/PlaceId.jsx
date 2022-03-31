@@ -1,7 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import * as placeService from '../../services/placeService';
 import { useLocation } from 'react-router-dom';
+<<<<<<< HEAD
 // import { MapBox } from '../../components/MapBox/MapBox';
+=======
+>>>>>>> 8fc227dc2e9be3c1d8946e74e79c457c7f57090a
 import styles from './PlaceId.module.css'
 
 const PlaceId = (props, handleReview) => {

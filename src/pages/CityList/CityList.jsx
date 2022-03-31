@@ -1,5 +1,3 @@
-import { useState, useRef, useEffect } from 'react'
-import styles from './CityList.module.css'
 import CityCard from '../../components/CityCard/CityCard'
 
 const CityList = props => {
@@ -14,7 +12,6 @@ const CityList = props => {
               <CityCard
               key={city._id + city.name}
               city={city}
-              // insert photo link
               handleUpdateCity={props.handleUpdateCity}
               handleDeleteCity={props.handleDeleteCity}
             />

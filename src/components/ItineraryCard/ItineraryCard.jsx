@@ -1,5 +1,7 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, Navigate, useNavigate } from 'react-router-dom'
+
 import * as itineraryService from '../../services/itineraries'
 import styles from './ItineraryCard.module.css'
 
@@ -17,6 +19,7 @@ const ItineraryCard = (props) => {
   hours.map((hour,i) =>(
     options[i]=({value: i, label: hour})
   ))
+
 
   useEffect(() => {
     formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)

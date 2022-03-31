@@ -28,7 +28,7 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start",  
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -51,7 +51,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001",
   "devDependencies": {
     "autoprefixer": "^10.4.4",
     "postcss": "^8.4.12",

@@ -1,12 +1,12 @@
-import * as tokenService from "./tokenService"
-const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/itineraries`
+import * as tokenService from "./tokenService";
+const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/itineraries`;
 
 function getAllItineraries() {
   return fetch(BASE_URL, {
     headers: {
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
-  }).then((res) => res.json())
+  }).then((res) => res.json());
 }
 
 function create(itinerary) {
@@ -16,7 +16,7 @@ function create(itinerary) {
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
     body: JSON.stringify(itinerary),
-  }).then((res) => res.json())
+  }).then((res) => res.json());
 }
 
 function deleteOne(id) {
@@ -25,14 +25,14 @@ function deleteOne(id) {
     headers: {
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
-  }).then((res) => res.json())
+  }).then((res) => res.json());
 }
 
 function getOne(id) {
   return fetch(`${BASE_URL}/${id}`, {
     headers: { Authorization: `Bearer ${tokenService.getToken()}` },
     method: "GET",
-  }).then((res) => res.json())
+  }).then((res) => res.json());
 }
 
 function update(itinerary) {
@@ -43,13 +43,7 @@ function update(itinerary) {
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
     body: JSON.stringify(itinerary),
-  }).then((res) => res.json())
+  }).then((res) => res.json());
 }
 
-export { 
-  getAllItineraries, 
-  create, 
-  deleteOne, 
-  getOne, 
-  update 
-}
+export { getAllItineraries, create, deleteOne, getOne, update };

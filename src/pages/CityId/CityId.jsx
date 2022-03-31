@@ -1,12 +1,10 @@
 // import { useState, useRef, useEffect } from 'react'
-import AddItinerary from '../../components/AddItinerary/AddItinerary'
 import * as cityService from '../../services/cityService'
 import { useState, useEffect } from 'react'
-import { useParams, useLocation, Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { MapBox } from '../../components/MapBox/MapBox'
 import PlaceCard from '../../components/PlaceCard/PlaceCard'
 import styles from './CityId.module.css'
-import Itineraries from '../ItineraryList/ItineraryList'
 import ItineraryCard from '../../components/ItineraryCard/ItineraryCard'
 
 const CityId = (props) => {
@@ -20,13 +18,10 @@ const CityId = (props) => {
     })
   }, [location.state.city._id])
 
-  console.log('cityDetails: ',cityDetails)
-
   return (
     <>
       <div >
         <div className={styles.placesContainer}>
-
         </div><br />
         <div className={styles.container}>
           {cityDetails ?
@@ -42,20 +37,15 @@ const CityId = (props) => {
             </>
           }
         </div>
-        <div className='itinerary-container'>
-
-        </div>
         <div className="flex content-center justify-center">
           {
             cityDetails &&
           <MapBox city={cityDetails?.city} state={cityDetails?.state} places={cityDetails?.places} />
           }
         </div>
-
         <div>
           <ItineraryCard city={cityDetails} />
         </div>
-
       <div><br /> <br />
         <h3 className="flex content-center justify-center">Places to go in {cityDetails?.city}</h3>
           {cityDetails?.places ?

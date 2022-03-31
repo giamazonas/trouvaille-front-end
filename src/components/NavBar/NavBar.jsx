@@ -53,7 +53,6 @@ const NavBar = ({ user, handleLogout }) => {
                           aria-hidden="true"
                         />
                       </Popover.Button>
-
                       <Transition
                         as={Fragment}
                         enter="transition ease-out duration-200"

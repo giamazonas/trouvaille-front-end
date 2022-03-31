@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { useRef, useEffect, useState } from 'react'
-import styles from './PlaceCard.module.css'
 
 function PlaceCard({ place }) {
   return (

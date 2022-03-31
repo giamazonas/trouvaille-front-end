@@ -30,7 +30,6 @@ const PlaceId = (props, handleReview) => {
   }
 
   const handleChange = evt => {
-    // console.log(formData)
     setFormData({ ...formData, [evt.target.name]: evt.target.value })
   }
   return (
@@ -100,7 +99,6 @@ const PlaceId = (props, handleReview) => {
             <h2>Loading Place Details...</h2>
           </>
         }
-
       </div>
     </>
   )

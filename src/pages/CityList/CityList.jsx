@@ -10,7 +10,6 @@ const CityList = props => {
           {props.cities.map(city => (
             <div key={city._id + city.name} className="group relative">
               <CityCard
-              key={city._id + city.name}
               city={city}
               handleUpdateCity={props.handleUpdateCity}
               handleDeleteCity={props.handleDeleteCity}

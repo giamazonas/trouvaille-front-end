@@ -52,6 +52,7 @@ const SignupForm = props => {
             <Link to="/" className="underline underline-offset-2 hover:font-bold">Go back to main</Link>
           </div>
         </div>
+
         <div className="mt-5 md:mt-0 md:col-span-2">
           <form
             autoComplete="off"
@@ -69,21 +70,26 @@ const SignupForm = props => {
                       value={name}
                       name="name"
                       onChange={handleChange}
+                      required
                       className="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      placeholder="required"
                     />
                   </div>
                   <div className="col-span-6">
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
                     <input
-                      type="text"
+                      type="email"
                       autoComplete="off"
                       id="email"
                       value={email}
                       name="email"
                       onChange={handleChange}
+                      required
+                      placeholder="required"
                       className="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                     />
                   </div>
+
                   <div className="col-span-6">
                     <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
                     <input
@@ -93,6 +99,8 @@ const SignupForm = props => {
                       value={password}
                       name="password"
                       onChange={handleChange}
+                      required
+                      placeholder="required"
                       className="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                     />
                   </div>
@@ -107,6 +115,8 @@ const SignupForm = props => {
                       value={passwordConf}
                       name="passwordConf"
                       onChange={handleChange}
+                      required
+                      placeholder="required"
                       className="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                     />
                   </div>

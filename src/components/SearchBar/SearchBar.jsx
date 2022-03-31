@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons'
 import styles from './SearchBar.module.css'
 
 const SearchBar = ({ placeholder, data }) => {
+  // const navigate = useNavigate()
   const [filteredData, setFilteredData] = useState([])
   const [searchInput, setSearchInput] = useState("")
 
@@ -15,6 +16,8 @@ const SearchBar = ({ placeholder, data }) => {
       return place.name.toLowerCase().includes(searchWord.toLowerCase())
     })
     searchWord ? setFilteredData(newFilter) : setFilteredData([])
+    // navigate(`/places/${place._id}`)
+    console.log('TEST SEARCH', searchWord)
   }
 
   const clearInput = () => {

@@ -2,7 +2,8 @@
 import * as cityService from '../../services/cityService'
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { MapBox } from '../../components/MapBox/MapBox'
+// import { MapBox } from '../../components/MapBox/MapBox'
+import MapBoxTwo  from '../../components/MapBox/MapBoxTwo'
 import PlaceCard from '../../components/PlaceCard/PlaceCard'
 import styles from './CityId.module.css'
 import ItineraryCard from '../../components/ItineraryCard/ItineraryCard'
@@ -38,10 +39,11 @@ const CityId = (props) => {
           }
         </div>
         <div className="flex content-center justify-center">
-          {
+          {/* {
             cityDetails &&
           <MapBox city={cityDetails?.city} state={cityDetails?.state} places={cityDetails?.places} />
-          }
+          } */}
+          <MapBoxTwo />
         </div>
         <div>
           <ItineraryCard city={cityDetails} handleAddItinerary={props.handleAddItinerary} />

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import styles from './CityCard.module.css'
 
 function CityCard({ city }) {
   return (
@@ -33,4 +32,4 @@ function CityCard({ city }) {
   )
 }
 
-export default CityCard
+export default CityCard;

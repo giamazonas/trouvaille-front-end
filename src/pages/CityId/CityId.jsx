@@ -1,17 +1,11 @@
 // import { useState, useRef, useEffect } from 'react'
-import AddItinerary from '../../components/AddItinerary/AddItinerary'
 import * as cityService from '../../services/cityService'
 import { useState, useEffect } from 'react'
-import { useParams, useLocation, Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { MapBox } from '../../components/MapBox/MapBox'
 import PlaceCard from '../../components/PlaceCard/PlaceCard'
 import styles from './CityId.module.css'
-import { constants } from 'buffer'
-import Itineraries from '../ItineraryList/ItineraryList'
 import ItineraryCard from '../../components/ItineraryCard/ItineraryCard'
-
-const MAPBOX_TOKEN = 'pk.eyJ1IjoibWF4bWF5OTQiLCJhIjoiY2wxMmVlNGswMGE0ZzNpcHdhajcxaWJpcSJ9.S4qg-xBnCdH5ji7yJC2Tyw' // Set your mapbox token here
-const API_URL = 'https://api.mapbox.com/geocoding/v5/'
 
 const CityId = (props) => {
   const location = useLocation()
@@ -23,13 +17,11 @@ const CityId = (props) => {
       setCityDetails(city)
     })
   }, [location.state.city._id])
-  // cityDetails.places ? console.log('::: CityId.jsx -- cityDetails :::',cityDetails) : console.log('loading cityDetails')
 
   return (
     <>
       <div >
         <div className={styles.placesContainer}>
-
         </div><br />
         <div className={styles.container}>
           {cityDetails ?
@@ -45,14 +37,14 @@ const CityId = (props) => {
             </>
           }
         </div>
-        <div className='itinerary-container'>
-
-        </div>
         <div className="flex content-center justify-center">
           {
             cityDetails &&
           <MapBox city={cityDetails?.city} state={cityDetails?.state} places={cityDetails?.places} />
           }
+        </div>
+        <div>
+          <ItineraryCard city={cityDetails} />
         </div>
       <div><br /> <br />
         <h3 className="flex content-center justify-center">Places to go in {cityDetails?.city}</h3>
@@ -73,7 +65,7 @@ const CityId = (props) => {
       <br />
       <br />
     </>
-  );
+  )
 }
 
-export default CityId;
+export default CityId

@@ -21,10 +21,11 @@ const Places = (props) => {
           {places.length ?
             places.map((place, i) => (
                 <div key={place._id + i} className="group relative">
-                  <PlaceCard   
+
+                  <PlaceCard
+
                     place={place}
                   />
-               {/* <p key={place._id}>{place.name}</p> */}
                 </div>
               ))
             :
@@ -33,7 +34,6 @@ const Places = (props) => {
               <Link to="/places/add">Add a Place</Link>
             </div>
           }
-
         </div>
       </div>
     </div>

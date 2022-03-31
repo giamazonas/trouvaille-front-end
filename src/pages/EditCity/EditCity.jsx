@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect, Component } from 'react'
-import { Link, useLocation, Navigate, useNavigate } from 'react-router-dom'
+import { useState, useRef, useEffect, } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import * as cityService from '../../services/cityService'
 import styles from './EditCity.module.css'
 
@@ -44,11 +44,6 @@ function EditCity({city, handleDeleteCity, handleUpdateCity}) {
     cityFormData.append('population', formData.population)
     cityFormData.append('walkable', formData.walkable)
     const updatedCity = await handleUpdateCity(location.state.city._id, cityFormData)
-
-    console.log(updatedCity)
-    // await handleUpdateCity(formData)
-
-    /// pass location.stat.city.id into placeformdata 
     navigate("/cities") 
   }
 
@@ -70,13 +65,6 @@ function EditCity({city, handleDeleteCity, handleUpdateCity}) {
   const handleChangePhoto = (evt) => {
     setFormData({...formData, photo: evt.target.files[0]})
   }
-
-  // async componentDidMount() {
-  //   const cityDetails = await getCityDetails();
-  //   this.setState({ results: cityDetails.results });
-  //   console.log(this.state.results)
-  // }
-
 
   return (
     <>
@@ -194,7 +182,6 @@ function EditCity({city, handleDeleteCity, handleUpdateCity}) {
         <h2>City info currently:</h2><br />
         {location.state.city._id ?
           <>
-
             <h2 className='city-details'>{location.state.city.city}</h2>
             <h3>{location.state.city.desc}</h3>
             <h4>{location.state.city.population}</h4>

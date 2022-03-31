@@ -1,12 +1,10 @@
-// import { useState, useRef, useEffect } from 'react'
 import * as cityService from '../../services/cityService'
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import MapBox from '../../components/MapBox/MapBox'
-// import MapBoxTwo  from '../../components/MapBox/MapBoxTwo'
 import PlaceCard from '../../components/PlaceCard/PlaceCard'
 import styles from './CityId.module.css'
-import ItineraryCard from '../../components/ItineraryCard/ItineraryCard'
+import AddItineraryCard from '../../components/AddItineraryCard/AddItineraryCard'
 
 const CityId = (props) => {
   const location = useLocation()
@@ -43,13 +41,9 @@ const CityId = (props) => {
             cityDetails &&
           <MapBox city={cityDetails?.city} state={cityDetails?.state} places={cityDetails?.places} />
           }
-          {/* {
-            cityDetails && 
-              <MapBoxTwo city={cityDetails?.city} state={cityDetails?.state} places={cityDetails?.places} />
-          } */}
         </div>
         <div>
-          <ItineraryCard city={cityDetails} handleAddItinerary={props.handleAddItinerary} />
+          <AddItineraryCard city={cityDetails} handleAddItinerary={props.handleAddItinerary} />
         </div>
       <div><br /> <br />
         <h3 className="flex content-center justify-center">Places to go in {cityDetails?.city}</h3>

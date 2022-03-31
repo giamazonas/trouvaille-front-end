@@ -4,8 +4,7 @@ import { useEffect, useState } from 'react'
 import { getCoordinates } from '../../services/forwardGeocodeApi'
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-
-const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN; // Set your mapbox token here
+const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 const API_URL = 'https://api.mapbox.com/geocoding/v5/'
 
 function MapBox(props) {

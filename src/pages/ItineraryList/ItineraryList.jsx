@@ -1,33 +1,30 @@
 import { useState, useEffect } from 'react'
-import * as itineraryService from '../../services/itineraries.js'
+// import * as itineraryService from '../../services/itineraries.js'
 import { Link } from 'react-router-dom'
-import ItineraryCard from '../../components/ItineraryCard/ItineraryCard.jsx'
+import ItineraryCard from '../../components/AddItineraryCard/AddItineraryCard.jsx'
 import styles from './ItineraryList.module.css'
 
-const ItineraryList = (props, handleAddItinerary, handleDeleteItinerary) => {
-  const [itineraries, setItineraries] = useState([])
-
-  useEffect(()=> {
-    itineraryService.getAllItineraries()
-    .then(itineraries => setItineraries(itineraries))
-  }, [])
+const ItineraryList = (props) => {
+  console.log(props.itineraries)
 
   return (
     <>
     <div className={styles.container}>
-      <br /><h1>My Itinerary</h1><br />
-      {props.itineraries.length ? 
+      <br /><h1>My Itineraries</h1><br />
+      {props.itineraries ?
         <>
-          {itineraries.map(itinerary =>
-            <ItineraryCard 
-              // user={props.user}
-              // key={itinerary._id}
-              // itinerary={itinerary}
-              // handleAddItinerary={handleAddItinerary}
-              // handleDeleteItinerary={handleDeleteItinerary}
-              // handleUpdateItinerary={handleUpdateItinerary}
-              />
-            )}
+          {props.itineraries.map((itinerary, i) =>
+            <div key={itinerary._id}>
+              {itinerary.name}
+              {itinerary.timePlace.map(place => (
+                <p>
+                  {place.time}: {place.places}
+                </p>
+              ))}
+              <br />
+            </div>
+          )}
+
         </>
       :
       <div>

@@ -25,7 +25,7 @@ const App = () => {
   const [cities, setCities] = useState([])
   const [city, setCity] = useState([])
   const [places, setPlaces] = useState([])
-  const [itineraries, setItineraries] = useState([])
+  const [itineraries, setItineraries] = useState({})
   const [reviews, setReviews] = useState([])
   const navigate = useNavigate()
   const [navItems, setNavItems] = useState([
@@ -60,13 +60,13 @@ const App = () => {
 
   /* ------------------------ vvv TEST ZONE vvv ------------------------ */
 
-  const handleShowCity = id => {
-    cityService.getOne(id)
-      .then(city => {
-        console.log(':::::: App.jsx -- handleShowCity ::::::', city)
-        //setCity(city)   // <-------- WHY DOES THIS GO INFINITE?
-      })
-  }
+  // const handleShowCity = id => {
+  //   cityService.getOne(id)
+  //     .then(city => {
+  //       console.log(':::::: App.jsx -- handleShowCity ::::::', city)
+  //       //setCity(city)   // <-------- WHY DOES THIS GO INFINITE?
+  //     })
+  // }
 
   /* ------------------------ ^^^ TEST ZONE ^^^ ------------------------ */
   
@@ -125,23 +125,24 @@ const App = () => {
   /* ----------------------------- ITINERARY ----------------------------- */
   const handleAddItinerary = async newItineraryData => {
     const newItinerary = await itineraryService.create(newItineraryData)
-    console.log('()()() handleAddItinerary_newItinerary ()()()', newItinerary)
     setItineraries([...itineraries, newItinerary])
     profileService.addItinerary(newItinerary.owner, newItinerary._id)
-    navigate('/itineraries')
+    navigate(`/itineraries/${user.profile}`)
   }
 
   useEffect(() => {
     if(user) {
-      itineraryService.getAllItineraries()
+      profileService.showItineraries(user.profile)
       .then(allItineraries => setItineraries(allItineraries))
     }
+    console.log('::: ITINERARIES ::: ',itineraries.itineraries)
+
   }, [user])
 
-  const handleDeleteItinerary = id => {
-    itineraryService.deleteOne(id)
-    .then(deletedItinerary => setItineraries(itineraries.filter(itinerary => itinerary._id !== id)))
-  }
+  // const handleDeleteItinerary = id => {
+  //   itineraryService.deleteOne(id)
+  //   .then(deletedItinerary => setItineraries(itineraries.filter(itinerary => itinerary._id !== id)))
+  // }
 
   // ---------------------------  ROUTES  ----------------------------------
 
@@ -153,6 +154,7 @@ const App = () => {
             cities={cities}
             navItems={navItems}
             places={places}
+            profileId={user.profile}
           />
           <Routes>
             <Route 
@@ -174,7 +176,7 @@ const App = () => {
                   <CityId
                     city={city}
                     places={places}
-                    handleShowCity={handleShowCity}
+                    // handleShowCity={handleShowCity}
                     handleAddItinerary={handleAddItinerary}
                   />
                 }
@@ -343,13 +345,14 @@ const App = () => {
                 } />
               {/* ----------------- ITINERARIES  ----------------- */}
               <Route
-                path="/itineraries"
+                path="/itineraries/:id"
                 element={
                   user ? 
                     <ItineraryList 
                       cities={cities}
                       places={places}
-                      itineraries={itineraries}
+                      itineraries={itineraries.itineraries}
+                      profile={user.profile}
                     /> 
                   : 
                     <Navigate 
@@ -361,4 +364,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App

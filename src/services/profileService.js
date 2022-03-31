@@ -14,10 +14,22 @@ function addItinerary(profileId, itineraryId) {
   return fetch(`${BASE_URL}/${profileId}/${itineraryId}`, {
     method: "PATCH",
     headers: { Authorization: `Bearer ${tokenService.getToken()}` },
-  }).then((res) => res.json());
+  })
+  .then(res => res.json())
+}
+
+function showItineraries(id) {
+    return fetch(`${BASE_URL}/itineraries/${id}`, {
+    headers: {
+      method: "GET",
+      Authorization: `Bearer ${tokenService.getToken()}`,
+    },
+  })
+  .then(res => res.json())
 }
 
 export { 
   getAllProfiles,
-  addItinerary
+  addItinerary,
+  showItineraries
 }

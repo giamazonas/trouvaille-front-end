@@ -6,12 +6,8 @@ import styles from './ItineraryCard.module.css'
 const ItineraryCard = (props) => {
   const formElement = useRef()
   const [validForm, setValidForm] = useState(false)
-  // const navigate = useNavigate()
   const [nameData, setNameData] = useState()
-  const [itineraryData, setItineraryData] = useState([{
-    // name:'',
-    // timePlace: [{}]
-  }])
+  const [itineraryData, setItineraryData] = useState([{}])
 
   const hours = ['12 am', '1 am', '2 am', '3 am', '4 am', '5 am', '6 am', '7 am', '8 am', '9 am', '10 am', '11 am','12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm', '8 pm', '9 pm', '10 pm', '11 pm']
   let options =[{}]
@@ -26,21 +22,15 @@ const ItineraryCard = (props) => {
   const handleSubmit = evt => {
     evt.preventDefault()
     itineraryData[24] = nameData
-    // console.log(itineraryData)
     props.handleAddItinerary(itineraryData)
   }
 
   const handleChange = (evt) => {
-    // console.log('itinerearyData: ',itinerearyData)
-    // setItineraryData({...itineraryData, [evt.target.value]: evt.target.name })
     setItineraryData({...itineraryData, [evt.target.value]: evt.target.name })
   }
   const handleTextChange = evt => {
     setNameData({ ...nameData, [evt.target.name]: evt.target.value })
   }
-  // const handleTextChange = evt => {
-  //   setItineraryData({ ...itineraryData.name, [evt.target.name]: evt.target.value })
-  // }
 
   return (
     <div>

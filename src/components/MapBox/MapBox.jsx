@@ -12,48 +12,7 @@ function MapBox(props) {
   const [cityDetails, setCityDetails] = useState({})
   const [placeLocation, setPlaceLocation] = useState([])
 
-<<<<<<< HEAD
   let cityLatLong = `${API_URL}mapbox.places/${props.city.replaceAll(' ', '%20')}/${props.state}.json?&access_token=${MAPBOX_TOKEN}`
-=======
-<<<<<<< HEAD
-  // let cityLatLong = `${API_URL}mapbox.places/${props.city.replaceAll(' ', '%20')}/${props.state}.json?&access_token=${MAPBOX_TOKEN}`
-
-  /* #################vvvv CIRCLE BACK FOR A MORE PROFESSIONAL FIX vvvv################# */
-  // function forceReload() {
-  //   const reloadCount = sessionStorage.getItem('reloadCount');
-  //   if(reloadCount < 1) {
-  //     sessionStorage.setItem('reloadCount', String(reloadCount + 1));
-  //     window.location.reload();
-  //   } else {
-  //     sessionStorage.removeItem('reloadCount');
-  //   }
-  // }
-  /* #################^^^^ CIRCLE BACK FOR A MORE PROFESSIONAL FIX ^^^^################# */
-
-  // useEffect(() => {
-  //   props.places &&
-  //     getCoordinates(cityLatLong)
-  //       .then(data => data.features)
-  //       .then(data => data[0].center)
-  //       .then(data => {
-  //         setCityDetails(data)
-  //       })
-  //   const newPlaces = []
-  //   props.places?.forEach(place => {
-  //     (getCoordinates(`${API_URL}mapbox.places/${props.city.replaceAll(' ', '%20')}/${place.address.replaceAll(' ', '%20')}.json?&access_token=${MAPBOX_TOKEN}`))
-  //       .then(data => data.features)
-  //       .then(data => data[0].center)
-  //       .then(data => newPlaces.push(data))
-  //       .catch(err => console.log('::: ERROR :::', err))
-  //   })
-  //   setPlaceLocation(newPlaces)
-  //   //    v----------------  Force a Reload to get markers to appear
-  //   // forceReload()
-
-  // }, [props.places, cityLatLong, props.city])
-=======
-//   let cityLatLong = `${API_URL}mapbox.places/${props.city.replaceAll(' ', '%20')}/${props.state}.json?&access_token=${MAPBOX_TOKEN}`
->>>>>>> 26b604b00f2ae2f00b45d8a0f9f991b8688c72fd
 
   /* #################vvvv CIRCLE BACK FOR A MORE PROFESSIONAL FIX vvvv################# */
   function forceReload() {
@@ -85,14 +44,9 @@ function MapBox(props) {
     })
     setPlaceLocation(newPlaces)
     //    v----------------  Force a Reload to get markers to appear
-    // forceReload()
+    forceReload()
 
-<<<<<<< HEAD
   }, [props.places, cityLatLong, props.city])
-=======
-//   }, [props.places, cityLatLong, props.city])
->>>>>>> 8fc227dc2e9be3c1d8946e74e79c457c7f57090a
->>>>>>> 26b604b00f2ae2f00b45d8a0f9f991b8688c72fd
 
   return (
     <>

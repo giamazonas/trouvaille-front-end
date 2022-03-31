@@ -301,7 +301,7 @@ const App = () => {
             element={
               user ?
                 <PlaceId 
-                  city={cities}
+                  cities={cities}
                   places={places} 
                   handleUpdatePlace={handleUpdatePlace}
                   handleDeletePlace={handleDeletePlace}

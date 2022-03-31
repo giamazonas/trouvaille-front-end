@@ -32,6 +32,8 @@ const PlaceId = (props, handleReview) => {
   const handleChange = evt => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value })
   }
+
+  console.log('PRACTICE')
   return (
     <>
       <img
@@ -44,10 +46,16 @@ const PlaceId = (props, handleReview) => {
           <>
             <h2>{location.state.place.name}</h2>
             <h4>{location.state.place.address}</h4>
-            <h4>{location.state.place.city.city}</h4>
+            {/* <h4>{location.state.place.city.city}</h4> */}
             <h4>{location.state.place.type}</h4>
             <h4>{location.state.place.url}</h4><br />
-            <h4> -- Reviews -- {location.state.place.reviews}</h4><br /><br />
+            <h4> -- Reviews -- </h4>
+            {location.state.place.reviews.map((review) => 
+                <li> {review.comment} </li>
+
+                )   
+              } 
+            <br /> <br />
             <div className="review-container">
               <h2>Add a Review! </h2><br />
                 <form autoComplete = 'off' ref={formElement} onSubmit={handleSubmit} >

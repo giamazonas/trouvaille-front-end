@@ -47,6 +47,7 @@ function search(formData) {
 }
 
 function createReview(data) {
+  console.log('SERVICES', data)
   return fetch(`${BASE_URL}/${data._id}/reviews`, {
     method: "POST",
     headers: {

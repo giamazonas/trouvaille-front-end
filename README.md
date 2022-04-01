@@ -34,6 +34,7 @@ Welcome page
 ![home page](/trouvaille-front-end/public/trouvaille.png)
 <br>
 <br>
+
 places!
 
 ![add new](/trouvaille-front-end/public/places.png)

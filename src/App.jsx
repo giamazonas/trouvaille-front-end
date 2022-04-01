@@ -157,7 +157,7 @@ console.log(places)
     }
   }, [user])
   
-  console.log('::::::::',itineraries)
+  // console.log('::::::::',itineraries)
   // ---------------------------  ROUTES  ----------------------------------
 
   return (

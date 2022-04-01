@@ -1,8 +1,5 @@
-import { useState, useEffect } from 'react'
-import * as placeService from '../../services/placeService.js'
 import { Link } from 'react-router-dom'
 import PlaceCard from '../../components/PlaceCard/PlaceCard'
-import styles from './places.module.css'
 
 const Places = ({places}) => {
 
@@ -15,19 +12,17 @@ const Places = ({places}) => {
           {places.length ?
             places.map((place, i) => (
                 <div key={place._id + i} className="group relative">
-
                   <PlaceCard
-
                     place={place}
                   />
                 </div>
               ))
             :
-            <div>
-              <p>No places yet</p>
-              <Link to="/places/add">Add a Place</Link>
-            </div>
-          }
+              <div>
+                <p>No places yet</p>
+                <Link to="/places/add">Add a Place</Link>
+              </div>
+            }
         </div>
       </div>
     </div>

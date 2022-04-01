@@ -44,7 +44,7 @@ const App = () => {
   }
 
     useEffect(() => {
-      // console.log('CITY USE EFFECT')
+      console.log('CITY USE EFFECT')
       cityService.getAll()
       .then(allCities => setCities(allCities))
       placeService.getAllPlaces()
@@ -52,12 +52,12 @@ const App = () => {
     }, [])
 
     useEffect(() => {
-      // console.log('ITINERARY USE EFFECT')
+      console.log('ITINERARY USE EFFECT')
       if(user) {
         profileService.showItineraries(user.profile)
         .then(allItineraries => setItineraries(allItineraries))
       }
-      // console.log('::: ITINERARIES ::: ',itineraries)
+      console.log('::: ITINERARIES ::: ',itineraries)
       
     }, [user])
 
@@ -127,7 +127,7 @@ const App = () => {
     navigate(`/itineraries/${user.profile}`)
   }
 
-// console.log(places)
+console.log(places)
   useEffect(() => {
     if(user) {
       profileService.showItineraries(user.profile)
@@ -137,7 +137,7 @@ const App = () => {
     }
   }, [user])
   
-  // console.log('::::::::',itineraries)
+  console.log('::::::::',itineraries)
 
   // ---------------------------  ROUTES  ----------------------------------
 

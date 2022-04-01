@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import styles from './AddItineraryCard.module.css'
+import styles from './ItineraryCard.module.css'
 
 const ItineraryCard = (props) => {
   const formElement = useRef()

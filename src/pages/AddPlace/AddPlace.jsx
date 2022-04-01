@@ -149,8 +149,6 @@ function AddPlace(props) {
                     name="url"
                     value={formData.url}
                     onChange={handleChange}
-                    required
-                    placeholder="required"
                   />
                 </div>
 

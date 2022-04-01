@@ -1,17 +1,8 @@
-import { useState, useEffect } from 'react'
-import * as placeService from '../../services/placeService.js'
 import { Link } from 'react-router-dom'
 import PlaceCard from '../../components/PlaceCard/PlaceCard'
-import SearchBar from "../../components/SearchBar/SearchBar";
+import SearchBar from '../../components/SearchBar/SearchBar'
 
-
-const Places = (props) => {
-  const [places, setPlaces] = useState([])
-
-  useEffect(() => {
-    placeService.getAllPlaces()
-      .then(places => setPlaces(places))
-  }, [])
+const Places = ({places}) => {
 
   return (
     <>
@@ -28,17 +19,18 @@ const Places = (props) => {
             {places.length ?
               places.map((place, i) => (
                 <div key={place._id + i} className="group relative">
-                  <PlaceCard place={place} />
+                  <PlaceCard
+                    place={place}
+                  />
                 </div>
               ))
-              :
+            :
               <div>
                 <p>No places yet</p>
                 <Link to="/places/add">Add a Place</Link>
               </div>
             }
-          </div>
-        </div>
+        </div> </div>
       </div>
     </>
   )

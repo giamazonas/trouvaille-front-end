@@ -1,6 +1,3 @@
-import styles from './Landing.module.css'
-import MapBoxTwo from '../../components/MapBox/MapBoxTwo'
-
 const Landing = ({ user }) => {
   return (
     <div className="min-h-full flex items-center justify-center px-4 sm:px-6 lg:px-8">

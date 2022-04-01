@@ -31,7 +31,7 @@ const ItineraryList = (props) => {
                         <div className="bg-gray-50 px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                           <dt className="text-sm font-medium text-gray-500">
                             { parseInt(place.time) >= 12 ? ( parseInt(place.time) > 13 ? `${parseInt(place.time) - 12}:00 p.m` : `${place.time}:00 p.m`) : `${place.time}:00 a.m` }
-                         </dt>
+                          </dt>
                           <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">at {place.places}</dd>
                         </div>
                       </dl>

@@ -15,8 +15,11 @@ const PlaceId = (props, handleReview) => {
   },
   )
 
+  console.log('HELLO', location.state.place._id)
+  
   useEffect(() => {
-    placeService.getOne(location.state.place.id)
+    console.log('FIX ME')
+    placeService.getOne(location.state.place._id)
       .then(place => setPlaceDetails(place))
   }, [])
 
@@ -44,7 +47,7 @@ const PlaceId = (props, handleReview) => {
           </div>
           <nav aria-label="Breadcrumb" className="py-3">
             <ol role="list" className="max-w-2xl mx-auto px-4 flex items-center space-x-2 sm:px-6 lg:max-w-7xl lg:px-8">
-              <li key={location.state.place.id}>
+              <li key={location.state.place._id}>
                 <div className="flex items-center">
                   <p className="mr-2 text-sm font-medium text-gray-900">
                     {location.state.place.type}

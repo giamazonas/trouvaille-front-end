@@ -20,60 +20,61 @@ const CityId = (props) => {
   }, [location.state.city._id])
 
   return (
-    <div className="min-h-full">
-      <header className="bg-white">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900">{cityDetails?.city}</h1>
-        </div>
-      </header>
+    <div className="bg-white">
+      <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <header className="bg-white">
+          <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">{cityDetails?.city}</h2>
+        </header>
 
-      <div className="relative max-w-7xl mx-auto px-4 grid items-center grid-cols-1 gap-y-8 gap-x-4 sm:px-4 sm:py-2 lg:max-w-7xl lg:px-8 lg:grid-cols-3">
+        <div className="mt-6 lg:grid grid-cols-3 xl:gap-x-8">
           {cityDetails ?
             <>
-              <div className="col-span-2 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
-                <h3>{cityDetails?.desc}</h3>
+              <div className="sm:gap-y-8 lg:col-span-2 gap-x-8">
+                <h3 className="mt-2 pr-3 text-sm text-gray-600">{cityDetails?.desc}</h3>
               </div>
-              <div className="col-span-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
-                <h4>Population: {cityDetails?.population}</h4>
-                <h4>Population: {cityDetails?.population}</h4>
-                <h4>Walkable? {cityDetails?.walkable ? 'you can walk!' : 'get a bike'}</h4><br />
+              <div className="sm:gap-y-8 lg:col-span-1 gap-x-8">
+                <p className="mt-2 text-sm text-gray-500">Population: </p>
+                <p className="font-small text-gray-900">{cityDetails?.population}</p>
+                <p className="mt-2 text-sm text-gray-500">Walkable? </p>
+                <p className="font-small text-gray-900"> {cityDetails?.walkable ? 'You can walk!' : 'Get a bike'} </p>
               </div>
             </>
             :
             <div>
-              <h2>Loading City Details...</h2>
+              <p className="font-medium text-gray-900">Loading City Details...</p>
             </div>
           }
 
-
-        <div className="grid grid-cols-2">
-          <div>
-            {
-              cityDetails &&
-              <MapBox city={cityDetails?.city} state={cityDetails?.state} places={cityDetails?.places} />
-            }
-            {/* {
+          <div className="px-2 sm:gap-y-16 lg:col-span-2 mt-2 gap-x-8">
+            <div>
+              {
+                cityDetails &&
+                <MapBox className="w-full h-full object-center object-cover lg:w-full lg:h-full" city={cityDetails?.city} state={cityDetails?.state} places={cityDetails?.places} />
+              }
+              {/* {
             cityDetails && 
               <MapBoxTwo city={cityDetails?.city} state={cityDetails?.state} places={cityDetails?.places} />
           } */}
+            </div>
           </div>
-        </div>
-        <div className="grid grid-cols-1">
-          <ItineraryCard city={cityDetails} handleAddItinerary={props.handleAddItinerary} />
-        </div>
-        <div><br /> <br />
-          <h3 className="flex content-center justify-center">Places to go in {cityDetails?.city}</h3>
-          {cityDetails?.places ?
-            <div className="flex content-center justify-center">
-              {cityDetails?.places.map(place => (
-                <PlaceCard key={place._id} place={place} />
-              ))}
-            </div>
-            :
-            <div>
-              <p>Loading Places ...</p>
-            </div>
-          }
+
+          <div className="shadow-sm sm:gap-y-16 lg:col-span-1 mt-2 gap-x-8 border-2">
+            <ItineraryCard city={cityDetails} handleAddItinerary={props.handleAddItinerary} />
+          </div>
+          <div><br /> <br />
+            <h3 className="flex content-center justify-center">Places to go in {cityDetails?.city}</h3>
+            {cityDetails?.places ?
+              <div className="flex content-center justify-center">
+                {cityDetails?.places.map(place => (
+                  <PlaceCard key={place._id} place={place} />
+                ))}
+              </div>
+              :
+              <div>
+                <p>Loading Places ...</p>
+              </div>
+            }
+          </div>
         </div>
       </div>
     </div>

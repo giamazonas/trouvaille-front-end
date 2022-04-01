@@ -302,12 +302,12 @@ const NavBar = ({ user, handleLogout }) => {
                       >
                         <span className="ml-3 text-base font-medium text-gray-900">My Itineraries</span>
                       </a>
-                      <a
+                      {/* <a
                         href="/starred"
                         className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                       >
                         <span className="ml-3 text-base font-medium text-gray-900">Starred Places</span>
-                      </a>
+                      </a> */}
                     </nav>
                   </div>
                 </div>

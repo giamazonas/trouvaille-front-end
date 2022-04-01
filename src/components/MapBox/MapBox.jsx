@@ -50,7 +50,7 @@ function MapBox(props) {
 
   return (
     <>
-      <div className='mapbox-container'>
+      <div className="w-full min-h-60 bg-gray-200 overflow-hidden lg:h-200 lg:aspect-none">
         {cityDetails.length ?
           <Map
             initialViewState={{

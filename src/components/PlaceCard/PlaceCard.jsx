@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 
-
 function PlaceCard({ place }) {
   return (
     <>

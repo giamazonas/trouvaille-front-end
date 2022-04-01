@@ -7,8 +7,6 @@ import { ChevronDownIcon, XIcon } from '@heroicons/react/solid'
 import { MenuIcon } from '@heroicons/react/outline'
 import SearchBar from "../SearchBar/SearchBar";
 import SearchBarCity from "../SeachBarCity/SearchBarCity"; 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ')
@@ -94,19 +92,6 @@ const NavBar = ({ user, handleLogout, profileId }) => {
                               </div>
                             </div>
                           </div>
-                          {/* <div className="px-5 py-5 bg-gray-50 sm:px-8 sm:py-8">
-                              <div>
-                                <h3 className="text-sm tracking-wide font-medium text-gray-500 uppercase">Admin</h3>
-                                <ul role="list" className="mt-4 space-y-4">
-                                  <li className="text-base truncate">
-                                    <a href="/cities/add" className="font-medium text-gray-900 hover:text-gray-700">
-                                      Add a City
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div> */}
-
                         </Popover.Panel>
                       </Transition>
                     </>

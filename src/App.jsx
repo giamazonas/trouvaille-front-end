@@ -26,7 +26,6 @@ const App = () => {
   const [city, setCity] = useState([])
   const [places, setPlaces] = useState([])
   const [itineraries, setItineraries] = useState([])
-  const [reviews, setReviews] = useState([])
   const navigate = useNavigate()
   const [navItems, setNavItems] = useState([
     { url: '/cities', name: 'Cities' },
@@ -51,7 +50,7 @@ const App = () => {
       placeService.getAllPlaces()
       .then(allPlaces => setPlaces(allPlaces))
     }, [])
-    
+
     useEffect(() => {
       console.log('ITINERARY USE EFFECT')
       if(user) {
@@ -68,18 +67,6 @@ const App = () => {
     setCities([...cities, newCity])
     navigate('/cities')
   }
-
-  /* ------------------------ vvv TEST ZONE vvv ------------------------ */
-
-  // const handleShowCity = id => {
-  //   cityService.getOne(id)
-  //     .then(city => {
-  //       console.log(':::::: App.jsx -- handleShowCity ::::::', city)
-  //       //setCity(city)   // <-------- WHY DOES THIS GO INFINITE?
-  //     })
-  // }
-
-  /* ------------------------ ^^^ TEST ZONE ^^^ ------------------------ */
   
     const handleDeleteCity = id => {
       cityService.deleteOne(id)
@@ -140,11 +127,17 @@ const App = () => {
     navigate(`/itineraries/${user.profile}`)
   }
 
-
-  // const handleDeleteItinerary = id => {
-  //   itineraryService.deleteOne(id)
-  //   .then(deletedItinerary => setItineraries(itineraries.filter(itinerary => itinerary._id !== id)))
-  // }  
+console.log(places)
+  useEffect(() => {
+    if(user) {
+      profileService.showItineraries(user.profile)
+      .then(allItineraries => {
+        setItineraries([allItineraries])
+      })
+    }
+  }, [user])
+  
+  console.log('::::::::',itineraries)
 
   // ---------------------------  ROUTES  ----------------------------------
 
@@ -178,7 +171,6 @@ const App = () => {
                   <CityId
                     city={city}
                     places={places}
-                    // handleShowCity={handleShowCity}
                     handleAddItinerary={handleAddItinerary}
                   />
                 }
@@ -257,7 +249,6 @@ const App = () => {
                         city={city}
                         places={places}
                         itineraries={itineraries}
-                        // handleShowCity={handleShowCity}
                         handleAddItinerary={handleAddItinerary}
                       />
                     :

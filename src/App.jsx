@@ -26,7 +26,6 @@ const App = () => {
   const [city, setCity] = useState([])
   const [places, setPlaces] = useState([])
   const [itineraries, setItineraries] = useState([])
-  const [reviews, setReviews] = useState([])
   const navigate = useNavigate()
   const [navItems, setNavItems] = useState([
     { url: '/cities', name: 'Cities' },
@@ -51,7 +50,7 @@ const App = () => {
       placeService.getAllPlaces()
       .then(allPlaces => setPlaces(allPlaces))
     }, [])
-    
+
 
     useEffect(() => {
       console.log('ITINERARY USE EFFECT')
@@ -69,18 +68,6 @@ const App = () => {
     setCities([...cities, newCity])
     navigate('/cities')
   }
-
-  /* ------------------------ vvv TEST ZONE vvv ------------------------ */
-
-  // const handleShowCity = id => {
-  //   cityService.getOne(id)
-  //     .then(city => {
-  //       console.log(':::::: App.jsx -- handleShowCity ::::::', city)
-  //       //setCity(city)   // <-------- WHY DOES THIS GO INFINITE?
-  //     })
-  // }
-
-  /* ------------------------ ^^^ TEST ZONE ^^^ ------------------------ */
   
     const handleDeleteCity = id => {
       cityService.deleteOne(id)
@@ -141,17 +128,11 @@ const App = () => {
     navigate(`/itineraries/${user.profile}`)
   }
 
-
-  // const handleDeleteItinerary = id => {
-  //   itineraryService.deleteOne(id)
-  //   .then(deletedItinerary => setItineraries(itineraries.filter(itinerary => itinerary._id !== id)))
-  // }
 console.log(places)
   useEffect(() => {
     if(user) {
       profileService.showItineraries(user.profile)
       .then(allItineraries => {
-        // console.log('all itinerary',allItineraries)
         setItineraries([allItineraries])
       })
     }
@@ -168,7 +149,6 @@ console.log(places)
             cities={cities}
             navItems={navItems}
             places={places}
-            // profileId={user.profile}
           />
           <Routes>
             <Route 
@@ -190,7 +170,6 @@ console.log(places)
                   <CityId
                     city={city}
                     places={places}
-                    // handleShowCity={handleShowCity}
                     handleAddItinerary={handleAddItinerary}
                   />
                 }
@@ -269,7 +248,6 @@ console.log(places)
                         city={city}
                         places={places}
                         itineraries={itineraries}
-                        // handleShowCity={handleShowCity}
                         handleAddItinerary={handleAddItinerary}
                       />
                     :
@@ -353,19 +331,6 @@ console.log(places)
                     />
                 }
                 />
-
-              {/* <Route
-                path='/places/:id/edit'
-                element={
-                  user ?
-                    <EditPlace
-                      places={places}
-                      handleUpdatePlace={handleUpdatePlace}
-                      handleDeletePlace={handleDeletePlace}
-                    />
-                  :
-                    <Navigate to="/login" />
-                } /> */}
               {/* ----------------- ITINERARIES  ----------------- */}
               <Route
                 path="/itineraries/:id"

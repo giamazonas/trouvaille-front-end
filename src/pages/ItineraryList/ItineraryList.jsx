@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import styles from './ItineraryList.module.css'
-import ItineraryCard from '../../components/AddItineraryCard/AddItineraryCard.jsx'
 
 const ItineraryList = (props) => {
   console.log(props)

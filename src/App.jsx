@@ -18,7 +18,6 @@ import CityId from './pages/CityId/CityId'
 import Places from './pages/Places/places'
 import AddPlace from './pages/AddPlace/AddPlace'
 import PlaceId from './pages/PlaceId/PlaceId'
-import EditPlace from './pages/EditPlace/EditPlace'
 import ItineraryList from './pages/ItineraryList/ItineraryList'
 
 const App = () => {
@@ -44,9 +43,6 @@ const App = () => {
   const handleSignupOrLogin = () => {
     setUser(authService.getUser())
   }
-  
-  /* ----------------------------- CITY ----------------------------- */
-  
 
     useEffect(() => {
       console.log('CITY USE EFFECT')
@@ -67,8 +63,6 @@ const App = () => {
       
   
     }, [user])
-  
-
 
   const handleAddCity = async newCityData => {
     const newCity = await cityService.create(newCityData)
@@ -91,7 +85,6 @@ const App = () => {
     const handleDeleteCity = id => {
       cityService.deleteOne(id)
         .then(deletedCity => setCities(cities.filter(city => city._id !== deletedCity._id)))
-        navigate('/cities')
     }
   
     const handleUpdateCity = (id, updatedCityData) => {
@@ -178,6 +171,39 @@ console.log(places)
             // profileId={user.profile}
           />
           <Routes>
+            <Route 
+              path='/cities' 
+              element={
+                <CityList 
+                  cities={cities} />}
+            />
+            <Route
+              path='/cities/add'
+              element={
+                <AddCity 
+                  handleAddCity={handleAddCity}
+                  user={user}/>
+                } /> 
+              <Route
+                path='cities/:id'
+                element={
+                  <CityId
+                    city={city}
+                    places={places}
+                    // handleShowCity={handleShowCity}
+                    handleAddItinerary={handleAddItinerary}
+                  />
+                }
+              />
+          <Route
+            path='cities/:id/edit'
+            element={
+              <EditCity
+                cities={cities}
+                user={user}
+                handleUpdateCity={handleUpdateCity}
+                handleDeleteCity={handleDeleteCity} />}
+              />
               <Route 
                 path="/" 
                 element={
@@ -201,12 +227,7 @@ console.log(places)
               />
               <Route
                 path="/profiles"
-                element={
-                  user ? 
-                    <Profiles /> 
-                  : 
-                    <Navigate to="/login" 
-                    />}
+                element={user ? <Profiles /> : <Navigate to="/login" />}
               />
               <Route
                 path="/changePassword"
@@ -216,30 +237,28 @@ console.log(places)
                     handleSignupOrLogin={handleSignupOrLogin} 
                     /> 
                   : 
-                    <Navigate to="/login" 
+                    <Navigate 
+                      to="/login" 
                     />}
               />
               {/* -------------- CITIES -------------------- */}
               <Route path='/cities'
                 element={
                   user ?
-                    <CityList 
-                    cities={cities} 
-                    />
+                    <CityList cities={cities} />
                   :
-                    <Navigate to="/login" 
-                    />} 
-              />
+                    <Navigate to="/login" />
+                } />
               <Route
                 path='/cities/add'
                 element={
                   user ?
                     <AddCity
                       handleAddCity={handleAddCity}
-                      user={user}
                     />
                   :
                     <Navigate to="/login" />
+
                   } 
                 />
                 <Route
@@ -255,15 +274,14 @@ console.log(places)
                       />
                     :
                     <Navigate to="/login" />
-                    }
-                />
+                }
+              />
               <Route
                 path='cities/:id/edit'
                 element={
                   user ?
                     <EditCity
                       cities={cities}
-                      user={user}
                       handleUpdateCity={handleUpdateCity}
                       handleDeleteCity={handleDeleteCity}
                     />
@@ -271,7 +289,17 @@ console.log(places)
                     <Navigate to="/login" />
                 }
               />
-
+              <Route
+                path='/cities'
+                element={
+                  user ?
+                    <CityList
+                      cities={cities}
+                    />
+                  :
+                    <Navigate to="/login"
+                    />}
+              />
               {/* -------------  PLACES  -------------------- */}
               <Route
                 path="/places"
@@ -300,6 +328,7 @@ console.log(places)
               <Route
                 path='/cities/:cityId/:placeId'
                 element={
+
                   user ?
                     <Places
                       cities={cities}
@@ -324,6 +353,11 @@ console.log(places)
                     />
                 }
                 />
+              :
+                <Navigate 
+                  to="/login" />
+            }
+            />
               <Route
                 path='/places/:id/edit'
                 element={
@@ -335,8 +369,7 @@ console.log(places)
                     />
                   :
                     <Navigate to="/login" />
-                } 
-                />
+                } />
               {/* ----------------- ITINERARIES  ----------------- */}
               <Route
                 path="/itineraries/:id"

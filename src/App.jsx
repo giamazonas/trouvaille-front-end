@@ -51,7 +51,6 @@ const App = () => {
       .then(allPlaces => setPlaces(allPlaces))
     }, [])
 
-
     useEffect(() => {
       console.log('ITINERARY USE EFFECT')
       if(user) {
@@ -60,8 +59,8 @@ const App = () => {
       }
       console.log('::: ITINERARIES ::: ',itineraries)
       
-  
     }, [user])
+
 
   const handleAddCity = async newCityData => {
     const newCity = await cityService.create(newCityData)
@@ -139,6 +138,7 @@ console.log(places)
   }, [user])
   
   console.log('::::::::',itineraries)
+
   // ---------------------------  ROUTES  ----------------------------------
 
   return (
@@ -149,6 +149,7 @@ console.log(places)
             cities={cities}
             navItems={navItems}
             places={places}
+            profileId={user.profile}
           />
           <Routes>
             <Route 
@@ -306,7 +307,6 @@ console.log(places)
               <Route
                 path='/cities/:cityId/:placeId'
                 element={
-
                   user ?
                     <Places
                       cities={cities}
@@ -331,6 +331,18 @@ console.log(places)
                     />
                 }
                 />
+              {/* <Route
+                path='/places/:id/edit'
+                element={
+                  user ?
+                    <EditPlace
+                      places={places}
+                      handleUpdatePlace={handleUpdatePlace}
+                      handleDeletePlace={handleDeletePlace}
+                    />
+                  :
+                    <Navigate to="/login" />
+                } /> */}
               {/* ----------------- ITINERARIES  ----------------- */}
               <Route
                 path="/itineraries/:id"

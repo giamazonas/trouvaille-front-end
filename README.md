@@ -35,6 +35,7 @@ Welcome page
 <img src ="https://imgur.com/QTJIyQ6.png" alt="welcome page" width="400"/>
 <br>
 <br>
+
 places!
 
 
@@ -90,7 +91,6 @@ ___________________
 - pop up cards for places on the map(interactive)
 - shared/co-owned itineraries
 - MAILCHECK API (only real emails can log in)
-- add co-owner option to itinerary
 - add weather api to city model
 - add transportation api
 - add events

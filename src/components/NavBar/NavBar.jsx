@@ -86,10 +86,6 @@ const NavBar = ({ user, handleLogout, profileId }) => {
                                   <p className="mt-1 text-sm text-gray-500">Add a new city</p>
                                 </div>
                               </a>
-                              <div className="ml-4">
-                                <p className="text-base font-medium text-gray-900">Quick Search</p>
-                                <SearchBarCity placeholder="Search here" data={cities} />
-                              </div>
                             </div>
                           </div>
                           {/* <div className="px-5 py-5 bg-gray-50 sm:px-8 sm:py-8">
@@ -160,10 +156,6 @@ const NavBar = ({ user, handleLogout, profileId }) => {
                                   <p className="mt-1 text-sm text-gray-500">Add a new place</p>
                                 </div>
                               </a>
-                              <div className="ml-4">
-                                <p className="text-base font-medium text-gray-900">Quick Search</p>
-                                <SearchBar placeholder="Search here" data={places} />
-                              </div>
                             </div>
                           </div>
                         </Popover.Panel>

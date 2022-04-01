@@ -353,12 +353,8 @@ console.log(places)
                     />
                 }
                 />
-              :
-                <Navigate 
-                  to="/login" />
-            }
-            />
-              <Route
+
+              {/* <Route
                 path='/places/:id/edit'
                 element={
                   user ?
@@ -369,7 +365,7 @@ console.log(places)
                     />
                   :
                     <Navigate to="/login" />
-                } />
+                } /> */}
               {/* ----------------- ITINERARIES  ----------------- */}
               <Route
                 path="/itineraries/:id"

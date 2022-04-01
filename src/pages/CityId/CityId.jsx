@@ -12,9 +12,9 @@ const CityId = (props) => {
 
   useEffect(() => {
     cityService.getOne(location.state.city._id)
-    .then(city => {
-      setCityDetails(city)
-    })
+      .then(city => {
+        setCityDetails(city)
+      })
   }, [location.state.city._id])
 
   return (
@@ -52,23 +52,29 @@ const CityId = (props) => {
             </div>
           </div>
 
-          <div className="shadow-sm sm:gap-y-16 lg:col-span-1 mt-2 gap-x-8 border-2">
+          <div className="shadow-md sm:gap-y-16 lg:col-span-1 mt-2 gap-x-8">
             <AddItineraryCard city={cityDetails} handleAddItinerary={props.handleAddItinerary} />
           </div>
-          
-          <div><br /> <br />
-            <h3 className="flex content-center justify-center">Places to go in {cityDetails?.city}</h3>
-            {cityDetails?.places ?
-              <div className="flex content-center justify-center">
-                {cityDetails?.places.map(place => (
-                  <PlaceCard key={place._id} place={place} />
-                ))}
-              </div>
-              :
-              <div>
-                <p>Loading Places ...</p>
-              </div>
-            }
+
+        </div>
+
+        <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+          <h2 className="font-small font-bold text-gray-900">Places to go in {cityDetails?.city}</h2>
+          <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+              {cityDetails?.places ?
+                cityDetails?.places.map((place, i) => (
+                  <div>
+                  <div key={place._id + i} class="group relative">
+                    <PlaceCard key={place._id} place={place} />
+                    </div>
+                  </div>
+                ))
+                :
+                <div>
+                  <p>Loading Places...</p>
+                </div>
+              }
+
           </div>
         </div>
       </div>

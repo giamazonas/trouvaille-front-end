@@ -30,8 +30,8 @@ const ItineraryCard = (props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} ref={formElement} >
-      <div className="w-full grid grid-cols-3 p-2 min-h-80 lg:h-200">
+    <form onSubmit={handleSubmit} ref={formElement}>
+      <div className="w-full grid grid-cols-3 p-2 min-h-80 lg:max-h-200 overflow-y">
         <div className="col-span-3 px-2 h-15">
           <div className="border-b py-2">
             <label className="font-medium text-gray-900">
@@ -62,10 +62,10 @@ const ItineraryCard = (props) => {
             <div className="col-span-2 px-2 h-17">
               <label htmlFor={place.name} className="font-small text-gray-700">
                 <p key={place.name}>{place.name}</p>
-                <p key={place.type} className="pl-2 italic font-small text-gray-500">{place.type}</p>
+                <p key={place.type}className="pl-2 italic font-small text-gray-500">{place.type}</p>
               </label>
             </div>
-            <select className="col-span-1 px-4 mt-1 mx-2 focus:ring-gray-500 focus:border-gray-500 shadow-sm overflow-hidden sm:text-sm border-gray-300 rounded-md" name={place._id} id={place.name} onChange={handleChange}>
+            <select key={place.id} className="col-span-1 px-4 mt-1 mx-2 focus:ring-gray-500 focus:border-gray-500 shadow-sm overflow-hidden sm:text-sm border-gray-300 rounded-md" name={place._id} id={place.name} onChange={handleChange}>
               <option value="" disabled defaultValue={true}>Select A Time</option>
               {
                 options.map(hour => (

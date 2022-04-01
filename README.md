@@ -31,19 +31,24 @@ ___________
 <br>
 Welcome page
 
-![home page](/trouvaille-front-end/public/trouvaille.png)
+
+<img src ="https://imgur.com/QTJIyQ6.png" alt="welcome page" width="400"/>
 <br>
 <br>
 
 places!
 
-![add new](/trouvaille-front-end/public/places.png)
+
+
+<img src ="https://imgur.com/3ydJsiO.png" alt="places" width="400"/>
 <br>
 <br>
 
 
 our wireframe...
-![wireframe](/trouvaille-front-end/public/wireframe.png)
+<br>
+<img src ="https://imgur.com/Yy7n3Wd.png" alt="wire frame" width="400"/>
+
 
 <br>
 <br>
@@ -64,7 +69,7 @@ ________________
  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
 
  <img src="https://img.shields.io/badge/Apple-MacBook_Pro_2012-999999?style=for-the-badge&logo=apple&logoColor=white"> 
-   <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white">
+ <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white">
  <img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge">
  <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white">
  

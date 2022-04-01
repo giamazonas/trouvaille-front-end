@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link, useLocation, Navigate, useNavigate } from 'react-router-dom'
-import * as itineraryService from '../../services/itineraries'
-import styles from './ItineraryCard.module.css'
+import styles from './AddItineraryCard.module.css'
 
 const ItineraryCard = (props) => {
   const formElement = useRef()
@@ -9,16 +7,15 @@ const ItineraryCard = (props) => {
   const [nameData, setNameData] = useState()
   const [itineraryData, setItineraryData] = useState([{}])
 
-  const hours = ['12 am', '1 am', '2 am', '3 am', '4 am', '5 am', '6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm', '8 pm', '9 pm', '10 pm', '11 pm']
-  let options = [{}]
-  hours.map((hour, i) => (
-    options[i] = ({ value: i, label: hour })
+  const hours = ['12 am', '1 am', '2 am', '3 am', '4 am', '5 am', '6 am', '7 am', '8 am', '9 am', '10 am', '11 am','12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm', '8 pm', '9 pm', '10 pm', '11 pm']
+  let options =[{}]
+  hours.map((hour,i) =>(
+    options[i]=({value: i, label: hour})
   ))
 
   useEffect(() => {
     formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
   }, [nameData])
-
   const handleSubmit = evt => {
     evt.preventDefault()
     itineraryData[24] = nameData
@@ -26,7 +23,7 @@ const ItineraryCard = (props) => {
   }
 
   const handleChange = (evt) => {
-    setItineraryData({ ...itineraryData, [evt.target.value]: evt.target.name })
+    setItineraryData({...itineraryData, [evt.target.value]: evt.target.name })
   }
   const handleTextChange = evt => {
     setNameData({ ...nameData, [evt.target.name]: evt.target.value })
@@ -81,7 +78,7 @@ const ItineraryCard = (props) => {
         }
 
         <div className="col-span-3 px-2">
-          <button type="submit"
+          <button
             disabled={!validForm}
             className="mt-4 block w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-500 disabled:bg-gray-200 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
             Submit

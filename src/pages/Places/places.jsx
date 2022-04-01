@@ -4,13 +4,7 @@ import { Link } from 'react-router-dom'
 import PlaceCard from '../../components/PlaceCard/PlaceCard'
 import styles from './places.module.css'
 
-const Places = (props) => {
-  const [places, setPlaces] = useState([])
-
-  useEffect(() => {
-    placeService.getAllPlaces()
-      .then(places => setPlaces(places))
-  }, [])
+const Places = ({places}) => {
 
   return (
     <>

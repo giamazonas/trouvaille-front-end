@@ -26,7 +26,7 @@ const App = () => {
   const [cities, setCities] = useState([])
   const [city, setCity] = useState([])
   const [places, setPlaces] = useState([])
-  const [place, setPlace] = useState([])
+  // const [place, setPlace] = useState([])
   const [itineraries, setItineraries] = useState([])
   const [reviews, setReviews] = useState([])
   const navigate = useNavigate()
@@ -50,9 +50,26 @@ const App = () => {
   
 
     useEffect(() => {
+      console.log('CITY USE EFFECT')
       cityService.getAll()
       .then(allCities => setCities(allCities))
+      placeService.getAllPlaces()
+      .then(allPlaces => setPlaces(allPlaces))
     }, [])
+    
+
+    useEffect(() => {
+      console.log('ITINERARY USE EFFECT')
+      if(user) {
+        profileService.showItineraries(user.profile)
+        .then(allItineraries => setItineraries(allItineraries))
+      }
+      console.log('::: ITINERARIES ::: ',itineraries)
+      
+  
+    }, [user])
+  
+
 
   const handleAddCity = async newCityData => {
     const newCity = await cityService.create(newCityData)
@@ -92,10 +109,6 @@ const App = () => {
 
   /* ----------------------------- PLACE ----------------------------- */
 
-  useEffect(() => {
-    placeService.getAllPlaces()
-    .then(allPlaces => setPlaces(allPlaces))
-  }, [])
 
   const handleAddPlace = async newPlaceData => {
     const newPlace = await placeService.create(newPlaceData)
@@ -114,7 +127,7 @@ const App = () => {
     for(let pair of updatedPlaceData.entries()){
       console.log('APPJS', pair[0], pair[1])
     }
-    placeService.update(updatedPlaceData)
+    placeService.update(id, updatedPlaceData)
       .then(updatedPlace => {
         const newPlacesArray = places.map(place => place._id === updatedPlace._id ? updatedPlace : place)
         setPlaces(newPlacesArray)
@@ -136,20 +149,12 @@ const App = () => {
     navigate(`/itineraries/${user.profile}`)
   }
 
-  useEffect(() => {
-    if(user) {
-      profileService.showItineraries(user.profile)
-      .then(allItineraries => setItineraries(allItineraries))
-    }
-    console.log('::: ITINERARIES ::: ',itineraries.itineraries)
-
-  }, [user])
 
   // const handleDeleteItinerary = id => {
   //   itineraryService.deleteOne(id)
   //   .then(deletedItinerary => setItineraries(itineraries.filter(itinerary => itinerary._id !== id)))
   // }
-
+console.log(places)
   // ---------------------------  ROUTES  ----------------------------------
 
   return (
@@ -160,7 +165,7 @@ const App = () => {
             cities={cities}
             navItems={navItems}
             places={places}
-            profileId={user.profile}
+            // profileId={user.profile}
           />
           <Routes>
               <Route 
@@ -235,7 +240,7 @@ const App = () => {
                         city={city}
                         places={places}
                         itineraries={itineraries}
-                        handleShowCity={handleShowCity}
+                        // handleShowCity={handleShowCity}
                         handleAddItinerary={handleAddItinerary}
                       />
                     :
@@ -262,12 +267,26 @@ const App = () => {
                 path="/places"
                 element={
                   user ? 
-                    <Places /> 
+                    <Places 
+                    places={places}
+                    /> 
                   : 
                     <Navigate 
                       to="/login" 
                     />}
               />
+                <Route
+                  path="/places/add"
+                  element={
+                    user ?
+                      <AddPlace
+                        handleAddPlace={handleAddPlace}
+                        cities={cities}
+                      />
+                    :
+                      <Navigate to="/login" />
+                  }
+                />
               <Route
                 path='/cities/:cityId/:placeId'
                 element={
@@ -288,8 +307,6 @@ const App = () => {
                     <PlaceId 
                       cities={cities}
                       places={places} 
-                      handleUpdatePlace={handleUpdatePlace}
-                      handleDeletePlace={handleDeletePlace}
                       handleReview={handleReview} 
                     />
                   :
@@ -298,23 +315,10 @@ const App = () => {
                 }
                 />
               <Route
-                path="/places/add"
-                element={
-                  user ?
-                    <AddPlace
-                      handleAddPlace={handleAddPlace}
-                      cities={cities}
-                    />
-                  :
-                    <Navigate to="/login" />
-                }
-              />
-              <Route
                 path='/places/:id/edit'
                 element={
                   user ?
                     <EditPlace
-                      city={cities}
                       places={places}
                       handleUpdatePlace={handleUpdatePlace}
                       handleDeletePlace={handleDeletePlace}
@@ -333,8 +337,6 @@ const App = () => {
                       places={places}
                       itineraries={itineraries.itineraries}
                       profile={user.profile}
-                      place={place}
-                      itineraries={itineraries}
                     /> 
                   : 
                     <Navigate 

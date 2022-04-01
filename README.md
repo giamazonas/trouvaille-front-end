@@ -112,4 +112,3 @@ ______________________________
 
 ![my favicon](/trouvaille-front-end/public/favicon.png)
 
-

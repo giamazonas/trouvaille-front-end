@@ -149,7 +149,7 @@ console.log(places)
             cities={cities}
             navItems={navItems}
             places={places}
-            profileId={user.profile}
+            // profileId={user.profile}
           />
           <Routes>
             <Route 

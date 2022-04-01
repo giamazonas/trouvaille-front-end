@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import * as placeService from '../../services/placeService';
 import { useLocation } from 'react-router-dom';
-import styles from './PlaceId.module.css'
 
 const PlaceId = (props, handleReview) => {
   let location = useLocation()
@@ -15,11 +14,8 @@ const PlaceId = (props, handleReview) => {
   },
   )
 
-  console.log('HELLO', location.state.place._id)
-  
   useEffect(() => {
-    console.log('FIX ME')
-    placeService.getOne(location.state.place._id)
+    placeService.getOne(location.state.place.id)
       .then(place => setPlaceDetails(place))
   }, [])
 
@@ -47,7 +43,7 @@ const PlaceId = (props, handleReview) => {
           </div>
           <nav aria-label="Breadcrumb" className="py-3">
             <ol role="list" className="max-w-2xl mx-auto px-4 flex items-center space-x-2 sm:px-6 lg:max-w-7xl lg:px-8">
-              <li key={location.state.place._id}>
+              <li key={location.state.place.id}>
                 <div className="flex items-center">
                   <p className="mr-2 text-sm font-medium text-gray-900">
                     {location.state.place.type}
@@ -86,7 +82,7 @@ const PlaceId = (props, handleReview) => {
                     </a>
                     :
                     <>
-                      `website not available`
+                    <p>website not available</p>
                     </>}
                 </h2>
               </div>
@@ -102,13 +98,13 @@ const PlaceId = (props, handleReview) => {
                 </div>
               </dl>
 
-              <div className="col-span-2 h-200 mt-10">
+              <div className="col-span-2 lg:h-200 mt-10">
                 <div className="flex flex-col">
                   <div className="h-200 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75">
                     <img
                       src={location.state.place.photo ? location.state.place.photo : `https://picsum.photos/100/200?random=433`}
                       alt="place"
-                      className="mx-auto object-center object-cover aspect-none lg:w-full"
+                      className="w-full h-full object-center object-cover aspect-none lg:w-full"
                     />
                   </div>
                 </div>
@@ -178,7 +174,6 @@ const PlaceId = (props, handleReview) => {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
         :

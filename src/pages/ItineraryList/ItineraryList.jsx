@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import styles from './ItineraryList.module.css'
 
 const ItineraryList = (props) => {
   // console.log(props)
@@ -8,7 +7,6 @@ const ItineraryList = (props) => {
       <div className="bg-white">
         <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-p6 lg:max-w-7xl lg:px-8">
           <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">My Itineraries</h2>
-
           {!props.itineraries ?
             <div>
               <p>...Itineraries loading </p>

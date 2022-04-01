@@ -69,7 +69,7 @@ function MapBox(props) {
               placeLocation?.map((location, idx) => (
                 <Marker key={idx} title='location' longitude={location[0]} latitude={location[1]} color="grey" scale=".5" >
                     {/* <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>woah look at this guys</button> */}
-                    <p>palce</p>
+                    {/* <p>palce</p> */}
                 </Marker>
               ))
             }

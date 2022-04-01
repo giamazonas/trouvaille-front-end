@@ -3,12 +3,13 @@ import { useLocation, useNavigate, Link } from 'react-router-dom'
 import * as placeService from '../../services/placeService'
 import { ExclamationIcon } from '@heroicons/react/outline'
 
-function EditPlace({ place, handleDeletePlace, handleUpdatePlace }) {
+function EditPlace({ places, handleDeletePlace, handleUpdatePlace }) {
   const location = useLocation()
   const [placeDetails, setPlaceDetails] = useState({})
   const formElement = useRef()
   const [validForm, setValidForm] = useState(true)
   const [formData, setFormData] = useState({
+    // _id: location.state.place._id,
     address: '',
     city: '', 
     name: '',
@@ -16,6 +17,9 @@ function EditPlace({ place, handleDeletePlace, handleUpdatePlace }) {
     url: '',
     photo: [],
   })
+
+  console.log('CHECK', places )
+  console.log('HI', location)
 
   const navigate = useNavigate()
 

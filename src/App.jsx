@@ -44,13 +44,25 @@ const App = () => {
     setUser(authService.getUser())
   }
 
-  /* ----------------------------- CITY git ----------------------------- */
+    useEffect(() => {
+      console.log('CITY USE EFFECT')
+      cityService.getAll()
+      .then(allCities => setCities(allCities))
+      placeService.getAllPlaces()
+      .then(allPlaces => setPlaces(allPlaces))
+    }, [])
+    
 
-  useEffect(() => {
-    cityService.getAll()
-    .then(allCities => setCities(allCities))
-  }, [])
-
+    useEffect(() => {
+      console.log('ITINERARY USE EFFECT')
+      if(user) {
+        profileService.showItineraries(user.profile)
+        .then(allItineraries => setItineraries(allItineraries))
+      }
+      console.log('::: ITINERARIES ::: ',itineraries)
+      
+  
+    }, [user])
 
   const handleAddCity = async newCityData => {
     const newCity = await cityService.create(newCityData)
@@ -89,10 +101,6 @@ const App = () => {
 
   /* ----------------------------- PLACE ----------------------------- */
 
-  useEffect(() => {
-    placeService.getAllPlaces()
-    .then(allPlaces => setPlaces(allPlaces))
-  }, [])
 
   const handleAddPlace = async newPlaceData => {
     const newPlace = await placeService.create(newPlaceData)
@@ -107,8 +115,11 @@ const App = () => {
     navigate('/places')
   }
 
-  const handleUpdatePlace = updatedPlaceData => {
-    placeService.update(updatedPlaceData)
+  const handleUpdatePlace = (id, updatedPlaceData) => {
+    for(let pair of updatedPlaceData.entries()){
+      console.log('APPJS', pair[0], pair[1])
+    }
+    placeService.update(id, updatedPlaceData)
       .then(updatedPlace => {
         const newPlacesArray = places.map(place => place._id === updatedPlace._id ? updatedPlace : place)
         setPlaces(newPlacesArray)
@@ -130,6 +141,12 @@ const App = () => {
     navigate(`/itineraries/${user.profile}`)
   }
 
+
+  // const handleDeleteItinerary = id => {
+  //   itineraryService.deleteOne(id)
+  //   .then(deletedItinerary => setItineraries(itineraries.filter(itinerary => itinerary._id !== id)))
+  // }
+console.log(places)
   useEffect(() => {
     if(user) {
       profileService.showItineraries(user.profile)
@@ -241,18 +258,21 @@ const App = () => {
                     />
                   :
                     <Navigate to="/login" />
-                } />
-              <Route
-                path='cities/:id'
-                element={
-                  user ?
-                    <CityId
-                      // handleCityId={handleCityId}
-                      city={cities}
-                      places={places}
-                      itineraries={itineraries}
-                    />
-                  :
+
+                  } 
+                />
+                <Route
+                  path='cities/:id'
+                  element={
+                    user ?
+                      <CityId
+                        city={city}
+                        places={places}
+                        itineraries={itineraries}
+                        // handleShowCity={handleShowCity}
+                        handleAddItinerary={handleAddItinerary}
+                      />
+                    :
                     <Navigate to="/login" />
                 }
               />
@@ -285,30 +305,53 @@ const App = () => {
                 path="/places"
                 element={
                   user ? 
-                    <Places /> 
+                    <Places 
+                    places={places}
+                    /> 
                   : 
                     <Navigate 
                       to="/login" 
                     />}
               />
+                <Route
+                  path="/places/add"
+                  element={
+                    user ?
+                      <AddPlace
+                        handleAddPlace={handleAddPlace}
+                        cities={cities}
+                      />
+                    :
+                      <Navigate to="/login" />
+                  }
+                />
               <Route
                 path='/cities/:cityId/:placeId'
                 element={
-                  <Places
-                    cities={cities}
-                    places={places} 
-                    />}
-          />
-          <Route
-            path='/places/:id'
-            element={
-              user ?
-                <PlaceId 
-                  cities={cities}
-                  places={places} 
-                  handleUpdatePlace={handleUpdatePlace}
-                  handleDeletePlace={handleDeletePlace}
-                  handleReview={handleReview} 
+
+                  user ?
+                    <Places
+                      cities={cities}
+                      places={places} 
+                      />
+                  :
+                    <Navigate to="/login" 
+                    />
+                  }
+              />
+              <Route
+                path='/places/:id'
+                element={
+                  user ?
+                    <PlaceId 
+                      cities={cities}
+                      places={places} 
+                      handleReview={handleReview} 
+                    />
+                  :
+                    <Navigate to="/login" 
+                    />
+                }
                 />
               :
                 <Navigate 
@@ -316,23 +359,10 @@ const App = () => {
             }
             />
               <Route
-                path="/places/add"
+                path='/places/:id/edit'
                 element={
                   user ?
-                    <AddPlace
-                      handleAddPlace={handleAddPlace}
-                      cities={cities}
-                    />
-                  :
-                    <Navigate to="/login" />
-                }
-              />
-              <Route
-                pth='/places/:id'
-                element={
-                  user ?
-                    <PlaceId
-                      city={cities}
+                    <EditPlace
                       places={places}
                       handleUpdatePlace={handleUpdatePlace}
                       handleDeletePlace={handleDeletePlace}

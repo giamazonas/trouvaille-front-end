@@ -26,7 +26,9 @@ const App = () => {
   const [cities, setCities] = useState([])
   const [city, setCity] = useState([])
   const [places, setPlaces] = useState([])
-  const [place, setPlace] = useState([])
+
+  //const [place, setPlace] = useState([])
+
   const [itineraries, setItineraries] = useState([])
   const [reviews, setReviews] = useState([])
   const navigate = useNavigate()
@@ -139,17 +141,14 @@ const App = () => {
   useEffect(() => {
     if(user) {
       profileService.showItineraries(user.profile)
-      .then(allItineraries => setItineraries(allItineraries))
+      .then(allItineraries => {
+        // console.log('all itinerary',allItineraries)
+        setItineraries([allItineraries])
+      })
     }
-    console.log('::: ITINERARIES ::: ',itineraries.itineraries)
-
   }, [user])
-
-  // const handleDeleteItinerary = id => {
-  //   itineraryService.deleteOne(id)
-  //   .then(deletedItinerary => setItineraries(itineraries.filter(itinerary => itinerary._id !== id)))
-  // }
-
+  
+  console.log('::::::::',itineraries)
   // ---------------------------  ROUTES  ----------------------------------
 
   return (
@@ -331,7 +330,7 @@ const App = () => {
                     <ItineraryList 
                       cities={cities}
                       places={places}
-                      itineraries={itineraries.itineraries}
+                      itineraries={itineraries[0]}
                       profile={user.profile}
                       place={place}
                       itineraries={itineraries}

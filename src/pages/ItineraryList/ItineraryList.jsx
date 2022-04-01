@@ -1,30 +1,26 @@
-import { useState, useEffect } from 'react'
-// import * as itineraryService from '../../services/itineraries.js'
 import { Link } from 'react-router-dom'
-import ItineraryCard from '../../components/AddItineraryCard/AddItineraryCard.jsx'
 import styles from './ItineraryList.module.css'
+import ItineraryCard from '../../components/AddItineraryCard/AddItineraryCard.jsx'
 
 const ItineraryList = (props) => {
-  console.log(props.itineraries)
-
+  console.log(props)
   return (
     <>
     <div className={styles.container}>
       <br /><h1>My Itineraries</h1><br />
       {props.itineraries ?
         <>
-          {props.itineraries.map((itinerary, i) =>
+          {props.itineraries.itineraries.map(itinerary =>
             <div key={itinerary._id}>
               {itinerary.name}
               {itinerary.timePlace.map(place => (
-                <p>
-                  {place.time}: {place.places}
+                <p key={place.places + place.time}>
+                  {place.time}:00  -   {place.places}
                 </p>
               ))}
               <br />
             </div>
           )}
-
         </>
       :
       <div>

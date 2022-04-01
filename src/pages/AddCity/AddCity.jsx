@@ -179,7 +179,6 @@ function AddCity(props) {
                     Submit
                   </button>
                 </div>
-
               </div>
             </div>
           </form>

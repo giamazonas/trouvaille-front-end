@@ -111,5 +111,8 @@ ______________________________
 [Favicon]()
 
 ![my favicon](/trouvaille-front-end/public/favicon.png)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0401
 

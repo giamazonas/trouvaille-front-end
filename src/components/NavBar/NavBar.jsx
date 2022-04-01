@@ -6,7 +6,7 @@ import { Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, XIcon } from '@heroicons/react/solid'
 import { MenuIcon } from '@heroicons/react/outline'
 import SearchBar from "../SearchBar/SearchBar";
-import SearchBarCity from "../SeachBarCity/SearchBarCity"; 
+import SearchBarCity from "../SeachBarCity/SearchBarCity";
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ')
@@ -86,10 +86,6 @@ const NavBar = ({ user, handleLogout, profileId }) => {
                                   <p className="mt-1 text-sm text-gray-500">Add a new city</p>
                                 </div>
                               </a>
-                              <div className="ml-4">
-                                <p className="text-base font-medium text-gray-900">Quick Search</p>
-                                <SearchBarCity placeholder="Search here" data={cities} />
-                              </div>
                             </div>
                           </div>
                         </Popover.Panel>
@@ -147,10 +143,6 @@ const NavBar = ({ user, handleLogout, profileId }) => {
                                   <p className="mt-1 text-sm text-gray-500">Add a new place</p>
                                 </div>
                               </a>
-                              <div className="ml-4">
-                                <p className="text-base font-medium text-gray-900">Quick Search</p>
-                                <SearchBar placeholder="Search here" data={places} />
-                              </div>
                             </div>
                           </div>
                         </Popover.Panel>
@@ -200,7 +192,6 @@ const NavBar = ({ user, handleLogout, profileId }) => {
                           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                             <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                               <a
-                                // href="/itineraries/:id"
                                 href={`/itineraries/${profileId}`}
                                 className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                               >
@@ -283,17 +274,17 @@ const NavBar = ({ user, handleLogout, profileId }) => {
                         <span className="ml-3 text-base font-medium text-gray-900">All Places</span>
                       </a>
                       <a
-                        href="/itineraries"
+                        href={`/itineraries/${profileId}`}
                         className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                       >
                         <span className="ml-3 text-base font-medium text-gray-900">My Itineraries</span>
                       </a>
-                      <a
+                      {/* <a
                         href="/starred"
                         className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                       >
                         <span className="ml-3 text-base font-medium text-gray-900">Starred Places</span>
-                      </a>
+                      </a> */}
                     </nav>
                   </div>
                 </div>

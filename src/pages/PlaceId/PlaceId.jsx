@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import * as placeService from '../../services/placeService';
 import { useLocation } from 'react-router-dom';
-import styles from './PlaceId.module.css'
 
 const PlaceId = (props, handleReview) => {
   let location = useLocation()
@@ -36,6 +35,7 @@ const PlaceId = (props, handleReview) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value })
   }
 
+  // console.log('PRACTICE')
   return (
     <>
       {location.state.place._id ?
@@ -72,12 +72,21 @@ const PlaceId = (props, handleReview) => {
             </ol>
           </nav>
 
-          <div className="max-w-2xl  mx-auto px-4 grid items-center grid-cols-1 gap-y-16 gap-x-8 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8 lg:grid-cols-2">
+          <div className="max-w-2xl mx-auto px-4 grid items-center grid-cols-1 gap-y-16 gap-x-8 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8 lg:grid-cols-2">
             <div className="relative">
+
               <div>
                 <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">{location.state.place.name}</h1>
                 <h2 className="mt-4 text-gray-500">
-                  {location.state.place.url ? location.state.place.url : `website not available`}
+
+                  {location.state.place.url ?
+                    <a className="underline hover:text-gray-600" href={location.state.place.url}>
+                      {location.state.place.url}
+                    </a>
+                    :
+                    <>
+                    <p>website not available</p>
+                    </>}
                 </h2>
               </div>
 
@@ -92,18 +101,17 @@ const PlaceId = (props, handleReview) => {
                 </div>
               </dl>
 
-              <div className="col-span-2 h-200 mt-10">
+              <div className="col-span-2 lg:h-200 mt-10">
                 <div className="flex flex-col">
-                <div className="h-200 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80">
-                  <img
-                    src={location.state.place.photo ? location.state.place.photo : `https://picsum.photos/100/200?random=433`}
-                    alt="place"
-                    className="mx-auto object-center object-cover aspect-none lg:w-full"
-                  />
-                </div>
+                  <div className="h-200 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75">
+                    <img
+                      src={location.state.place.photo ? location.state.place.photo : `https://picsum.photos/100/200?random=433`}
+                      alt="place"
+                      className="w-full h-full object-center object-cover aspect-none lg:w-full"
+                    />
+                  </div>
                 </div>
               </div>
-
             </div>
 
 
@@ -169,7 +177,6 @@ const PlaceId = (props, handleReview) => {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
         :

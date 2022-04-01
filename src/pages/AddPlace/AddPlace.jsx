@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react'
-import styles from './AddPlace.module.css'
 import { useNavigate, Link } from 'react-router-dom'
 
 

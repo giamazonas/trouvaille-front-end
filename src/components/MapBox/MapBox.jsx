@@ -4,8 +4,7 @@ import { useEffect, useState } from 'react'
 import { getCoordinates } from '../../services/forwardGeocodeApi'
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-
-const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN; // Set your mapbox token here
+const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 const API_URL = 'https://api.mapbox.com/geocoding/v5/'
 
 function MapBox(props) {
@@ -25,6 +24,8 @@ function MapBox(props) {
     }
   }
   /* #################^^^^ CIRCLE BACK FOR A MORE PROFESSIONAL FIX ^^^^################# */
+
+  // console.log(props)
 
   useEffect(() => {
     props.places &&
@@ -63,12 +64,10 @@ function MapBox(props) {
             // mapStyle="mapbox://styles/maxmay94/cl1cv5rwv000c17nonvzqhlt4" //dark map
             mapboxAccessToken={MAPBOX_TOKEN}
           >
-            <Marker longitude={cityDetails[0]} latitude={cityDetails[1]} color="green" scale='1' />
+            <Marker longitude={cityDetails[0]} latitude={cityDetails[1]} color="white" scale='1' />
             {
               placeLocation?.map((location, idx) => (
-                <Marker key={idx} title='location' description='some stuff about place' longitude={location[0]} latitude={location[1]} color="red" scale=".5" >
-                  {/* <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>woah look at this guys</button> */}
-                </Marker>
+                <Marker key={idx} title='location' longitude={location[0]} latitude={location[1]} color="grey" scale=".5" />
               ))
             }
           </Map>
@@ -83,3 +82,4 @@ function MapBox(props) {
 }
 
 export default MapBox
+

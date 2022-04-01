@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { useRef, useEffect, useState } from 'react'
 
 function PlaceCard({ place }) {
   return (

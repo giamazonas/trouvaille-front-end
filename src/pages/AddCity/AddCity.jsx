@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react'
-import styles from './AddCity.module.css'
 import { Link } from 'react-router-dom'
 
 function AddCity(props) {

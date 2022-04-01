@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import * as placeService from '../../services/placeService.js'
 import { Link } from 'react-router-dom'
 import PlaceCard from '../../components/PlaceCard/PlaceCard'
-import styles from './places.module.css'
+
 
 const Places = (props) => {
   const [places, setPlaces] = useState([])

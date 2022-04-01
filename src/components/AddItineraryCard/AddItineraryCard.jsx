@@ -89,4 +89,6 @@ const ItineraryCard = (props) => {
   )
 }
 
+
+
 export default ItineraryCard

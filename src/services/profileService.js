@@ -31,5 +31,5 @@ function showItineraries(id) {
 export { 
   getAllProfiles,
   addItinerary,
-  showItineraries
+  showItineraries,
 }

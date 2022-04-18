@@ -14,10 +14,7 @@ const PlaceId = (props, handleReview) => {
   },
   )
 
-  console.log('HELLO', location.state.place._id)
-  
   useEffect(() => {
-    console.log('FIX ME')
     placeService.getOne(location.state.place._id)
       .then(place => setPlaceDetails(place))
   }, [])
@@ -35,7 +32,6 @@ const PlaceId = (props, handleReview) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value })
   }
 
-  // console.log('PRACTICE')
   return (
     <>
       {location.state.place._id ?

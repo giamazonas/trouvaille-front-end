@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 
 const ItineraryList = (props) => {
-  // console.log(props)
   return (
     <>
       <div className="bg-white">
@@ -38,7 +37,6 @@ const ItineraryList = (props) => {
                 </div>
               )}
             </>
-
           }
         </div>
       </div>

@@ -106,7 +106,6 @@ const ChangePasswordForm = props => {
               </div>
             </div>
           </form>
-
         </div>
       </div>
     </>

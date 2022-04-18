@@ -22,7 +22,7 @@ We can share our experiences & plans with friends, making our days even more mem
 ___________________
 
 Click here, to peruse our web app, [Trouvaille](https://trouvaille-by-wanderlust.netlify.app)
-https://trouvaille-by-wanderlust.netlify.app
+
 <br>
 <br>
 

@@ -16,11 +16,6 @@ const NavBar = ({ user, handleLogout, profileId }) => {
   const [cities, setCities] = useState([])
   const location = useLocation()
 
-  useEffect(() => {
-    placeService.getAllPlaces()
-      .then(places => setPlaces(places))
-  }, [])
-
   return (
     <>
       {user ? (

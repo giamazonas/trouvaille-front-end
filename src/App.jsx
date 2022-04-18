@@ -23,7 +23,7 @@ import ItineraryList from './pages/ItineraryList/ItineraryList'
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [cities, setCities] = useState([])
-  const [city, setCity] = useState([])
+  // const [city, setCity] = useState([])
   const [places, setPlaces] = useState([])
   const [itineraries, setItineraries] = useState([])
   const navigate = useNavigate()

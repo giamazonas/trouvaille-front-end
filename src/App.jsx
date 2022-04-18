@@ -44,7 +44,6 @@ const App = () => {
   }
 
     useEffect(() => {
-      console.log('CITY USE EFFECT')
       cityService.getAll()
       .then(allCities => setCities(allCities))
       placeService.getAllPlaces()
@@ -52,13 +51,10 @@ const App = () => {
     }, [])
 
     useEffect(() => {
-      console.log('ITINERARY USE EFFECT')
       if(user) {
         profileService.showItineraries(user.profile)
         .then(allItineraries => setItineraries(allItineraries))
       }
-      console.log('::: ITINERARIES ::: ',itineraries)
-      
     }, [user])
 
 
@@ -74,9 +70,7 @@ const App = () => {
     }
   
     const handleUpdateCity = (id, updatedCityData) => {
-      for(let pair of updatedCityData.entries()){
-        console.log(pair[0], pair[1])
-      }
+      for(let pair of updatedCityData.entries())
       cityService.update(id, updatedCityData)
         .then(updatedCity => {
           const newCitiesArray = cities.map(city => city._id === updatedCity._id ? updatedCity : city)
@@ -86,7 +80,6 @@ const App = () => {
     }
 
   /* ----------------------------- PLACE ----------------------------- */
-
 
   const handleAddPlace = async newPlaceData => {
     const newPlace = await placeService.create(newPlaceData)
@@ -102,9 +95,7 @@ const App = () => {
   }
 
   const handleUpdatePlace = (id, updatedPlaceData) => {
-    for(let pair of updatedPlaceData.entries()){
-      console.log('APPJS', pair[0], pair[1])
-    }
+    for(let pair of updatedPlaceData.entries())
     placeService.update(id, updatedPlaceData)
       .then(updatedPlace => {
         const newPlacesArray = places.map(place => place._id === updatedPlace._id ? updatedPlace : place)
@@ -114,7 +105,6 @@ const App = () => {
   }
 
   const handleReview = async newReviewData => {
-    console.log("NEW REVIEW DATA", newReviewData)
     const newReview = await placeService.createReview(newReviewData)
     navigate('/places')
   }
@@ -127,7 +117,6 @@ const App = () => {
     navigate(`/itineraries/${user.profile}`)
   }
 
-console.log(places)
   useEffect(() => {
     if(user) {
       profileService.showItineraries(user.profile)
@@ -137,7 +126,6 @@ console.log(places)
     }
   }, [user])
   
-  console.log('::::::::',itineraries)
 
   // ---------------------------  ROUTES  ----------------------------------
 

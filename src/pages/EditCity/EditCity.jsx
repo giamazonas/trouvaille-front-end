@@ -21,8 +21,6 @@ function EditCity({ city, handleDeleteCity, handleUpdateCity }) {
 
   const navigate = useNavigate()
 
-  console.log(location.state.city._id)
-
   useEffect(() => {
     formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
   }, [formData])

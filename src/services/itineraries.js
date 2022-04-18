@@ -10,7 +10,6 @@ const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/itineraries`
 // }
 
 function create(itinerary) {
-  console.log('#### itinerary service_create #####',itinerary)
   return fetch(`${BASE_URL}/add`, {
     method: "POST",
     headers: {

@@ -10,7 +10,6 @@ async function getAllProfiles() {
 }
 
 function addItinerary(profileId, itineraryId) {
-  console.log('Profile Services')
   return fetch(`${BASE_URL}/${profileId}/${itineraryId}`, {
     method: "PATCH",
     headers: { Authorization: `Bearer ${tokenService.getToken()}` },

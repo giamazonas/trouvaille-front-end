@@ -15,7 +15,6 @@ const Places = ({places}) => {
           <div className="flex justify-end mx-5 text-base font-medium text-gray-900"><SearchBar className="z-10" placeholder="Quick search" data={places} />
           </div>
 
-
           <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {places.length ?
               places.map((place, i) => (

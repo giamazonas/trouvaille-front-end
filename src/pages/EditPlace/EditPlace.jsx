@@ -18,9 +18,6 @@ function EditPlace({ places, handleDeletePlace, handleUpdatePlace }) {
     photo: [],
   })
 
-  console.log('CHECK', places )
-  console.log('HI', location)
-
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -34,7 +31,6 @@ function EditPlace({ places, handleDeletePlace, handleUpdatePlace }) {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault()
-    console.log(formData)
     const placeFormData = new FormData()
     placeFormData.append('photo', formData.photo)
     placeFormData.append('address', formData.address)

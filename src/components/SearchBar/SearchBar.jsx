@@ -15,7 +15,6 @@ const SearchBar = ({ placeholder, data }) => {
       return place.name.toLowerCase().includes(searchWord.toLowerCase())
     })
     searchWord ? setFilteredData(newFilter) : setFilteredData([])
-    console.log('TEST SEARCH', searchWord)
   }
 
   const clearInput = () => {
@@ -39,7 +38,6 @@ const SearchBar = ({ placeholder, data }) => {
       {filteredData.length !== 0 && (
         <div className={styles.searchResult}>
           {filteredData.map((place) => {
-            console.log(place._id)
             return (
               <Link to={`/places/${place._id}`} key={place._id} state={{place}} className={styles.resultItem}>
                 <p>{place.name} <span className={styles.placeType}>{place.type}</span></p>

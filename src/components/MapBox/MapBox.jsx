@@ -2,7 +2,7 @@ import * as React from 'react'
 import Map, { Marker } from 'react-map-gl'
 import { useEffect, useState } from 'react'
 import { getCoordinates } from '../../services/forwardGeocodeApi'
-import 'mapbox-gl/dist/mapbox-gl.css';
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 const API_URL = 'https://api.mapbox.com/geocoding/v5/'
@@ -15,12 +15,12 @@ function MapBox(props) {
 
   /* #################vvvv CIRCLE BACK FOR A MORE PROFESSIONAL FIX vvvv################# */
   function forceReload() {
-    const reloadCount = sessionStorage.getItem('reloadCount');
+    const reloadCount = sessionStorage.getItem('reloadCount')
     if(reloadCount < 1) {
-      sessionStorage.setItem('reloadCount', String(reloadCount + 1));
-      window.location.reload();
+      sessionStorage.setItem('reloadCount', String(reloadCount + 1))
+      window.location.reload()
     } else {
-      sessionStorage.removeItem('reloadCount');
+      sessionStorage.removeItem('reloadCount')
     }
   }
   /* #################^^^^ CIRCLE BACK FOR A MORE PROFESSIONAL FIX ^^^^################# */

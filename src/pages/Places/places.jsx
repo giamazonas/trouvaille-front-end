@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import PlaceCard from '../../components/PlaceCard/PlaceCard'
-import SearchBar from "../../components/SearchBar/SearchBar";
+import SearchBar from "../../components/SearchBar/SearchBar"
 
 
 const Places = ({places}) => {

@@ -1,5 +1,5 @@
-import * as tokenService from "../services/tokenService";
-const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/cities`;
+import * as tokenService from "../services/tokenService"
+const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/cities`
 
 async function create(city) {
   const res = await fetch(BASE_URL, {
@@ -55,4 +55,4 @@ async function search(formData) {
   return await res.json();
 }
 
-export { create, getAll, deleteOne, update, getOne, search, addPlace };
+export { create, getAll, deleteOne, update, getOne, search, addPlace }

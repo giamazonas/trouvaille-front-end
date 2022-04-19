@@ -1,4 +1,4 @@
-import { Buffer } from "buffer";
+import { Buffer } from "buffer"
 
 function setToken(token) {
   localStorage.setItem("token", token)

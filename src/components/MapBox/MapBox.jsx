@@ -2,14 +2,12 @@ import * as React from 'react'
 import Map, { Marker } from 'react-map-gl'
 import { useEffect, useState } from 'react'
 import { getCoordinates } from '../../services/forwardGeocodeApi'
-import 'mapbox-gl/dist/mapbox-gl.css';
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 
 function MapBox(props) {
   console.log('cityDetails: ',props.cityDetails)
-
-
   return (
     <>
       <div className="w-full min-h-60 bg-gray-200 overflow-hidden lg:h-200 lg:aspect-none">

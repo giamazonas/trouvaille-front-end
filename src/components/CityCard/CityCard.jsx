@@ -32,4 +32,4 @@ function CityCard({ city }) {
   )
 }
 
-export default CityCard;
+export default CityCard

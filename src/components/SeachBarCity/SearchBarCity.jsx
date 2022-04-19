@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons'
@@ -51,4 +51,4 @@ const SearchBarCity = ({ placeholder, data }) => {
   )
 }
 
-export default SearchBarCity;
+export default SearchBarCity

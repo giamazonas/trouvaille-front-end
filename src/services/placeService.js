@@ -1,5 +1,5 @@
-import * as tokenService from "../services/tokenService";
-const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/places`;
+import * as tokenService from "../services/tokenService"
+const BASE_URL = `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/places`
 
 function getAllPlaces() {
   return fetch(BASE_URL).then((res) => res.json())
@@ -21,7 +21,7 @@ function deleteOne(id) {
       Authorization: `Bearer ${tokenService.getToken()}`,
     },
     method: "DELETE",
-  }).then((res) => res.json());
+  }).then((res) => res.json())
 }
 
 function update(id, place) {
@@ -31,7 +31,7 @@ function update(id, place) {
     },
     body: place,
     method: "PUT",
-  }).then((res) => res.json());
+  }).then((res) => res.json())
 }
 
 function getOne(id) {
@@ -65,4 +65,4 @@ export {
   getOne,
   search,
   createReview,
-};
+}

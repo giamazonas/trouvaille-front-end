@@ -88,12 +88,10 @@ ___________________
 ______________________________
 
 <br>[MapBox](https://www.mapbox.com/)<br>
-![mapbox](/trouvaille-front-end/public/mapbox.png)
-
+<img src ="https://i.imgur.com/FalQCaB.png" alt="mapbox" width="200"/>
 <br>
 <br>
 
-[Favicon]()
-
-![my favicon](/trouvaille-front-end/public/favicon.png)
+Favicon<br>
+<img src ="https://i.imgur.com/vlD5l86.png" alt="favicon" width="200"/>
 

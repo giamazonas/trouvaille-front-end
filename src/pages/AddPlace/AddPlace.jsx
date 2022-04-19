@@ -11,6 +11,8 @@ function AddPlace(props) {
     name: '',
     type: '',
     url: '',
+    lat: '',
+    long: '',
     photo: [],
   })
 
@@ -27,6 +29,8 @@ function AddPlace(props) {
     placeFormData.append('name', formData.name)
     placeFormData.append('type', formData.type)
     placeFormData.append('url', formData.url)
+    placeFormData.append('lat', '')
+    placeFormData.append('long', '')
     props.handleAddPlace(placeFormData)
   }
 

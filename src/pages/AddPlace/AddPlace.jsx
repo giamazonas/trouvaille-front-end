@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 
 
-
 function AddPlace(props) {
   const formElement = useRef()
   const [validForm, setValidForm] = useState(false)
@@ -149,8 +148,6 @@ function AddPlace(props) {
                     name="url"
                     value={formData.url}
                     onChange={handleChange}
-                    required
-                    placeholder="required"
                   />
                 </div>
 
@@ -170,12 +167,10 @@ function AddPlace(props) {
                     Submit
                   </button>
                 </div>
-
               </div>
             </div>
       </form>
-
-    </div>
+      </div>
       </div >
     </>
   )

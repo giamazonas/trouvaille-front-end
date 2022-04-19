@@ -16,11 +16,6 @@ const NavBar = ({ user, handleLogout, profileId }) => {
   const [cities, setCities] = useState([])
   const location = useLocation()
 
-  useEffect(() => {
-    placeService.getAllPlaces()
-      .then(places => setPlaces(places))
-  }, [])
-
   return (
     <>
       {user ? (
@@ -88,19 +83,6 @@ const NavBar = ({ user, handleLogout, profileId }) => {
                               </a>
                             </div>
                           </div>
-                          {/* <div className="px-5 py-5 bg-gray-50 sm:px-8 sm:py-8">
-                              <div>
-                                <h3 className="text-sm tracking-wide font-medium text-gray-500 uppercase">Admin</h3>
-                                <ul role="list" className="mt-4 space-y-4">
-                                  <li className="text-base truncate">
-                                    <a href="/cities/add" className="font-medium text-gray-900 hover:text-gray-700">
-                                      Add a City
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div> */}
-
                         </Popover.Panel>
                       </Transition>
                     </>

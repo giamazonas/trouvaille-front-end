@@ -14,8 +14,6 @@ function AddCity(props) {
     photo: [],
   })
 
-  console.log(props.user)
-
   useEffect(() => {
     formElement.current.checkValidity() ? setValidForm(true) : setValidForm(false)
   }, [formData])
@@ -161,8 +159,7 @@ function AddCity(props) {
                   />
                   {/* <p className="mt-2 text-sm text-gray-500"></p> */}
                 </div>
-
-
+                
                 <div className="col-span-4">
                   <label htmlFor="photo-upload" className="block text-sm font-medium text-gray-700">Photo <span className="text-gray-400">(optional)</span></label>
                   <div className="mt-1 flex items-center">

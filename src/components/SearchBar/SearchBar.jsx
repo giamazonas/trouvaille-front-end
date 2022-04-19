@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons'
 import styles from './SearchBar.module.css'
 
@@ -38,7 +38,6 @@ const SearchBar = ({ placeholder, data }) => {
       {filteredData.length !== 0 && (
         <div className={styles.searchResult}>
           {filteredData.map((place) => {
-            console.log(place._id)
             return (
               <Link to={`/places/${place._id}`} key={place._id} state={{place}} className={styles.resultItem}>
                 <p>{place.name} <span className={styles.placeType}>{place.type}</span></p>

@@ -1,14 +1,11 @@
 import { Link } from 'react-router-dom'
-import styles from './ItineraryList.module.css'
 
 const ItineraryList = (props) => {
-  // console.log(props)
   return (
     <>
       <div className="bg-white">
         <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-p6 lg:max-w-7xl lg:px-8">
           <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">My Itineraries</h2>
-
           {!props.itineraries ?
             <div>
               <p>...Itineraries loading </p>
@@ -31,7 +28,7 @@ const ItineraryList = (props) => {
                         <div className="bg-gray-50 px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                           <dt className="text-sm font-medium text-gray-500">
                             { parseInt(place.time) >= 12 ? ( parseInt(place.time) > 13 ? `${parseInt(place.time) - 12}:00 p.m` : `${place.time}:00 p.m`) : `${place.time}:00 a.m` }
-                         </dt>
+                          </dt>
                           <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">at {place.places}</dd>
                         </div>
                       </dl>
@@ -40,7 +37,6 @@ const ItineraryList = (props) => {
                 </div>
               )}
             </>
-
           }
         </div>
       </div>

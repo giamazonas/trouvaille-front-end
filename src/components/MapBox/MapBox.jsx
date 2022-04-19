@@ -25,7 +25,6 @@ function MapBox(props) {
   }
   /* #################^^^^ CIRCLE BACK FOR A MORE PROFESSIONAL FIX ^^^^################# */
 
-  // console.log(props)
 
   useEffect(() => {
     props.places &&

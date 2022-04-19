@@ -46,7 +46,13 @@ const CityId = (props) => {
             <div>
               {
                 cityDetails &&
-                <MapBox className="w-full h-full object-center object-cover lg:w-full lg:h-full" city={cityDetails?.city} state={cityDetails?.state} places={cityDetails?.places} />
+                <MapBox 
+                  className="w-full h-full object-center object-cover lg:w-full lg:h-full" 
+                  // city={cityDetails?.city} 
+                  // state={cityDetails?.state} 
+                  // places={cityDetails?.places} 
+                  cityDetails={cityDetails}
+                />
               }
             </div>
           </div>

@@ -1,8 +1,10 @@
 import * as React from 'react'
 import Map, { Marker } from 'react-map-gl'
-import { useEffect, useState } from 'react'
-import { getCoordinates } from '../../services/forwardGeocodeApi'
+import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css'
+
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 

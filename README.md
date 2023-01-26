@@ -22,7 +22,7 @@ We can share our experiences & plans with friends, making our days even more mem
 ___________________
 
 Click here, to peruse our web app, [Trouvaille](https://trouvaille-by-wanderlust.netlify.app)
-https://trouvaille-by-wanderlust.netlify.app
+
 <br>
 <br>
 
@@ -88,12 +88,10 @@ ___________________
 ______________________________
 
 <br>[MapBox](https://www.mapbox.com/)<br>
-![mapbox](/trouvaille-front-end/public/mapbox.png)
-
+<img src ="https://i.imgur.com/FalQCaB.png" alt="mapbox" width="200"/>
 <br>
 <br>
 
-[Favicon]()
-
-![my favicon](/trouvaille-front-end/public/favicon.png)
+Favicon<br>
+<img src ="https://i.imgur.com/vlD5l86.png" alt="favicon" width="200"/>
 

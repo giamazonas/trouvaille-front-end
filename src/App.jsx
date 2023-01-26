@@ -55,8 +55,7 @@ const App = () => {
         profileService.showItineraries(user.profile)
         .then(allItineraries => setItineraries(allItineraries))
       }
-    }, [user])
-
+    }, [user])  
 
   const handleAddCity = async newCityData => {
     const newCity = await cityService.create(newCityData)
@@ -117,15 +116,6 @@ const App = () => {
     navigate(`/itineraries/${user.profile}`)
   }
 
-  useEffect(() => {
-    if(user) {
-      profileService.showItineraries(user.profile)
-      .then(allItineraries => {
-        setItineraries([allItineraries])
-      })
-    }
-  }, [user])
-  
 
   // ---------------------------  ROUTES  ----------------------------------
 

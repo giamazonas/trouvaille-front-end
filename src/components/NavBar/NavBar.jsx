@@ -1,12 +1,12 @@
-// import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom"
 import { useState, useEffect, Fragment } from 'react'
 import { useLocation } from 'react-router-dom'
 import * as placeService from "../../services/placeService"
 import { Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, XIcon } from '@heroicons/react/solid'
 import { MenuIcon } from '@heroicons/react/outline'
-import SearchBar from "../SearchBar/SearchBar";
-import SearchBarCity from "../SeachBarCity/SearchBarCity";
+import SearchBar from "../SearchBar/SearchBar"
+import SearchBarCity from "../SeachBarCity/SearchBarCity"
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ')
@@ -15,11 +15,6 @@ const NavBar = ({ user, handleLogout, profileId }) => {
   const [places, setPlaces] = useState([])
   const [cities, setCities] = useState([])
   const location = useLocation()
-
-  useEffect(() => {
-    placeService.getAllPlaces()
-      .then(places => setPlaces(places))
-  }, [])
 
   return (
     <>
@@ -332,6 +327,6 @@ const NavBar = ({ user, handleLogout, profileId }) => {
       )
       }
     </>
-  );
-};
-export default NavBar;
+  )
+}
+export default NavBar

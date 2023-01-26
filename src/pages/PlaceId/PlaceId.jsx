@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
-import * as placeService from '../../services/placeService';
-import { useLocation } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react'
+import * as placeService from '../../services/placeService'
+import { useLocation } from 'react-router-dom'
 
 const PlaceId = (props, handleReview) => {
   let location = useLocation()
@@ -184,4 +184,4 @@ const PlaceId = (props, handleReview) => {
   )
 }
 
-export default PlaceId;
+export default PlaceId

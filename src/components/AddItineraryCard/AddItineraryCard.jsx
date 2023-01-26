@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react'
 
 const ItineraryCard = (props) => {
   const formElement = useRef()
@@ -87,5 +87,7 @@ const ItineraryCard = (props) => {
     </form>
   )
 }
+
+
 
 export default ItineraryCard

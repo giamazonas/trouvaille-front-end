@@ -11,6 +11,8 @@ function AddCity(props) {
     zip: [],
     population: '',
     walkable: true,
+    lat: '',
+    long: '',
     photo: [],
   })
 
@@ -28,6 +30,8 @@ function AddCity(props) {
     cityFormData.append('zip', formData.zip)
     cityFormData.append('population', formData.population)
     cityFormData.append('walkable', formData.walkable)
+    cityFormData.append('lat', '')
+    cityFormData.append('long', '')
     props.handleAddCity(cityFormData)
   }
 

@@ -23,7 +23,7 @@ const CityList = props => {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default CityList

@@ -52,7 +52,7 @@ function EditCity({ city, handleDeleteCity, handleUpdateCity }) {
     } else {
       value = evt.target.value
     }
-    setFormData({ ...formData, [evt.target.name]: value });
+    setFormData({ ...formData, [evt.target.name]: value })
   }
 
   const handleDelete = async (id) => {

@@ -1,0 +1,7 @@
+[build]
+    functions="functions"
+
+[[redirects]]
+    to="https://spontaneous-faloodeh-8cb795.netlify.app/*"
+    from="/api/*"
+    status=200 
